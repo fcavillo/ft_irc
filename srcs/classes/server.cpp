@@ -28,18 +28,33 @@ std::map<std::string, *Channel>	Server::getChannels()
 	return (this->_channels);
 }
 
-/*	addChannel is used to create a new channel in the server, identified in the Server::_channels map by the pair <name, pointer to new Channel>	*/
-int					Server::addChannel(Channel* chan)
+/*	addChannel is used to create a new channel in the server, identified in the Server::_channels map by the pair <name, pointer to new Channel>,
+*	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/
+bool					Server::addChannel(Channel* chan)
 {
-	return (0);
+	std::pair<std::string, Channel*>	newPair;
+
+	newPair = std::pair<std::string, Channel*>::make_pair(chan.getName(), chan);
+
+	return ((this->_channels.insert(newPair))->second);		//insert returns a pair with first=iterator to new elem, second=bool for success
 }
 
+/*	rmChannel is used to remove a Channel from the server (A_revoir : is it necessary ?)	*/
 int					Server::rmChannel(std::string name)
 {
+	this->_channels.erase(name);
 	return (0);
 }
 
+/*	findChannel returns a pointer to the Channel whose name is sent in parameter, 
+*	NULL if the Channel does not exist	*/
 Channel*			Server::findChannel(std::string name)
 {
-	return ()
+	std::map::iterator<std::string, Channel*>	it;
+
+	it = this->_channels.find(name);
+	if (it == this->_channels.end())		//the channel is not found
+		return (NULL);
+
+	return (it->second);
 }
