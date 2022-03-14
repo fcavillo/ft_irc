@@ -1,10 +1,9 @@
-#include "server.hpp"
+#include "Server.hpp"
 
 /*	Server class is initialized with a specific port and password (set at launch with the executable)	*/
 Server::Server(int port, std::string password) : _port(port), _password(password)
 {
-std::cout << "Creating Server" << std::endl;
-//initialize _channels map?
+	std::cout << "Creating Server" << std::endl;
 	return ;
 }
 
@@ -12,6 +11,9 @@ Server::~Server()
 {
 	return ;
 }
+
+
+/*	GETTERS & SETTERS	*/
 
 int	const &						Server::getPort() const
 {
@@ -27,6 +29,12 @@ std::map<std::string, *Channel>	Server::getChannels()
 {
 	return (this->_channels);
 }
+
+std::map<std::string, User*>	Server::getUsers()
+{
+	return (this->_users);
+}
+
 
 /*	CHANNEL MANAGEMENT	*/
 
@@ -63,10 +71,6 @@ Channel*			Server::findChannel(std::string name)
 
 /*	USER MANAGEMENT	*/
 
-std::map<std::string, User*>	Server::getUsers()
-{
-	return (this->_users);
-}
 
 /*	addUser is used to create a new user in the server, identified in the Server::_users map by the pair <nick, pointer to new User>,
 *	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/

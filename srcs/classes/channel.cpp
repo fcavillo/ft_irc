@@ -10,17 +10,19 @@ Channel::~Channel()
 	return ;
 }
 
+/*	GETTERS AND SETTERS	*/
+
 std::string const &				Channel::getName() const
 {
 	return (this->_name);
 }
 
-/*	USER MANAGEMENT	*/
-
 std::map<std::string, User*>	Channel::getUsers()
 {
 	return (this->_users);
 }
+
+/*	USER MANAGEMENT	*/
 
 /*	addUser is used to create a new user in the channel, identified in the Channel::_users map by the pair <nick, pointer to new User>,
 *	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/
