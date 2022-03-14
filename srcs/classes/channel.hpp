@@ -19,6 +19,8 @@ class   Channel
 		~Channel();
 
 		std::string const &				getName() const;
+
+		//user management
 		std::map<std::string, User*>	getUsers();
 		int								addUser(User* user);
 		int								rmUser(std::string nick);

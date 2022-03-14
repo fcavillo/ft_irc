@@ -15,6 +15,8 @@ std::string const &				Channel::getName() const
 	return (this->_name);
 }
 
+/*	USER MANAGEMENT	*/
+
 std::map<std::string, User*>	Channel::getUsers()
 {
 	return (this->_users);
