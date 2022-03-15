@@ -4,9 +4,10 @@
 #include <iostream>
 #include <cstring>
 #include <map>
-#include <utility>	//pair
-#include <cstdlib>	//rand
-#include <ctime>	//time
+#include <utility>		//pair
+#include <cstdlib>		//rand
+#include <ctime>		//timeval struct
+#include <sys/time.h>	//select
 
 
 #include "Channel.hpp"
@@ -43,9 +44,7 @@ class   Server
 		int									rmUser(std::string nick);
 		User*								findUser(std::string nick);	
 
-		//password encryption
-		std::string							ft_rotix(char* pass);
-		std::string							ft_unrotix();
+
 
 	private :
 		Server();
@@ -55,6 +54,13 @@ class   Server
 		std::string							_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
 		int									_rotKey;		//randomized key for password rotation algo
 		int									_port;			//port number for the server (set at the start by './ircserv *port* *password*')
+		std::string							_operLog;		//operator login
+		std::string							_operPass;		//operator password
+		struct timeval						_timeout;		//time before the server closes without activity
+
+		//password encryption
+		std::string							ft_rotix(char* pass);		
+		// std::string							ft_unrotix();
 };
 
 

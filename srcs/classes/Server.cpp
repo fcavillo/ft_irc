@@ -1,45 +1,23 @@
 #include "Server.hpp"
 
-/*	PASSWORD CRYPTING/UNCRYPTING	*/
+#include <cstdio>
 
-std::string		irc::Server::ft_rotix(char* pass)
-{
-	srand(time(NULL));
-
-	setRotKey((rand()));
-
-	std::string	s;
-
-	for (int i = 0; pass[i]; i++)
-		s.push_back((pass[i] + getRotKey()) % 94 + 32);
-
-	return (s);
-}
-
-std::string		irc::Server::ft_unrotix()
-{
-	std::string	s;
-	int			i = 0;
-
-	for (std::string::iterator it = _password.begin(); it != _password.end(); it++)
-	{
-		s.push_back(_password[i++] - getRotKey());
-		if (*(it) < 0)
-			*(it) = 94 + *(it);
-		(*it) = (*it) - 32;
-	}
-	return (s);
-}
 
 /*	Server class is initialized with a specific port and password (set at launch with the executable)	*/
-irc::Server::Server(char* port, char* password)
+irc::Server::Server(char* port, char* password) :
+_password(ft_rotix(password)),
+_operLog("admin"),
+_operPass("admin")
 {
 	std::cout << "Creating Server" << std::endl;
 
+	//timeout duration is set to 60.00s
+	_timeout.tv_sec = 60;
+	_timeout.tv_usec = 0;
 
-	_password = ft_rotix(password);
+	//clears a fd_set (a struct with an array of sockets) at this address
+	
 
-		std::cout << "Password = " << password << ", key = " << getRotKey() << ", crypted = " << this->_password << ", decrypted = " << ft_unrotix() << std::endl;
 	(void)port;
 	return ;
 }
@@ -92,7 +70,7 @@ bool					irc::Server::addChannel(irc::Channel* chan)
 	std::pair<std::string, Channel*>	newPair;
 
 	newPair = std::make_pair(chan->getName(), chan);
-//<std::string, irc::Channel*>
+
 	return ((this->_channels.insert(newPair)).second);		//insert returns a pair with first=iterator to new elem, second=bool for success
 }
 
@@ -118,7 +96,6 @@ irc::Channel*				irc::Server::findChannel(std::string name)
 
 /*	USER MANAGEMENT	*/
 
-
 /*	addUser is used to create a new user in the server, identified in the Server::_users map by the pair <nick, pointer to new User>,
 *	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/
 bool						irc::Server::addUser(irc::User* user)
@@ -126,7 +103,7 @@ bool						irc::Server::addUser(irc::User* user)
 	std::pair<std::string, User*>	newPair;
 
 	newPair = std::make_pair(user->getNick(), user);
-//pair<std::string, User*>::
+
 	return ((this->_users.insert(newPair)).second);		//insert returns a pair with first=iterator to new elem, second=bool for success
 }
 
@@ -150,3 +127,18 @@ irc::User*					irc::Server::findUser(std::string nick)
 	return (it->second);
 }
 
+
+/*	PASSWORD CRYPTING/UNCRYPTING	*/
+
+std::string		irc::Server::ft_rotix(char* pass)
+{
+// 	srand(time(NULL));
+
+// 	setRotKey((rand() % 93));
+
+	std::string	s;
+	for (int i = 0; pass[i]; i++)
+		s.push_back(pass[i]);
+
+	return (s);
+}
