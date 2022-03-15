@@ -27,9 +27,10 @@ std::string const &		Message::getReceiver() const
 
 void					Message::initCommands()
 {
-
+//to do : implement each command one by one in a map with the pair<command, function>
 }
 
+/*	This function takes the full command line and splits it into several arguents	*/
 void					Message::fillCommand(std::string fullCommand)
 {
 
