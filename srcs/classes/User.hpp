@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 
+#ifndef USER_HPP
+#define USER_HPP
 
 /*	This is the main class for the User : it groups the main info about it, 
 *	like the username, nickname, real name, status	*/
@@ -30,8 +32,8 @@ class   User
 		std::string		_nick;
 		std::string		_realName;
 		std::string		_password;
-}
-
-
+};
 
 }   //namespace end
+
+#endif

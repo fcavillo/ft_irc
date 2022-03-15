@@ -1,7 +1,10 @@
 #include <iostream>
 #include <cstring>
 #include <map>
-#include <pair>
+#include <utility>
+
+#ifndef MESSAGE_HPP
+#define MESSAGE_HPP
 
 /*	This is the main class for the Message : it groups the main info about it, 
 *	like the sender, receiver, command called and command map	*/
@@ -34,8 +37,9 @@ class   Message
 		std::string 					_sender;	
 		std::string 					_receiver;	
 
-}
-
+};
 
 
 }   //namespace end
+
+#endif

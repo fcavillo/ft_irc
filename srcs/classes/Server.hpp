@@ -1,7 +1,10 @@
+#ifndef SERVER_HPP
+#define SERVER_HPP
+
 #include <iostream>
 #include <cstring>
 #include <map>
-#include <pair>
+#include <utility>
 
 #include "Channel.hpp"
 #include "User.hpp"
@@ -42,8 +45,9 @@ class   Server
 		std::map<std::string, Channel*>		_channels;		//list of all the channels on the server, the pair is <channelName, address>
 		std::string 						_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*')
 		int									_port;			//port number for the server (set at the start by './ircserv *port* *password*')
-}
-
+};
 
 
 }   //namespace end
+
+#endif

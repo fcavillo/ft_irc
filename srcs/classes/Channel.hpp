@@ -1,7 +1,10 @@
+#ifndef CHANNEL_HPP
+#define CHANNEL_HPP
+
 #include <iostream>
 #include <cstring>
 #include <map>
-#include <pair>
+#include <utility>
 
 #include "User.hpp"
 
@@ -31,8 +34,9 @@ class   Channel
 
 		std::map<std::string, User*>		_users;		//list of all the users on the channel, the pair is <nick, address>
 		std::string 						_name;		//name of the channel (initialized by the user command '/join *name*')
-}
-
+};
 
 
 }   //namespace end
+
+#endif
