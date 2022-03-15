@@ -19,7 +19,7 @@ namespace irc
 class   Server
 {
 	public :
-		Server(int port, std::string password);
+		Server(char* port, char* password);
 		~Server();
 
 
@@ -29,12 +29,12 @@ class   Server
 		std::map<std::string, User*>		getUsers();
 
 		//channel management
-		int									addChannel(Channel* chan);
+		bool								addChannel(Channel* chan);
 		int									rmChannel(std::string name);
 		Channel*							findChannel(std::string name);
 
 		//user management
-		int									addUser(User* user);
+		bool									addUser(User* user);
 		int									rmUser(std::string nick);
 		User*								findUser(std::string nick);		
 
@@ -43,7 +43,8 @@ class   Server
 
 		std::map<std::string, User*>		_users;			//list of all the users on the channel, the pair is <userNick, address>
 		std::map<std::string, Channel*>		_channels;		//list of all the channels on the server, the pair is <channelName, address>
-		std::string 						_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*')
+		std::string 						_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
+		int									_rotKey;
 		int									_port;			//port number for the server (set at the start by './ircserv *port* *password*')
 };
 
