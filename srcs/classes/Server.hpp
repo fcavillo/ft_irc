@@ -4,7 +4,10 @@
 #include <iostream>
 #include <cstring>
 #include <map>
-#include <utility>
+#include <utility>	//pair
+#include <cstdlib>	//rand
+#include <ctime>	//time
+
 
 #include "Channel.hpp"
 #include "User.hpp"
@@ -24,7 +27,9 @@ class   Server
 
 
 		int	const &							getPort() const;
-		std::string const &					getPassword() const;
+		std::string							getPassword() const;
+		int const &							getRotKey() const;
+		void								setRotKey(int key);
 		std::map<std::string, Channel*>		getChannels();			//used by server command /list that shows all member channels
 		std::map<std::string, User*>		getUsers();
 
@@ -34,17 +39,21 @@ class   Server
 		Channel*							findChannel(std::string name);
 
 		//user management
-		bool									addUser(User* user);
+		bool								addUser(User* user);
 		int									rmUser(std::string nick);
-		User*								findUser(std::string nick);		
+		User*								findUser(std::string nick);	
+
+		//password encryption
+		std::string							ft_rotix(char* pass);
+		std::string							ft_unrotix();
 
 	private :
 		Server();
 
 		std::map<std::string, User*>		_users;			//list of all the users on the channel, the pair is <userNick, address>
 		std::map<std::string, Channel*>		_channels;		//list of all the channels on the server, the pair is <channelName, address>
-		std::string 						_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
-		int									_rotKey;
+		std::string							_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
+		int									_rotKey;		//randomized key for password rotation algo
 		int									_port;			//port number for the server (set at the start by './ircserv *port* *password*')
 };
 

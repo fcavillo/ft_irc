@@ -1,11 +1,46 @@
 #include "Server.hpp"
 
+/*	PASSWORD CRYPTING/UNCRYPTING	*/
+
+std::string		irc::Server::ft_rotix(char* pass)
+{
+	srand(time(NULL));
+
+	setRotKey((rand()));
+
+	std::string	s;
+
+	for (int i = 0; pass[i]; i++)
+		s.push_back((pass[i] + getRotKey()) % 94 + 32);
+
+	return (s);
+}
+
+std::string		irc::Server::ft_unrotix()
+{
+	std::string	s;
+	int			i = 0;
+
+	for (std::string::iterator it = _password.begin(); it != _password.end(); it++)
+	{
+		s.push_back(_password[i++] - getRotKey());
+		if (*(it) < 0)
+			*(it) = 94 + *(it);
+		(*it) = (*it) - 32;
+	}
+	return (s);
+}
+
 /*	Server class is initialized with a specific port and password (set at launch with the executable)	*/
 irc::Server::Server(char* port, char* password)
 {
 	std::cout << "Creating Server" << std::endl;
+
+
+	_password = ft_rotix(password);
+
+		std::cout << "Password = " << password << ", key = " << getRotKey() << ", crypted = " << this->_password << ", decrypted = " << ft_unrotix() << std::endl;
 	(void)port;
-	(void)password;
 	return ;
 }
 
@@ -22,7 +57,7 @@ int	const &						irc::Server::getPort() const
 	return (this->_port);
 }
 
-std::string const &				irc::Server::getPassword() const
+std::string								irc::Server::getPassword() const
 {
 	return (this->_password);
 }
@@ -32,11 +67,21 @@ std::map<std::string, irc::Channel*>	irc::Server::getChannels()
 	return (this->_channels);
 }
 
-std::map<std::string, irc::User*>	irc::Server::getUsers()
+std::map<std::string, irc::User*>		irc::Server::getUsers()
 {
 	return (this->_users);
 }
 
+int const &								irc::Server::getRotKey() const
+{
+	return (this->_rotKey);
+}
+
+void									irc::Server::setRotKey(int key) 
+{
+	this->_rotKey = key;
+	return ;
+}
 
 /*	CHANNEL MANAGEMENT	*/
 
@@ -104,3 +149,4 @@ irc::User*					irc::Server::findUser(std::string nick)
 
 	return (it->second);
 }
+
