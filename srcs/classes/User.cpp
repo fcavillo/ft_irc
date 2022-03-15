@@ -1,56 +1,56 @@
 #include "User.hpp"
 
-User::User() : _oper(0)
+irc::User::User() : _oper(0)
 {
 	return ;
 }
 
-User::~User()
+irc::User::~User()
 {
 	return ;
 }
 
 /*	GETTERS & SETTERS	*/
 
-std::string const &		User::getUsername() const
+std::string const &		irc::User::getUsername() const
 {
 	return (this->_username);
 }
 
-std::string const &		User::getNick() const
+std::string const &		irc::User::getNick() const
 {
 	return (this->_nick);
 }
 
-std::string const &		User::getRealName() const
+std::string const &		irc::User::getRealName() const
 {
 	return (this->_realName);
 }
 
-bool					User::getOper()
+bool const &			irc::User::getOper() const
 {
 	return (this->_oper);
 }
 
-void					User::setUsername(std::string username)
+void					irc::User::setUsername(std::string username)
 {
 	this->_username = username;
 	return ;
 }
 
-void					User::setNick(std::string nick)
+void					irc::User::setNick(std::string nick)
 {
 	this->_nick = nick;
 	return ;
 }
 
-void					User::setRealName(std::string realName)
+void					irc::User::setRealName(std::string realName)
 {
 	this->_realName = realName;
 	return ;
 }
 
-void					User::setOper(bool oper)
+void					irc::User::setOper(bool oper)
 {
 	this->_oper = oper;
 	return ;
