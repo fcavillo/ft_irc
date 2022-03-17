@@ -57,6 +57,13 @@ class   Server
 		std::string							_operLog;		//operator login
 		std::string							_operPass;		//operator password
 		struct timeval						_timeout;		//time before the server closes without activity
+		time_t								_startTime;		//time of server start
+
+		/*	Sockets are similar to bidirectionnal pipes : a file that represents a network connection,
+		*	stuff written in the socket are turned into network packets that are sent to the other host and port.
+		*	Client sockets are used to send a request to the server socket,
+		*	server sockets are used to accept requests, do an operation and send the result to the client	*/
+		fd_set								_clientSockets;
 
 		//password encryption
 		std::string							ft_rotix(char* pass);		

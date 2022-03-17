@@ -15,8 +15,11 @@ _operPass("admin")
 	_timeout.tv_sec = 60;
 	_timeout.tv_usec = 0;
 
-	//clears a fd_set (a struct with an array of sockets) at this address
-	
+	//clears a fd_set (a struct with an array of sockets) at this address so it can store the client sockets
+	FD_ZERO(&_clientSockets);
+
+memset(_main_buffer, 0, MAX_REQUEST_LEN + 1);
+	time(&_startTime);
 
 	(void)port;
 	return ;
