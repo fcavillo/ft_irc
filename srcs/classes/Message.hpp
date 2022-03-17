@@ -35,9 +35,9 @@ class   Message
 
 		std::string						_fullCommand;	//full sent command, before splitting
 		std::string*					_splitCommand;	//all the split info of the command : 'say', 'hi guys'
-		std::map<std::string, User*>	_commandList;	//list of all the commands the server can do
-		std::string 					_sender;	
-		std::string 					_receiver;	
+		std::map<std::string, pointer>	_commandList;	//list of all the commands the server can do
+		User*	 						_sender;	
+		User*		 					_receiver;	
 
 };
 
