@@ -29,7 +29,7 @@ int     main(int ac, char **av)
 			if (!isdigit(av[1][i]))
 				throw std::invalid_argument("Error : invalid port number");
 	
-		irc::Server	server(av[1], av[2]);
+		irc::Server	server(atoi(av[1]), av[2]);
 	}
 	catch(const std::exception& e)
 	{

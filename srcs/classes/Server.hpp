@@ -6,9 +6,11 @@
 #include <stdexcept>
 #include <map>
 #include <utility>		//pair
-#include <cstdlib>		//rand
+#include <cstdlib>		//rand()
 #include <ctime>		//timeval struct
-#include <sys/time.h>	//select
+#include <sys/time.h>	//select()
+#include <cstdlib>		//atoi()
+#include <csignal>		//signal()
 
 
 #include "Channel.hpp"
@@ -24,10 +26,21 @@ namespace irc
 class   Server
 {
 	public :
-		Server(char* port, char* password);
+		Server(int port, std::string password);
 		~Server();
 
+		int		start();
 
+	private :
+		int						_port;			//port number for the server (set at the start by './ircserv *port* *password*')
+		std::string				_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
+		bool					_on;			
+
+
+
+
+
+	public :
 		int	const &							getPort() const;
 		std::string							getPassword() const;
 		int const &							getRotKey() const;
@@ -52,9 +65,7 @@ class   Server
 
 		std::map<std::string, User*>		_users;			//list of all the users on the channel, the pair is <userNick, address>
 		std::map<std::string, Channel*>		_channels;		//list of all the channels on the server, the pair is <channelName, address>
-		std::string							_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
 		int									_rotKey;		//randomized key for password rotation algo
-		int									_port;			//port number for the server (set at the start by './ircserv *port* *password*')
 		std::string							_operLog;		//operator login
 		std::string							_operPass;		//operator password
 		struct timeval						_timeout;		//time before the server closes without activity
@@ -67,7 +78,7 @@ class   Server
 		fd_set								_clientSockets;
 
 		//password encryption
-		std::string							ft_rotix(char* pass);		
+		std::string							ft_rotix(std::string pass);		
 		// std::string							ft_unrotix();
 };
 

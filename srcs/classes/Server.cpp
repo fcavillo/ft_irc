@@ -4,15 +4,12 @@
 
 
 /*	Server class is initialized with a specific port and password (set at launch with the executable)	*/
-irc::Server::Server(char* port, char* password) :
+irc::Server::Server(int port, std::string password) :
+_port(port),
 _password(ft_rotix(password)),
-_operLog("admin"),
-_operPass("admin")
+_on(true)
 {
-	std::cout << "Creating Server" << std::endl;
-
-
-
+	std::cout << "Creating Server - port : " << port << std::endl;
 
 // 	//timeout duration is set to 60.00s
 // 	_timeout.tv_sec = 60;
@@ -42,9 +39,6 @@ _operPass("admin")
 // 		hints.ai_next = NULL;	
 // 	}
 
-
-
-	(void)port;
 	return ;
 }
 
@@ -53,7 +47,24 @@ irc::Server::~Server()
 	return ;
 }
 
+/*	Sockets are similar to bidirectionnal pipes : a file that represents a network connection,
+*	stuff written in the socket are turned into network packets that are sent to the other host and port.
+*	Client sockets are used to send a request to the server socket,
+*	server sockets are used to accept requests, do an operation and send the result to the client	*/
+int		irc::Server::start()
+{
+	/*	CREATING MAIN SOCKET	*/
+	//ignoring the SIGPIPE signal that shuts the program down in case of write error : error will be handled another way here
+	std::signal(SIGPIPE, SIG_IGN);
 
+	return (0);
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////
 /*	GETTERS & SETTERS	*/
 
 int	const &					irc::Server::getPort() const
@@ -156,7 +167,7 @@ irc::User*					irc::Server::findUser(std::string nick)
 
 /*	PASSWORD CRYPTING/UNCRYPTING	*/
 
-std::string		irc::Server::ft_rotix(char* pass)
+std::string		irc::Server::ft_rotix(std::string pass)
 {
 // 	srand(time(NULL));
 
