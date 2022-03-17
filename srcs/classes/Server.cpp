@@ -14,33 +14,33 @@ _operPass("admin")
 
 
 
-	//timeout duration is set to 60.00s
-	_timeout.tv_sec = 60;
-	_timeout.tv_usec = 0;
+// 	//timeout duration is set to 60.00s
+// 	_timeout.tv_sec = 60;
+// 	_timeout.tv_usec = 0;
 
-	//clears a fd_set (a struct with an array of sockets) at this address so it can store the client sockets
-	FD_ZERO(&_clientSockets);
+// 	//clears a fd_set (a struct with an array of sockets) at this address so it can store the client sockets
+// 	FD_ZERO(&_clientSockets);
 
-//memset(_main_buffer, 0, MAX_REQUEST_LEN + 1);
-	time(&_startTime);
+// //memset(_main_buffer, 0, MAX_REQUEST_LEN + 1);
+// 	time(&_startTime);
 
-	//address info structure : flags, protocol family, socket type, address lenght, etc
-	struct addrinfo		hints;	
-	//settings for the hints addrinfo structure
-	{
-		memset(&hints, 0, sizeof(hints));
-		//AI_PASSIVE makes the returned socket addresses usable to bind a socket accepting a connection
-		hints.ai_flags = AI_PASSIVE;
-		//AF_UNSPEC makes the getaddrinfo return ipv4 or ipv6 compatible addresses
-		hints.ai_family = AF_UNSPEC;
-		//SOCK_STREAM sets the protocol to connection-based : it is like a conversation where both parties discuss until terminated
-		hints.ai_socktype = SOCK_STREAM;
-		//ai_protocol set at 0 allows any protocol type to be returned by getaddrinfo
-		hints.ai_protocol = 0;
-		hints.ai_addr = NULL;
-		hints.ai_canonname = NULL;
-		hints.ai_next = NULL;	
-	}
+// 	//address info structure : flags, protocol family, socket type, address lenght, etc
+// 	struct addrinfo		hints;	
+// 	//settings for the hints addrinfo structure
+// 	{
+// 		memset(&hints, 0, sizeof(hints));
+// 		//AI_PASSIVE makes the returned socket addresses usable to bind a socket accepting a connection
+// 		hints.ai_flags = AI_PASSIVE;
+// 		//AF_UNSPEC makes the getaddrinfo return ipv4 or ipv6 compatible addresses
+// 		hints.ai_family = AF_UNSPEC;
+// 		//SOCK_STREAM sets the protocol to connection-based : it is like a conversation where both parties discuss until terminated
+// 		hints.ai_socktype = SOCK_STREAM;
+// 		//ai_protocol set at 0 allows any protocol type to be returned by getaddrinfo
+// 		hints.ai_protocol = 0;
+// 		hints.ai_addr = NULL;
+// 		hints.ai_canonname = NULL;
+// 		hints.ai_next = NULL;	
+// 	}
 
 
 

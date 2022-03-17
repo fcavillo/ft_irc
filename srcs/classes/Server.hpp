@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <stdexcept>
 #include <map>
 #include <utility>		//pair
 #include <cstdlib>		//rand

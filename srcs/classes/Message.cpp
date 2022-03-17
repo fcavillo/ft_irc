@@ -16,12 +16,12 @@ std::string* const &	irc::Message::getCommand() const
 	return (this->_splitCommand);
 }
 
-std::string const &		irc::Message::getSender() const
+irc::User*		irc::Message::getSender() const
 {
 	return (this->_sender);
 }
 
-std::string const &		irc::Message::getReceiver() const
+irc::User*	irc::Message::getReceiver() const
 {
 	return (this->_receiver);
 }
