@@ -51,11 +51,18 @@ irc::Server::~Server()
 *	stuff written in the socket are turned into network packets that are sent to the other host and port.
 *	Client sockets are used to send a request to the server socket,
 *	server sockets are used to accept requests, do an operation and send the result to the client	*/
-int		irc::Server::start()
+int		irc::Server::start() //->connect + setup
 {
-	/*	CREATING MAIN SOCKET	*/
 	//ignoring the SIGPIPE signal that shuts the program down in case of write error : error will be handled another way here
 	std::signal(SIGPIPE, SIG_IGN);
+
+	for (int i = 0; i < USER_MAX; i++)
+		this->_users[i] = NULL;
+
+	/*	CREATING MAIN SOCKET	*/
+	_mainSocket = socket(AF_INET, SOCK_STREAM, 0);
+	if (_mainSocket == 0)
+		throw 
 
 	return (0);
 }

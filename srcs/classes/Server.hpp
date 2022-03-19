@@ -12,9 +12,10 @@
 #include <cstdlib>		//atoi()
 #include <csignal>		//signal()
 
-
 #include "Channel.hpp"
 #include "User.hpp"
+
+#define USER_MAX 10
 
 
 /*	This is the main class for the server : it groups the main info about it, 
@@ -32,9 +33,11 @@ class   Server
 		int		start();
 
 	private :
-		int						_port;			//port number for the server (set at the start by './ircserv *port* *password*')
-		std::string				_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
-		bool					_on;			//
+		int				_port;					//port number for the server (set at the start by './ircserv *port* *password*')
+		std::string		_password;				//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
+		bool			_on;					//status
+		User*			_users[USER_MAX];
+		int				_mainSocket;
 
 
 
