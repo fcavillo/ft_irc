@@ -1,0 +1,23 @@
+
+PREFIX COMMAND PARAMS CRLF
+
+PREFIX (en fonctions de la commandes peut faire reference a un nickname user ...)
+COMMAND (PASS .. USER ...)
+PARAMS (parametres)
+CRLF (retour charriot Ctrl^M ou entree)
+
+
+Rule naming
+
+<rules> <RULES> <RulES> -> se refere a la meme regles
+
+Rule Form
+
+name = elements -> name est le name de la regle elements corresponds aux rules
+
+Terminal Values
+
+b = binary , d = decimal , x = hexadecimal
+->ASCII CR = %d13 (decimal 13) CR = %x0D (hex 0D) (carriage return)
+
+
