@@ -32,7 +32,8 @@ class   Server
 		~Server();
 
 		int		start();
-		void	setUpFDs();
+		void	setUpFds();
+		void	newConnectionCheck();
 
 	private :
 		int					_port;					//port number for the server (set at the start by './ircserv *port* *password*')
@@ -42,9 +43,10 @@ class   Server
 		int					_mainSocket;
 		struct sockaddr_in	_address;				//address structure with address family, port and IP address
 		size_t				_addressSize;
-		fd_set 				_readFds;
-		int					_socketFd;
-
+		fd_set 				_clientFds;				//structure containing the fds used
+		int					_socketFd;				//temp storage for the use of one socket
+		int					_fdMax;	
+		int					_fdReady;				//used to store an fd when it is ready to receive/send 
 
 
 	public :

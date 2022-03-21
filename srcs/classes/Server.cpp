@@ -10,35 +10,6 @@ _password(ft_rotix(password)),
 _on(true)
 {
 	std::cout << "Creating Server - port : " << port << std::endl;
-
-// 	//timeout duration is set to 60.00s
-// 	_timeout.tv_sec = 60;
-// 	_timeout.tv_usec = 0;
-
-// 	//clears a fd_set (a struct with an array of sockets) at this address so it can store the client sockets
-// 	FD_ZERO(&_clientSockets);
-
-// //memset(_main_buffer, 0, MAX_REQUEST_LEN + 1);
-// 	time(&_startTime);
-
-// 	//address info structure : flags, protocol family, socket type, address lenght, etc
-// 	struct addrinfo		hints;	
-// 	//settings for the hints addrinfo structure
-// 	{
-// 		memset(&hints, 0, sizeof(hints));
-// 		//AI_PASSIVE makes the returned socket addresses usable to bind a socket accepting a connection
-// 		hints.ai_flags = AI_PASSIVE;
-// 		//AF_UNSPEC makes the getaddrinfo return ipv4 or ipv6 compatible addresses
-// 		hints.ai_family = AF_UNSPEC;
-// 		//SOCK_STREAM sets the protocol to connection-based : it is like a conversation where both parties discuss until terminated
-// 		hints.ai_socktype = SOCK_STREAM;
-// 		//ai_protocol set at 0 allows any protocol type to be returned by getaddrinfo
-// 		hints.ai_protocol = 0;
-// 		hints.ai_addr = NULL;
-// 		hints.ai_canonname = NULL;
-// 		hints.ai_next = NULL;	
-// 	}
-
 	return ;
 }
 
@@ -84,35 +55,47 @@ int		irc::Server::start() //->connect + setup
 		if (!this->_on)		//server shutdown
 			break;
 
-		setUpFDs();
+		setUpFds();
+
+		//select() monitors a set of fds, waiting for one to be ready to send/receive info
+		//fd number is _max + 1, monitored set is clientFds, timeout is set at NULL so select() will wait forever
+		_fdReady = select(_fdMax + 1, &_clientFds, NULL, NULL, NULL);
+		if ((_fdReady < 0)/* && (errno != EINTR)*/)
+			throw std::runtime_error("fd error during select()\n");
+		
+		newConnectionCheck();
+
 	}
 
 
 	return (0);
 }
 
-void	irc::Server::setUpFDs()
+void	irc::Server::setUpFds()
 {
 	//Clears a fd_set (a struct with an array of sockets) at this address so it can store the client sockets
-	FD_ZERO(&_readFds);
+	FD_ZERO(&_clientFds);
 	//Add the main socket fd to the set
-	FD_SET(_mainSocket, &_readFds);
-//_max = _mainSocket
+	FD_SET(_mainSocket, &_clientFds);
+	_fdMax = _mainSocket;
 	//Add child sockets to set
 	for (int i = 0; i < USER_MAX; i++)
 	{
 		if (_clients[i])
 		{
 			_socketFd = _clients[i]->getSocketFd();
-			// if valid socket you can add it to the read list
 			if (_socketFd > 0)
-				FD_SET(_socketFd, &_readFds);
-			if (_socketFd > _mainSocket)
-				_mainSocket = _socketFd;
+				FD_SET(_socketFd, &_clientFds);	//if the client has a valid socket, it is added to the set
+			if (_socketFd > _fdMax)
+				_fdMax = _socketFd;			//if the new fd is above the max, new max set
 		}
 	}
 }
 
+void		irc::Server::newConnectionCheck()
+{
+	
+}
 
 
 ///////////////////////////////////////////////////////////////////
