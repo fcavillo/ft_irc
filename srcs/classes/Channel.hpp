@@ -6,7 +6,7 @@
 #include <map>
 #include <utility>
 
-#include "User.hpp"
+#include "Client.hpp"
 
 
 /*	This is the main class for the Channel : it groups the main info about it, 
@@ -22,17 +22,17 @@ class   Channel
 		~Channel();
 
 		std::string const &				getName() const;
-		std::map<std::string, User*>	getUsers();
+		std::map<std::string, Client*>	getClients();
 
 		//user management
-		int								addUser(User* user);
-		int								rmUser(std::string nick);
-		User*							findUser(std::string nick);
+		int								addClient(Client* user);
+		int								rmClient(std::string nick);
+		Client*							findClient(std::string nick);
 
 	private :
 		Channel();
 
-		std::map<std::string, User*>		_users;		//list of all the users on the channel, the pair is <nick, address>
+		std::map<std::string, Client*>		_clients;		//list of all the users on the channel, the pair is <nick, address>
 		std::string 						_name;		//name of the channel (initialized by the user command '/join *name*')
 };
 

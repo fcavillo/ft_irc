@@ -30,6 +30,7 @@ int     main(int ac, char **av)
 				throw std::invalid_argument("Error : invalid port number");
 	
 		irc::Server	server(atoi(av[1]), av[2]);
+		server.start();
 	}
 	catch(const std::exception& e)
 	{

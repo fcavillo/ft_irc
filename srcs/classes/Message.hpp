@@ -6,7 +6,7 @@
 #ifndef MESSAGE_HPP
 #define MESSAGE_HPP
 
-#include "User.hpp"
+#include "Client.hpp"
 
 /*	This is the main class for the Message : it groups the main info about it, 
 *	like the sender, receiver, command called and command map	*/
@@ -21,8 +21,8 @@ class   Message
 		~Message();
 
 		std::string* const &	getCommand() const;
-		irc::User*				getSender() const;
-		irc::User*				getReceiver() const;
+		irc::Client*			getSender() const;
+		irc::Client*			getReceiver() const;
 		void					setSender();
 		void					setReceiver();		
 		
@@ -36,8 +36,8 @@ class   Message
 		std::string						_fullCommand;	//full sent command, before splitting
 		std::string*					_splitCommand;	//all the split info of the command : 'say', 'hi guys'
 		// std::map<std::string, pointer>	_commandList;	//list of all the commands the server can do
-		irc::User*	 						_sender;	
-		irc::User*		 					_receiver;	
+		irc::Client*	 				_sender;	
+		irc::Client*					_receiver;	
 
 };
 

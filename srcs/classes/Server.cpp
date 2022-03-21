@@ -57,119 +57,163 @@ int		irc::Server::start() //->connect + setup
 	std::signal(SIGPIPE, SIG_IGN);
 
 	for (int i = 0; i < USER_MAX; i++)
-		this->_users[i] = NULL;
+		this->_clients[i] = NULL;
 
 	/*	CREATING MAIN SOCKET	*/
+	//AF_INET for Address Family = PF_INET (ipv4), SOCK_STREAM = two-way, connection-based byte streams
 	_mainSocket = socket(AF_INET, SOCK_STREAM, 0);
 	if (_mainSocket == 0)
-		throw 
+		throw std::runtime_error("Socket creation error\n");
+
+	//Define the kind of socket created and the address
+	_address.sin_family = AF_INET;			//constant
+	_address.sin_port = htons(_port);		//converts unsigned int into network byte order (!= host byte order)
+	_address.sin_addr.s_addr = INADDR_ANY;	//accept any type of address
+
+	//Bind the socket to the desired port : assigning a name and address to a created socket
+	if (bind(_mainSocket, (struct sockaddr *)&_address, sizeof(_address)) < 0)
+		throw std::runtime_error("Socket binding error\n");
+	if (listen(_mainSocket, 3) < 0)			//marks the _mainSocket as a passive socket (able to accept incoming connections)
+		throw std::runtime_error("Socket listening after binding error\n");
+	_addressSize = sizeof(_address);
+
+	std::cout << "Socket created" << std::endl;
+
+	while (1)
+	{
+		if (!this->_on)		//server shutdown
+			break;
+
+		setUpFDs();
+	}
+
 
 	return (0);
 }
 
-
+void	irc::Server::setUpFDs()
+{
+	//Clears a fd_set (a struct with an array of sockets) at this address so it can store the client sockets
+	FD_ZERO(&_readFds);
+	//Add the main socket fd to the set
+	FD_SET(_mainSocket, &_readFds);
+//_max = _mainSocket
+	//Add child sockets to set
+	for (int i = 0; i < USER_MAX; i++)
+	{
+		if (_clients[i])
+		{
+			_socketFd = _clients[i]->getSocketFd();
+			// if valid socket you can add it to the read list
+			if (_socketFd > 0)
+				FD_SET(_socketFd, &_readFds);
+			if (_socketFd > _mainSocket)
+				_mainSocket = _socketFd;
+		}
+	}
+}
 
 
 
 ///////////////////////////////////////////////////////////////////
 /*	GETTERS & SETTERS	*/
 
-int	const &					irc::Server::getPort() const
-{
-	return (this->_port);
-}
+// int	const &					irc::Server::getPort() const
+// {
+// 	return (this->_port);
+// }
 
-std::string					irc::Server::getPassword() const
-{
-	return (this->_password);
-}
+// std::string					irc::Server::getPassword() const
+// {
+// 	return (this->_password);
+// }
 
-std::map<std::string, irc::Channel*>	irc::Server::getChannels()
-{
-	return (this->_channels);
-}
+// std::map<std::string, irc::Channel*>	irc::Server::getChannels()
+// {
+// 	return (this->_channels);
+// }
 
-std::map<std::string, irc::User*>		irc::Server::getUsers()
-{
-	return (this->_users);
-}
+// std::map<std::string, irc::User*>		irc::Server::getUsers()
+// {
+// 	return (this->_clients);
+// }
 
-int const &								irc::Server::getRotKey() const
-{
-	return (this->_rotKey);
-}
+// int const &								irc::Server::getRotKey() const
+// {
+// 	return (this->_rotKey);
+// }
 
-void									irc::Server::setRotKey(int key) 
-{
-	this->_rotKey = key;
-	return ;
-}
+// void									irc::Server::setRotKey(int key) 
+// {
+// 	this->_rotKey = key;
+// 	return ;
+// }
 
-/*	CHANNEL MANAGEMENT	*/
+// /*	CHANNEL MANAGEMENT	*/
 
-/*	addChannel is used to create a new channel in the server, identified in the Server::_channels map by the pair <name, pointer to new Channel>,
-*	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/
-bool					irc::Server::addChannel(irc::Channel* chan)
-{
-	std::pair<std::string, Channel*>	newPair;
+// /*	addChannel is used to create a new channel in the server, identified in the Server::_channels map by the pair <name, pointer to new Channel>,
+// *	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/
+// bool					irc::Server::addChannel(irc::Channel* chan)
+// {
+// 	std::pair<std::string, Channel*>	newPair;
 
-	newPair = std::make_pair(chan->getName(), chan);
+// 	newPair = std::make_pair(chan->getName(), chan);
 
-	return ((this->_channels.insert(newPair)).second);		//insert returns a pair with first=iterator to new elem, second=bool for success
-}
+// 	return ((this->_channels.insert(newPair)).second);		//insert returns a pair with first=iterator to new elem, second=bool for success
+// }
 
-/*	rmChannel is used to remove a Channel from the server (A_revoir : is it necessary ?)	*/
-int						irc::Server::rmChannel(std::string name)
-{
-	this->_channels.erase(name);
-	return (0);
-}
+// /*	rmChannel is used to remove a Channel from the server (A_revoir : is it necessary ?)	*/
+// int						irc::Server::rmChannel(std::string name)
+// {
+// 	this->_channels.erase(name);
+// 	return (0);
+// }
 
-/*	findChannel returns a pointer to the Channel whose name is sent in parameter, 
-*	NULL if the Channel does not exist	*/
-irc::Channel*				irc::Server::findChannel(std::string name)
-{
-	std::map<std::string, Channel*>::iterator	it;
+// /*	findChannel returns a pointer to the Channel whose name is sent in parameter, 
+// *	NULL if the Channel does not exist	*/
+// irc::Channel*				irc::Server::findChannel(std::string name)
+// {
+// 	std::map<std::string, Channel*>::iterator	it;
 
-	it = this->_channels.find(name);
-	if (it == this->_channels.end())		//the channel is not found
-		return (NULL);
+// 	it = this->_channels.find(name);
+// 	if (it == this->_channels.end())		//the channel is not found
+// 		return (NULL);
 
-	return (it->second);
-}
+// 	return (it->second);
+// }
 
-/*	USER MANAGEMENT	*/
+// /*	USER MANAGEMENT	*/
 
-/*	addUser is used to create a new user in the server, identified in the Server::_users map by the pair <nick, pointer to new User>,
-*	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/
-bool						irc::Server::addUser(irc::User* user)
-{
-	std::pair<std::string, User*>	newPair;
+// /*	addUser is used to create a new user in the server, identified in the Server::_clients map by the pair <nick, pointer to new User>,
+// *	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/
+// bool						irc::Server::addUser(irc::User* user)
+// {
+// 	std::pair<std::string, User*>	newPair;
 
-	newPair = std::make_pair(user->getNick(), user);
+// 	newPair = std::make_pair(user->getNick(), user);
 
-	return ((this->_users.insert(newPair)).second);		//insert returns a pair with first=iterator to new elem, second=bool for success
-}
+// 	return ((this->_clients.insert(newPair)).second);		//insert returns a pair with first=iterator to new elem, second=bool for success
+// }
 
-/*	rmUser removes a user from the list of server members	*/
-int						irc::Server::rmUser(std::string nick)
-{
-	this->_users.erase(nick);
-	return (0);
-}
+// /*	rmUser removes a user from the list of server members	*/
+// int						irc::Server::rmUser(std::string nick)
+// {
+// 	this->_clients.erase(nick);
+// 	return (0);
+// }
 
-/*	findUser returns a pointer to the User whose nick is sent in parameter, 
-*	NULL if the User does not exist	*/
-irc::User*					irc::Server::findUser(std::string nick)
-{
-	std::map<std::string, irc::User*>::iterator	it;
+// /*	findUser returns a pointer to the User whose nick is sent in parameter, 
+// *	NULL if the User does not exist	*/
+// irc::User*					irc::Server::findUser(std::string nick)
+// {
+// 	std::map<std::string, irc::User*>::iterator	it;
 
-	it = this->_users.find(nick);
-	if (it == this->_users.end())		//the user is not found
-		return (NULL);
+// 	it = this->_clients.find(nick);
+// 	if (it == this->_clients.end())		//the user is not found
+// 		return (NULL);
 
-	return (it->second);
-}
+// 	return (it->second);
+// }
 
 
 /*	PASSWORD CRYPTING/UNCRYPTING	*/

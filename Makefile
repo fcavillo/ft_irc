@@ -19,7 +19,7 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98
 SRCS =	main.cpp \
 		srcs/classes/Server.cpp \
 		srcs/classes/Channel.cpp \
-		srcs/classes/User.cpp \
+		srcs/classes/Client.cpp \
 		srcs/classes/Message.cpp \
 		
 

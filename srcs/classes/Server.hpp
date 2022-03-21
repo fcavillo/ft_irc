@@ -11,9 +11,10 @@
 #include <sys/time.h>	//select()
 #include <cstdlib>		//atoi()
 #include <csignal>		//signal()
+#include <netinet/ip.h>	//sockaddr_in
 
 #include "Channel.hpp"
-#include "User.hpp"
+#include "Client.hpp"
 
 #define USER_MAX 10
 
@@ -31,15 +32,18 @@ class   Server
 		~Server();
 
 		int		start();
+		void	setUpFDs();
 
 	private :
-		int				_port;					//port number for the server (set at the start by './ircserv *port* *password*')
-		std::string		_password;				//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
-		bool			_on;					//status
-		User*			_users[USER_MAX];
-		int				_mainSocket;
-
-
+		int					_port;					//port number for the server (set at the start by './ircserv *port* *password*')
+		std::string			_password;				//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
+		bool				_on;					//status
+		Client*				_clients[USER_MAX];		//list of all the users on the channel
+		int					_mainSocket;
+		struct sockaddr_in	_address;				//address structure with address family, port and IP address
+		size_t				_addressSize;
+		fd_set 				_readFds;
+		int					_socketFd;
 
 
 
@@ -49,7 +53,7 @@ class   Server
 		int const &							getRotKey() const;
 		void								setRotKey(int key);
 		std::map<std::string, Channel*>		getChannels();			//used by server command /list that shows all member channels
-		std::map<std::string, User*>		getUsers();
+		std::map<std::string, Client*>		getUsers();
 
 		//channel management
 		bool								addChannel(Channel* chan);
@@ -57,16 +61,15 @@ class   Server
 		Channel*							findChannel(std::string name);
 
 		//user management
-		bool								addUser(User* user);
+		bool								addUser(Client* user);
 		int									rmUser(std::string nick);
-		User*								findUser(std::string nick);	
+		Client*								findUser(std::string nick);	
 
 
 
 	private :
 		Server();
 
-		std::map<std::string, User*>		_users;			//list of all the users on the channel, the pair is <userNick, address>
 		std::map<std::string, Channel*>		_channels;		//list of all the channels on the server, the pair is <channelName, address>
 		int									_rotKey;		//randomized key for password rotation algo
 		std::string							_operLog;		//operator login
@@ -78,7 +81,6 @@ class   Server
 		*	stuff written in the socket are turned into network packets that are sent to the other host and port.
 		*	Client sockets are used to send a request to the server socket,
 		*	server sockets are used to accept requests, do an operation and send the result to the client	*/
-		fd_set								_clientSockets;
 
 		//password encryption
 		std::string							ft_rotix(std::string pass);		

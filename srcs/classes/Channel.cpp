@@ -17,39 +17,39 @@ std::string const &				irc::Channel::getName() const
 	return (this->_name);
 }
 
-std::map<std::string, irc::User*>	irc::Channel::getUsers()
+std::map<std::string, irc::Client*>	irc::Channel::getClients()
 {
-	return (this->_users);
+	return (this->_clients);
 }
 
-/*	USER MANAGEMENT	*/
+/*	Client MANAGEMENT	*/
 
-/*	addUser is used to create a new user in the channel, identified in the Channel::_users map by the pair <nick, pointer to new User>,
+/*	addClient is used to create a new Client in the channel, identified in the Channel::_clients map by the pair <nick, pointer to new Client>,
 *	returns a bool (1 if succesful, 0 if key already exists or 0 if insertion failed)	*/
-int								irc::Channel::addUser(irc::User* user)
+int								irc::Channel::addClient(irc::Client* Client)
 {
-	std::pair<std::string, irc::User*>	newPair;
+	std::pair<std::string, irc::Client*>	newPair;
 
-	newPair = make_pair(user->getNick(), user);
+	newPair = make_pair(Client->getNick(), Client);
 
-	return ((this->_users.insert(newPair)).second);		//insert returns a pair with first=iterator to new elem, second=bool for success
+	return ((this->_clients.insert(newPair)).second);		//insert returns a pair with first=iterator to new elem, second=bool for success
 }
 
-/*	rmUser removes a user from the list of channel members	*/
-int								irc::Channel::rmUser(std::string nick)
+/*	rmClient removes a Client from the list of channel members	*/
+int								irc::Channel::rmClient(std::string nick)
 {
-	this->_users.erase(nick);
+	this->_clients.erase(nick);
 	return (0);
 }
 
-/*	findUser returns a pointer to the User whose nick is sent in parameter, 
-*	NULL if the User does not exist	*/
-irc::User*							irc::Channel::findUser(std::string nick)
+/*	findClient returns a pointer to the Client whose nick is sent in parameter, 
+*	NULL if the Client does not exist	*/
+irc::Client*							irc::Channel::findClient(std::string nick)
 {
-	std::map<std::string, irc::User*>::iterator	it;
+	std::map<std::string, irc::Client*>::iterator	it;
 
-	it = this->_users.find(nick);
-	if (it == this->_users.end())		//the user is not found
+	it = this->_clients.find(nick);
+	if (it == this->_clients.end())		//the Client is not found
 		return (NULL);
 
 	return (it->second);
