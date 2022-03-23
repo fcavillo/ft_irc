@@ -6,7 +6,7 @@
 /*   By: labintei <labintei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:44:52 by labintei          #+#    #+#             */
-/*   Updated: 2022/03/20 06:58:28 by user42           ###   ########.fr       */
+/*   Updated: 2022/03/23 17:54:54 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,66 +15,66 @@
 
 #include "string"
 
-#define		RPL_WELCOME				001
+#define		RPL_WELCOME				"001"
 std::string	RPL_WELCOME_MSG(std::string prefix){return ":Welcome to the Internet Relay Network " + prefix;}
 
-#define		RPL_YOURHOST			002
+#define		RPL_YOURHOST			"002"
 std::string	RPL_YOURHOST_MSG(std::string server, std::string version){return "Your host is " + servername ", running version " + version;}
 
-#define		RPL_CREATED				003
+#define		RPL_CREATED				"003"
 std::string	RPL_CREATED_MSG(std::string time){return "this server was created " + time;}
 
-#define		RPL_MYINFO				004
+#define		RPL_MYINFO				"004"
 std::string	RPL_MYINFO_MSG(std::string server, std::string version, std::string usermodes, std::string channels)(return server + " " + version + " " + usermodes + " " + channels;)
 // SUCESSFUL REGISTRATION
 
-#define		RPL_BOUNCE				005
+#define		RPL_BOUNCE				"005"
 std::string	RPL_BOUNCE_MSG(std::string server, std::string port){return "Try server " + server + ", port " + port;}
-#define		RPL_USERHOST			302
+#define		RPL_USERHOST			"302"
 std::string	RPL_USERHOST_MSG(std::string list){return list;}//?
-#define		RPL_ISON				303
+#define		RPL_ISON				"303"
 std::string	RPL_ISON_MSG(std::string list){return list;}//?
-#define		RPL_AWAY				301
+#define		RPL_AWAY				"301"
 std::string	RPL_AWAY_MSG(std::string nick, std::string msg){return nick + " : " + msg;}
-#define		RPL_UNAWAY				305
+#define		RPL_UNAWAY				"305"
 std::string	RPL_UNAWAY_MSG(){return ": You are no longer marked as being away";}
-#define		RPL_NOWAWAY				306
+#define		RPL_NOWAWAY				"306"
 std::string	RPL_NOWAWAY_MSG(){return ": You have been marked as being away";}
 // WHO IS
 
-#define		RPL_WHOISUSER			311
+#define		RPL_WHOISUSER			"311"
 std::string	RPL_WHOISUSER_MSG(std::string nick, std::string user, std::string host, std::string real){return nick + " " + user + " " + host + " * :" + real; }
-#define		RPL_WHOISSERVER			312
+#define		RPL_WHOISSERVER			"312"
 std::string	RPL_WHOISSERVER_MSG(std::string nick, std::string server, std::string serverinfo){return nick + " " + server + " " + serverinfo;}
-#define		RPL_WHOISOPERATOR		313
+#define		RPL_WHOISOPERATOR		"313"
 std::string	RPL_WHOISOPERATOR_MSG(std::string nick){return nick + ":is an operator";}
-#define		RPL_WHOISIDLE			317
+#define		RPL_WHOISIDLE			"317"
 std::string	RPL_WHOISIDLE_MSG(std::string nick, std::string integer){return nick + " " + integer + ":second idle";}
-#define		RPL_ENDOFWHOIS			318
+#define		RPL_ENDOFWHOIS			"318"
 std::string	RPL_ENDOFWHOIS_MSG(std::string nick){return nick + " :End of WHOIS list";}
-#define		RPL_WHOISCHANNELS		319
+#define		RPL_WHOISCHANNELS		"319"
 std::string	RPL_WHOISCHANNELS_MSG(std::string nick, std::string channel ){return nick + " :" + channel;}
 // WHOWAS
 
-#define		RPL_WHOWASUSER			314
+#define		RPL_WHOWASUSER			"314"
 std::string	RPL_WHOWASUSER_MSG(std::string nick, std::string user, std::string host, std::string realname){return nick + " " + user + " " + host + " :" + realname;}
-#define		RPL_ENDOFWHOWAS			369
+#define		RPL_ENDOFWHOWAS			"369"
 std::string	RPL_ENDOFWHOWAS_MSG(std::string nick){return nick + ":End of WHOWAS";}
 
 // LIST
 
-#define		RPL_LISTSTART			321 // NOT USED
-#define		RPL_LIST				322
+#define		RPL_LISTSTART			"321" // NOT USED
+#define		RPL_LIST				"322"
 std::string	RPL_LIST_MSG(std::string channel, std::string nbusers,  std::string topic){return channel + " " + nbusers +" :" + topic;}
-#define		RPL_LISTEND				323
+#define		RPL_LISTEND				"323"
 std::string	RPL_LISTEND_MSG(){return ":End of LIST";}
 // TOPIC
 
-#define		RPL_UNIQOPIS			325
+#define		RPL_UNIQOPIS			"325"
 std::string	RPL_UNIQOPIS_MSG(std::string channel, std::string topic){return channel + " " + topic;}
-#define		RPL_CHANNELMODEIS		324
+#define		RPL_CHANNELMODEIS		"324"
 std::string	RPL_CHANNELMODEIS_MSG(std::string channel, std::string mode, std::string modepar){return channel + " " + mode + " " + modepar;}
-#define		RPL_NOTOPIC				331
+#define		RPL_NOTOPIC				"331"
 std::string	RPL_NOTOPIC_MSG(std::string channel){return channel + ":No topic is set";}
 #define		RPL_TOPIC				332
 std::string	RPL_TOPIC_MSG(std::string channel, std::string topic){return channel + " :" + topic;}
