@@ -1,0 +1,84 @@
+
+
+PING en entree
+PONG en sortie
+
+ajout d une connection MODE()
+
+NICKNAME
+
+USER
+
+OPER
+
+MODE(user)
+
+QUIT
+
+SQUIT(operator)
+
+JOIN
+
+PART
+
+MODE(channel)
+
+TOPIC
+
+NAMES
+
+LIST
+
+INVITE
+
+KICK
+
+PRIVMSG
+
+NOTICE
+
+LUSERS
+
+ADMIN
+
+INFO
+
+WHOIS
+
+KILL
+
+PING
+
+PONG
+
+ERROR
+
+
+
+_____________________________________________________________________
+
+???
+
+USERHOST 1 2 3 4 5
+
+ISON
+
+
+
+
+
+
+
+
+
+channel
+msg
+msg transmis a tout les clients du channel
+operateurs et des user basiques
+commandes specifiques operateurs
+
+
+
+RENVOIT toujours
+
+NICK!HOST
