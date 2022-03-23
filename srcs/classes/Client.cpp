@@ -1,6 +1,6 @@
 #include "Client.hpp"
 
-irc::Client::Client() : _oper(0)
+irc::Client::Client(Server* server) : _server(server)
 {
 	return ;
 }
@@ -12,11 +12,27 @@ irc::Client::~Client()
 
 /*	GETTERS & SETTERS	*/
 
-int	const &				irc::Client::getSocketFd() const
+int	const &				irc::Client::getSocket() const
 {
-	return (this->_socketFd);
+	return (this->_socket);
 }
 
+void					irc::Client::setSocket(int sd)
+{
+	_socket = sd;
+	return ;
+}
+
+std::string	const &		irc::Client::getAddress() const
+{
+	return (this->_address);
+}
+
+void					irc::Client::setAddress(std::string address)
+{
+	_address = address;
+	return ;
+}
 
 std::string const &		irc::Client::getUsername() const
 {

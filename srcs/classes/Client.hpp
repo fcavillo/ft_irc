@@ -1,8 +1,13 @@
-#include <iostream>
-#include <cstring>
 
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
+
+#include <iostream>
+#include <cstring>
+
+#include "Server.hpp"
+
+class	Server;
 
 /*	This is the main class for the client : it groups the main info about it, 
 *	like the username, nickname, real name, status	*/
@@ -10,13 +15,18 @@
 namespace irc
 {
 
+
+
 class   Client
 {
 	public :
-		Client();
+		Client(Server* server);
 		~Client();
 
-		int	const & 	getSocketFd() const;
+		int	const & 			getSocket() const;
+		void					setSocket(int sd);
+		std::string	const & 	getAddress() const;
+		void					setAddress(std::string address);
 
 	private :
 		int		_socketFd;
@@ -38,8 +48,13 @@ class   Client
 		std::string		_nick;
 		std::string		_realName;
 		std::string		_password;
+		std::string		_address;
+		int				_socket;
+		Server*	_server;
+
 };
 
 }   //namespace end
+
 
 #endif

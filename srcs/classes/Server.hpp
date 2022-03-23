@@ -12,6 +12,7 @@
 #include <cstdlib>		//atoi()
 #include <csignal>		//signal()
 #include <netinet/ip.h>	//sockaddr_in
+#include <arpa/inet.h>	//inet_ntoa()
 
 #include "Channel.hpp"
 #include "Client.hpp"
@@ -47,7 +48,7 @@ class   Server
 		int					_socketFd;				//temp storage for the use of one socket
 		int					_fdMax;	
 		int					_fdReady;				//used to store an fd when it is ready to receive/send 
-
+		int					_newSocket;
 
 	public :
 		int	const &							getPort() const;

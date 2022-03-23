@@ -83,18 +83,37 @@ void	irc::Server::setUpFds()
 	{
 		if (_clients[i])
 		{
-			_socketFd = _clients[i]->getSocketFd();
+			_socketFd = _clients[i]->getSocket();
 			if (_socketFd > 0)
 				FD_SET(_socketFd, &_clientFds);	//if the client has a valid socket, it is added to the set
 			if (_socketFd > _fdMax)
-				_fdMax = _socketFd;			//if the new fd is above the max, new max set
+				_fdMax = _socketFd;				//if the new fd is above the max, new max set
 		}
 	}
 }
 
 void		irc::Server::newConnectionCheck()
 {
-	
+	if (FD_ISSET(_mainSocket, &_clientFds))		//tests to see if _mainSocket is part of the set of client fd
+	{	//mainSocket has been created with socket(), bound to a local address with bind() and is listening with listen()
+		//accept() returns the first connection request on a new fd
+		if ((_newSocket = accept(_mainSocket, (struct sockaddr *)&_address, (socklen_t *)&_addressSize)) < 0)	
+			throw std::runtime_error("Socket accepting error\n");
+		std::cout << "New connection : socket fd [" << _newSocket << "] ip [" << inet_ntoa(_address.sin_addr) << "] port [" << ntohs(_address.sin_port) << "]" << std::endl;
+		// add new socket to sockets array
+		for (int i = 0; i < USER_MAX; i++)
+		{
+			if (!_clients[i])		//first available spot in the client array
+			{
+				_clients[i] = new Client(this);
+				_clients[i]->setSocket(_newSocket);
+
+				_clients[i]->setAddress(inet_ntoa(_address.sin_addr));
+				std::cout << "Adding to sockets array as : " << i << std::endl;
+				break;
+			}
+		}
+	}		
 }
 
 
