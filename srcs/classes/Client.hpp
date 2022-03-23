@@ -7,15 +7,15 @@
 
 #include "Server.hpp"
 
-class	Server;
 
 /*	This is the main class for the client : it groups the main info about it, 
 *	like the username, nickname, real name, status	*/
 
+
 namespace irc
 {
 
-
+class	Server;
 
 class   Client
 {
@@ -28,8 +28,6 @@ class   Client
 		std::string	const & 	getAddress() const;
 		void					setAddress(std::string address);
 
-	private :
-		int		_socketFd;
 
 	public :
 		std::string const &		getUsername() const;
@@ -50,7 +48,7 @@ class   Client
 		std::string		_password;
 		std::string		_address;
 		int				_socket;
-		Server*	_server;
+		Server*			_server;
 
 };
 

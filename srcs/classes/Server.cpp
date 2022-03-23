@@ -63,8 +63,9 @@ int		irc::Server::start() //->connect + setup
 		if ((_fdReady < 0)/* && (errno != EINTR)*/)
 			throw std::runtime_error("fd error during select()\n");
 		
-		newConnectionCheck();
+		connectionCheck();	//checks for new clients, sets the address and socket for the client
 
+		activityCheck();
 	}
 
 
@@ -78,7 +79,7 @@ void	irc::Server::setUpFds()
 	//Add the main socket fd to the set
 	FD_SET(_mainSocket, &_clientFds);
 	_fdMax = _mainSocket;
-	//Add child sockets to set
+	//Add child sockets to fd_set
 	for (int i = 0; i < USER_MAX; i++)
 	{
 		if (_clients[i])
@@ -92,7 +93,7 @@ void	irc::Server::setUpFds()
 	}
 }
 
-void		irc::Server::newConnectionCheck()
+void		irc::Server::connectionCheck()
 {
 	if (FD_ISSET(_mainSocket, &_clientFds))		//tests to see if _mainSocket is part of the set of client fd
 	{	//mainSocket has been created with socket(), bound to a local address with bind() and is listening with listen()
@@ -100,7 +101,7 @@ void		irc::Server::newConnectionCheck()
 		if ((_newSocket = accept(_mainSocket, (struct sockaddr *)&_address, (socklen_t *)&_addressSize)) < 0)	
 			throw std::runtime_error("Socket accepting error\n");
 		std::cout << "New connection : socket fd [" << _newSocket << "] ip [" << inet_ntoa(_address.sin_addr) << "] port [" << ntohs(_address.sin_port) << "]" << std::endl;
-		// add new socket to sockets array
+		// add new socket to sockets array, sets the socket and address for the new client
 		for (int i = 0; i < USER_MAX; i++)
 		{
 			if (!_clients[i])		//first available spot in the client array
@@ -114,6 +115,15 @@ void		irc::Server::newConnectionCheck()
 			}
 		}
 	}		
+}
+
+void		irc::Server::activityCheck()
+{
+	for (int i = 0; i < USER_MAX; i++)
+	{
+		_socketFd = _clients[i]->getSocket();
+
+	}
 }
 
 

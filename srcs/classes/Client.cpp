@@ -2,6 +2,7 @@
 
 irc::Client::Client(Server* server) : _server(server)
 {
+	(void)_server;
 	return ;
 }
 

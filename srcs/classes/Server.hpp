@@ -26,6 +26,9 @@
 namespace irc
 {
 
+class	Client;
+class	Channel;
+
 class   Server
 {
 	public :
@@ -34,7 +37,8 @@ class   Server
 
 		int		start();
 		void	setUpFds();
-		void	newConnectionCheck();
+		void	connectionCheck();
+		void	activityCheck();
 
 	private :
 		int					_port;					//port number for the server (set at the start by './ircserv *port* *password*')
