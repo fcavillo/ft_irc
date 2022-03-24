@@ -16,6 +16,7 @@
 
 #include "Channel.hpp"
 #include "Client.hpp"
+#include "Message.hpp"
 
 #define USER_MAX 10
 
@@ -28,6 +29,7 @@ namespace irc
 
 class	Client;
 class	Channel;
+class	Message;
 
 class   Server
 {

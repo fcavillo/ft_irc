@@ -7,6 +7,7 @@
 #define MESSAGE_HPP
 
 #include "Client.hpp"
+#include "Server.hpp"
 
 /*	This is the main class for the Message : it groups the main info about it, 
 *	like the sender, receiver, command called and command map	*/
@@ -14,10 +15,13 @@
 namespace irc
 {
 
+class	Client;
+class	Server;
+
 class   Message
 {
 	public :
-		Message(std::string fullCommand);	//the message is created with the whole command : /say "hi guys"
+		Message(std::string line, Server *data, Client *user);	
 		~Message();
 
 		std::string* const &	getCommand() const;

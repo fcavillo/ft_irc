@@ -117,37 +117,77 @@ void		irc::Server::connectionCheck()
 	}		
 }
 
-// int 		readLine(irc::Client & user)
-// {
-// 	char 			buff = 0;
-// 	int 			read;
+#include <unistd.h>
 
-// 	std::string &	line = user.getBufferLine();
-// 	read = recv(user.getSocket(), &buff, 1, 0);
-// 	if (read <= 0)
-// 		return read;
+int 		readLine(irc::Client & user)
+{
+	(void)user;
+	char 			buff = 0;
+	int 			read;
+
+	std::string &	line = user.getBufferLine();
+	read = recv(user.getSocket(), &buff, 1, 0);
+	if (read <= 0)
+		return read;
+
+	else if (buff == '\n')
+	{
+		if (line.length() > 0 && line.at(line.length() - 1) == '\r')
+			line.erase(line.length() - 1, 1);
+		return (2);
+	}
+	else if (buff != 0)
+		line.push_back(buff);
 
 // std::cout << line << std::endl;
-	// else if (buff == '\n')
-	// {
-	// 	if (line.length() > 0 && line.at(line.length() - 1) == '\r')
-	// 		line.erase(line.length() - 1, 1);
-	// 	return 2;
-	// }
-	// else if (buff != 0)
-	// 	line.push_back(buff);
-	// return 1;
-// }
+// sleep(1);
+
+	return (1);
+}
 
 void		irc::Server::activityCheck()
 {
 	for (int i = 0; i < USER_MAX; i++)
 	{
-		// _socketFd = _clients[i]->getSocket();
-		
-		// int status = readLine(*_clients[i]);
-		// (void)status;
+		if (_clients[i] && FD_ISSET(_clients[i]->getSocket(), &_clientFds))
+		{
+			_socketFd = _clients[i]->getSocket();
+			
+			int status = readLine(*_clients[i]);
+			if (status == -1)
+			{
+				std::cout << "readline error" << std::endl;
+			// 	_clients[i]->disconnect();
+			// 	delete _clients[i];
+			// 	_clients[i] = NULL;
+			}
+// 			else if (status == 0)
+// 			{
+// 				std::cout << "Client disconnected!" << std::endl;
+// 				_clients[i]->disconnect();
+// 				delete _clients[i];
+// 				_clients[i] = NULL;
+// 			}
+			else if (status == 2)
+			{
+				std::string line = std::string(_clients[i]->getBufferLine());
+				_clients[i]->getBufferLine().erase();
 
+				if (line.length() > 0)
+				{
+					std::cout << "<- [" << _clients[i]->getSocket() << "] " << line << std::endl;
+					Message message(line, this, _clients[i]);
+				}
+
+// 				if (_clients[i]->getKill())
+// 				{
+// 					std::cout << "Client disconnected!" << std::endl;
+// 					close(_sd);
+// 					delete _clients[i];
+// 					_clients[i] = NULL;
+// 				}
+			}			
+		}
 	}
 }
 
@@ -251,6 +291,46 @@ void		irc::Server::activityCheck()
 
 // 	return (it->second);
 // }
+
+// if (_clients[i] && FD_ISSET(_clients[i]->getSd(), &_read_fds))
+// 		{
+// 			_sd = _clients[i]->getSd();
+
+// 			int status = readLine(*_clients[i]);
+// 			if (status == -1)
+// 			{
+// 				std::cerr << "Error inr recv(). Quiting" << std::endl;
+// 				_clients[i]->disconnect();
+// 				delete _clients[i];
+// 				_clients[i] = NULL;
+// 			}
+// 			else if (status == 0)
+// 			{
+// 				std::cout << "Client disconnected!" << std::endl;
+// 				_clients[i]->disconnect();
+// 				delete _clients[i];
+// 				_clients[i] = NULL;
+// 			}
+// 			else if (status == 2)
+// 			{
+// 				std::string line = std::string(_clients[i]->getBufferLine());
+// 				_clients[i]->getBufferLine().erase();
+
+// 				if (line.length() > 0)
+// 				{
+// 					std::cout << "<- [" << _clients[i]->getSd() << "] " << line << std::endl;
+// 					Parser parser(line, this, _clients[i]);
+// 				}
+
+// 				if (_clients[i]->getKill())
+// 				{
+// 					std::cout << "Client disconnected!" << std::endl;
+// 					close(_sd);
+// 					delete _clients[i];
+// 					_clients[i] = NULL;
+// 				}
+// 			}
+// 		}
 
 
 /*	PASSWORD CRYPTING/UNCRYPTING	*/

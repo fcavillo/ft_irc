@@ -1,8 +1,12 @@
 #include "Message.hpp"
 
-irc::Message::Message(std::string fullCommand)
+irc::Message::Message(std::string line, Server *data, Client *user)
 {
-	(void)fullCommand;
+std::cout << "New message received : " << line << std::endl;					
+
+	(void)line;
+	(void)data;
+	(void)user;
 	return ;
 }
 
