@@ -117,11 +117,36 @@ void		irc::Server::connectionCheck()
 	}		
 }
 
+// int 		readLine(irc::Client & user)
+// {
+// 	char 			buff = 0;
+// 	int 			read;
+
+// 	std::string &	line = user.getBufferLine();
+// 	read = recv(user.getSocket(), &buff, 1, 0);
+// 	if (read <= 0)
+// 		return read;
+
+// std::cout << line << std::endl;
+	// else if (buff == '\n')
+	// {
+	// 	if (line.length() > 0 && line.at(line.length() - 1) == '\r')
+	// 		line.erase(line.length() - 1, 1);
+	// 	return 2;
+	// }
+	// else if (buff != 0)
+	// 	line.push_back(buff);
+	// return 1;
+// }
+
 void		irc::Server::activityCheck()
 {
 	for (int i = 0; i < USER_MAX; i++)
 	{
-		_socketFd = _clients[i]->getSocket();
+		// _socketFd = _clients[i]->getSocket();
+		
+		// int status = readLine(*_clients[i]);
+		// (void)status;
 
 	}
 }

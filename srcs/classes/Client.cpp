@@ -35,6 +35,12 @@ void					irc::Client::setAddress(std::string address)
 	return ;
 }
 
+std::string &			irc::Client::getBufferLine() 
+{ 
+	return (this->_bufferLine); 
+}
+
+
 std::string const &		irc::Client::getUsername() const
 {
 	return (this->_username);

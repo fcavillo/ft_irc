@@ -27,6 +27,7 @@ class   Client
 		void					setSocket(int sd);
 		std::string	const & 	getAddress() const;
 		void					setAddress(std::string address);
+		std::string &			getBufferLine();
 
 
 	public :
@@ -49,6 +50,7 @@ class   Client
 		std::string		_address;
 		int				_socket;
 		Server*			_server;
+		std::string 	_bufferLine; 
 
 };
 
