@@ -1,13 +1,48 @@
 #include "Message.hpp"
 
-irc::Message::Message(std::string line, Server *data, Client *user)
+irc::Message::Message(std::string line, Server *server, Client *sender) : _server(server), _sender(sender), _fullCommand(line)
 {
-std::cout << "New message received : " << line << std::endl;					
+std::cout << "New message received : " << line << std::endl;
 
-	(void)line;
-	(void)data;
-	(void)user;
+	std::vector<std::string>	command = v_split(line);
+
+	if (strncmp(line, "PASS", 4))
+	{
+
+	}
+	else if (strncmp(line, "NICK", 4))
+	{
+
+	}
+	else if (strncmp(line, "USER", 4))
+	{
+
+	}
 	return ;
+}
+
+std::vector<std::string>	v_split(str::string line)
+{
+	std::vector<std::string>	v;
+	std::string					word;
+
+	for (int i = 0; i < (int)line.size(); i++)
+	{
+		if (line[i] == ' ')
+		{
+			while (line[i] = ' ')
+				i++;
+			if (word.size() > 0)
+				v.push_back(word_buf);
+			word.clear();
+		}
+		else
+			word += line[i];
+	}
+	if (word.size() > 0)
+ 		v.push_back(word);
+
+	return (v);
 }
 
 irc::Message::~Message()
@@ -42,4 +77,30 @@ void					irc::Message::fillCommand(std::string fullCommand)
 
 }
 
+// std::vector<std::string> Parser::split(std::string &line)
+// {
+// 	std::vector<std::string> tab;
+// 	std::string word_buf;
+// 	bool space = false;
+
+// 	for (int i = 0; i < (int)line.size(); i++)
+// 	{
+// 		if (line[i] == ' ' && space == false)
+// 		{
+// 			space = true;
+// 			if (word_buf.size() > 0)
+// 				tab.push_back(word_buf);
+// 			word_buf.clear();
+// 		}
+// 		else
+// 		{
+// 			word_buf += line[i];
+// 			if (line[i] != ' ')
+// 				space = false;
+// 		}
+// 	}
+// 	if (word_buf.size() > 0)
+// 		tab.push_back(word_buf);
+// 	return tab;
+// }
 

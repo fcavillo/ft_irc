@@ -2,6 +2,7 @@
 #include <cstring>
 #include <map>
 #include <utility>
+#include <vector>
 
 #ifndef MESSAGE_HPP
 #define MESSAGE_HPP
@@ -24,10 +25,17 @@ class   Message
 		Message(std::string line, Server *data, Client *user);	
 		~Message();
 
+	private :
+		irc::Server*			_server;
+		irc::Client*	 		_sender;	
+		std::string				_fullCommand;	//full sent command, before splitting
+
+
+	public :
+
 		std::string* const &	getCommand() const;
 		irc::Client*			getSender() const;
 		irc::Client*			getReceiver() const;
-		void					setSender();
 		void					setReceiver();		
 		
 		void					initCommands();
@@ -37,10 +45,8 @@ class   Message
 	private :
 		Message();
 
-		std::string						_fullCommand;	//full sent command, before splitting
-		std::string*					_splitCommand;	//all the split info of the command : 'say', 'hi guys'
-		// std::map<std::string, pointer>	_commandList;	//list of all the commands the server can do
-		irc::Client*	 				_sender;	
+		std::string*					_splitCommand;		//all the split info of the command : 'say', 'hi guys'
+
 		irc::Client*					_receiver;	
 
 };

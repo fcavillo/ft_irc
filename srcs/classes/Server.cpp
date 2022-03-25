@@ -126,13 +126,13 @@ int 		readLine(irc::Client & user)
 	int 			read;
 
 	std::string &	line = user.getBufferLine();
-	read = recv(user.getSocket(), &buff, 1, 0);
+	read = recv(user.getSocket(), &buff, 1, 0);			//receive messages from a socket
 	if (read <= 0)
 		return read;
 
 	else if (buff == '\n')
 	{
-		if (line.length() > 0 && line.at(line.length() - 1) == '\r')
+		if (line.length() > 0 && line.at(line.length() - 1) == '\r')	//end of line
 			line.erase(line.length() - 1, 1);
 		return (2);
 	}
@@ -148,46 +148,38 @@ int 		readLine(irc::Client & user)
 void		irc::Server::activityCheck()
 {
 	for (int i = 0; i < USER_MAX; i++)
-	{
+	{	//if a client exists
 		if (_clients[i] && FD_ISSET(_clients[i]->getSocket(), &_clientFds))
 		{
-			_socketFd = _clients[i]->getSocket();
+			_socketFd = _clients[i]->getSocket();		//temp socket storage
 			
-			int status = readLine(*_clients[i]);
+			int status = readLine(*_clients[i]);		//get the line from the socket
 			if (status == -1)
 			{
 				std::cout << "readline error" << std::endl;
-			// 	_clients[i]->disconnect();
-			// 	delete _clients[i];
-			// 	_clients[i] = NULL;
+//
 			}
-// 			else if (status == 0)
-// 			{
-// 				std::cout << "Client disconnected!" << std::endl;
-// 				_clients[i]->disconnect();
-// 				delete _clients[i];
-// 				_clients[i] = NULL;
-// 			}
+			else if (status == 0)
+			{
+//
+			}
 			else if (status == 2)
 			{
-				std::string line = std::string(_clients[i]->getBufferLine());
+				std::string line = std::string(_clients[i]->getBufferLine());	//put message in line
 				_clients[i]->getBufferLine().erase();
 
 				if (line.length() > 0)
 				{
 					std::cout << "<- [" << _clients[i]->getSocket() << "] " << line << std::endl;
-					Message message(line, this, _clients[i]);
+					Message message(line, this, _clients[i]);	//create new message from line
 				}
 
-// 				if (_clients[i]->getKill())
-// 				{
-// 					std::cout << "Client disconnected!" << std::endl;
-// 					close(_sd);
 // 					delete _clients[i];
 // 					_clients[i] = NULL;
 // 				}
 			}			
 		}
+		// std::cout << "next" << std::endl;
 	}
 }
 
