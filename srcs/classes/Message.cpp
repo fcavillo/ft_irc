@@ -1,27 +1,33 @@
 #include "Message.hpp"
 
+#define		RPL_WELCOME				"001"
+
+
+/*	The constructor handles the user registration and the message splitting	*/
 irc::Message::Message(std::string line, Server *server, Client *sender) : _server(server), _sender(sender), _fullCommand(line)
 {
-std::cout << "New message received : " << line << std::endl;
-
 	std::vector<std::string>	command = v_split(line);
 
-	if (strncmp(line, "PASS", 4))
+	if (command[0] == "PASS")
 	{
-
+		sender->setPass(command[1]);
+		std::cout << "Pass set" << std::endl;
 	}
-	else if (strncmp(line, "NICK", 4))
+	else if (command[0] == "NICK")
 	{
-
+		sender->setNick(command[1]);
+		std::cout << "Nick set" << std::endl;
 	}
-	else if (strncmp(line, "USER", 4))
+	else if (command[0] == "USER")
 	{
-
+		sender->setUsername(command[1]);
+		std::cout << "Username set" << std::endl;
+		sender->sendMsg(std::string(RPL_WELCOME));
 	}
 	return ;
 }
 
-std::vector<std::string>	v_split(str::string line)
+std::vector<std::string>	irc::Message::v_split(std::string line)
 {
 	std::vector<std::string>	v;
 	std::string					word;
@@ -30,10 +36,10 @@ std::vector<std::string>	v_split(str::string line)
 	{
 		if (line[i] == ' ')
 		{
-			while (line[i] = ' ')
+			while (line[i] == ' ')
 				i++;
 			if (word.size() > 0)
-				v.push_back(word_buf);
+				v.push_back(word);
 			word.clear();
 		}
 		else
@@ -50,57 +56,16 @@ irc::Message::~Message()
 	return ;
 }
 
-std::string* const &	irc::Message::getCommand() const
-{
-	return (this->_splitCommand);
-}
-
 irc::Client*		irc::Message::getSender() const
 {
 	return (this->_sender);
 }
 
-irc::Client*	irc::Message::getReceiver() const
-{
-	return (this->_receiver);
-}
+
 
 void					irc::Message::initCommands()
 {
-//to do : implement each command one by one in a map with the pair<command, function>
+//to do : implement each command one by one in a vector of function pointers
 }
 
-/*	This function takes the full command line and splits it into several arguents	*/
-void					irc::Message::fillCommand(std::string fullCommand)
-{
-	(void)fullCommand;
-
-}
-
-// std::vector<std::string> Parser::split(std::string &line)
-// {
-// 	std::vector<std::string> tab;
-// 	std::string word_buf;
-// 	bool space = false;
-
-// 	for (int i = 0; i < (int)line.size(); i++)
-// 	{
-// 		if (line[i] == ' ' && space == false)
-// 		{
-// 			space = true;
-// 			if (word_buf.size() > 0)
-// 				tab.push_back(word_buf);
-// 			word_buf.clear();
-// 		}
-// 		else
-// 		{
-// 			word_buf += line[i];
-// 			if (line[i] != ' ')
-// 				space = false;
-// 		}
-// 	}
-// 	if (word_buf.size() > 0)
-// 		tab.push_back(word_buf);
-// 	return tab;
-// }
 

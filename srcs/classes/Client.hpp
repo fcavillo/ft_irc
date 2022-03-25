@@ -28,6 +28,8 @@ class   Client
 		std::string	const & 	getAddress() const;
 		void					setAddress(std::string address);
 		std::string &			getBufferLine();
+		void					setPass(std::string pass);
+		void					sendMsg(std::string msg);
 
 
 	public :
@@ -43,13 +45,14 @@ class   Client
 	private :
 
 		bool			_oper;										//1 if client is operator, 0 by default
+		// bool			_registered;								//1 if client is registered, 0 by default
 		std::string 	_username;
 		std::string		_nick;
 		std::string		_realName;
 		std::string		_password;
 		std::string		_address;
-		int				_socket;
-		Server*			_server;
+		int				_socket;									//socket on which the client is
+		Server*			_server;									//pointer to the global server
 		std::string 	_bufferLine; 
 
 };

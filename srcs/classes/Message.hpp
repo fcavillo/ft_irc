@@ -30,24 +30,18 @@ class   Message
 		irc::Client*	 		_sender;	
 		std::string				_fullCommand;	//full sent command, before splitting
 
+		std::vector<std::string>	v_split(std::string line);
+		Message();
 
 	public :
 
-		std::string* const &	getCommand() const;
 		irc::Client*			getSender() const;
-		irc::Client*			getReceiver() const;
-		void					setReceiver();		
 		
 		void					initCommands();
 		void					fillCommand(std::string fullCommand);
 
 
-	private :
-		Message();
 
-		std::string*					_splitCommand;		//all the split info of the command : 'say', 'hi guys'
-
-		irc::Client*					_receiver;	
 
 };
 

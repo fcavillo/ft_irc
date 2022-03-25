@@ -35,9 +35,21 @@ void					irc::Client::setAddress(std::string address)
 	return ;
 }
 
+void					irc::Client::setPass(std::string pass)
+{
+	_password = pass;
+	return ;
+}
+
 std::string &			irc::Client::getBufferLine() 
 { 
 	return (this->_bufferLine); 
+}
+
+void					irc::Client::sendMsg(std::string msg)
+{
+	std::cout << "-> Socket[" << _socket << "] : " << msg << std::endl;
+	send(_socket, (msg + "\r\n").c_str(), (msg + "\r\n").length(), 0);	//send, on the client socket, the char* str wth no flag
 }
 
 
