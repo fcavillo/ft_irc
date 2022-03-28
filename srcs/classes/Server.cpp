@@ -146,10 +146,9 @@ void		irc::Server::activityCheck()
 {
 	for (size_t i = 0; i < _clients.size(); i++)
 	{	//if a client exists
-		if (/*_clients[i] && */printf("1\n") && FD_ISSET(_clients[i]->getSocket(), &_clientFds) && printf("2\n"))
+		if (/*_clients[i] && */FD_ISSET(_clients[i]->getSocket(), &_clientFds))
 		{
 			_socketFd = _clients[i]->getSocket();		//temp socket storage
-printf("3\n");			
 			int status = readLine(*_clients[i]);		//get the line from the socket
 			if (status == -1)
 			{
@@ -176,7 +175,6 @@ printf("3\n");
 			}			
 		}
 	}
-	printf("4\n");
 }
 
 
