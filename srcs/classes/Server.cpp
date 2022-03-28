@@ -27,9 +27,6 @@ int		irc::Server::start() //->connect + setup
 	//ignoring the SIGPIPE signal that shuts the program down in case of write error : error will be handled another way here
 	std::signal(SIGPIPE, SIG_IGN);
 
-	for (int i = 0; i < USER_MAX; i++)
-		this->_clients[i] = NULL;
-
 	/*	CREATING MAIN SOCKET	*/
 	//AF_INET for Address Family = PF_INET (ipv4), SOCK_STREAM = two-way, connection-based byte streams
 	_mainSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -80,16 +77,16 @@ void	irc::Server::setUpFds()
 	FD_SET(_mainSocket, &_clientFds);
 	_fdMax = _mainSocket;
 	//Add child sockets to fd_set
-	for (int i = 0; i < USER_MAX; i++)
+	for (size_t i = 0; i < _clients.size(); i++)
 	{
-		if (_clients[i])
-		{
+		// if (_clients[i])
+		// {
 			_socketFd = _clients[i]->getSocket();
 			if (_socketFd > 0)
 				FD_SET(_socketFd, &_clientFds);	//if the client has a valid socket, it is added to the set
 			if (_socketFd > _fdMax)
 				_fdMax = _socketFd;				//if the new fd is above the max, new max set
-		}
+		// }
 	}
 }
 
@@ -102,18 +99,18 @@ void		irc::Server::connectionCheck()
 			throw std::runtime_error("Socket accepting error\n");
 		std::cout << "New connection : socket fd [" << _newSocket << "] ip [" << inet_ntoa(_address.sin_addr) << "] port [" << ntohs(_address.sin_port) << "]" << std::endl;
 		// add new socket to sockets array, sets the socket and address for the new client
-		for (int i = 0; i < USER_MAX; i++)
-		{
-			if (!_clients[i])		//first available spot in the client array
-			{
-				_clients[i] = new Client(this);
+		// for (size_t i = 0; i < _clients.size(); i++)
+		// {
+			// if (!_clients[i])		//first available spot in the client array
+			// {
+				int	i = _clients.size();
+				_clients.push_back(new Client(this));
 				_clients[i]->setSocket(_newSocket);
-
 				_clients[i]->setAddress(inet_ntoa(_address.sin_addr));
 				std::cout << "Adding to sockets array as : " << i << std::endl;
-				break;
-			}
-		}
+				// break;
+			// }
+		// }
 	}		
 }
 
@@ -147,12 +144,12 @@ int 		readLine(irc::Client & user)
 
 void		irc::Server::activityCheck()
 {
-	for (int i = 0; i < USER_MAX; i++)
+	for (size_t i = 0; i < _clients.size(); i++)
 	{	//if a client exists
-		if (_clients[i] && FD_ISSET(_clients[i]->getSocket(), &_clientFds))
+		if (/*_clients[i] && */printf("1\n") && FD_ISSET(_clients[i]->getSocket(), &_clientFds) && printf("2\n"))
 		{
 			_socketFd = _clients[i]->getSocket();		//temp socket storage
-			
+printf("3\n");			
 			int status = readLine(*_clients[i]);		//get the line from the socket
 			if (status == -1)
 			{
@@ -175,11 +172,11 @@ void		irc::Server::activityCheck()
 				}
 
 // 					delete _clients[i];
-// 					_clients[i] = NULL;
 // 				}
 			}			
 		}
 	}
+	printf("4\n");
 }
 
 
@@ -243,7 +240,7 @@ irc::Channel*				irc::Server::findChannel(irc::Channel* chan)
 	return (*it);
 }
 
-/*	CLIENT MANAGEMENT	*/==
+/*	CLIENT MANAGEMENT	*/
 
 void					irc::Server::addClient(irc::Client* client)
 {
@@ -264,7 +261,7 @@ irc::Client*				irc::Server::findClient(irc::Client* client)
 {
 	std::vector<Client*>::iterator	it;
 
-	for (it = _clients.begin(); it != _clients.end() || *(it) != chan ; it++);	
+	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++);	
 	if (it == this->_clients.end())		//the client is not found
 		return (NULL);
 	return (*it);
