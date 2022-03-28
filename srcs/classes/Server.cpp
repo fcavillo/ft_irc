@@ -200,10 +200,10 @@ std::vector<irc::Channel*>	irc::Server::getChannels()
 	return (this->_channels);
 }
 
-// std::vector<irc::Client*>		irc::Server::getClients()
-// {
-// 	return (this->_clients);
-// }
+std::vector<irc::Client*>		irc::Server::getClients()
+{
+	return (this->_clients);
+}
 
 int const &								irc::Server::getRotKey() const
 {
@@ -243,32 +243,32 @@ irc::Channel*				irc::Server::findChannel(irc::Channel* chan)
 	return (*it);
 }
 
-/*	CLIENT MANAGEMENT	*/
+/*	CLIENT MANAGEMENT	*/==
 
-// void					irc::Server::addClient(irc::Client* client)
-// {
-// 	this->_clients.push_back(chan);	
-// }
+void					irc::Server::addClient(irc::Client* client)
+{
+	this->_clients.push_back(client);	
+}
 
-// void					irc::Server::rmClient(irc::Client* client)
-// {
-// 	std::vector<Channel*>::iterator	it;
+void					irc::Server::rmClient(irc::Client* client)
+{
+	std::vector<Client*>::iterator	it;
 
-// 	for (it = _clients.begin(); it != _clients.end() || *(it) != chan ; it++);	
-// 	if (it == this->_clients.end())		//the channel is not found
-// 		return ;
-// 	this->_clients.erase(it);
-// }
+	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++);	
+	if (it == this->_clients.end())		//the client is not found
+		return ;
+	this->_clients.erase(it);
+}
 
-// irc::Client*				irc::Server::findClient(irc::Client* client)
-// {
-// 	std::vector<Channel*>::iterator	it;
+irc::Client*				irc::Server::findClient(irc::Client* client)
+{
+	std::vector<Client*>::iterator	it;
 
-// 	for (it = _clients.begin(); it != _clients.end() || *(it) != chan ; it++);	
-// 	if (it == this->_clients.end())		//the channel is not found
-// 		return (NULL);
-// 	return (*it);
-// }
+	for (it = _clients.begin(); it != _clients.end() || *(it) != chan ; it++);	
+	if (it == this->_clients.end())		//the client is not found
+		return (NULL);
+	return (*it);
+}
 
 // if (_clients[i] && FD_ISSET(_clients[i]->getSd(), &_read_fds))
 // 		{

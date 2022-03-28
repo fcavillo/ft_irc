@@ -47,7 +47,7 @@ class   Server
 		int						_port;					//port number for the server (set at the start by './ircserv *port* *password*')
 		std::string				_password;				//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
 		bool					_on;					//status
-		Client*					_clients[USER_MAX];		//list of all the users on the channel
+		std::vector<Client*>	_clients[USER_MAX];		//list of all the users on the channel
 		int						_mainSocket;
 		struct sockaddr_in		_address;				//address structure with address family, port and IP address
 		size_t					_addressSize;
