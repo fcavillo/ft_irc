@@ -22,7 +22,7 @@ class	Server;
 class   Message
 {
 	public :
-		Message(std::string line, Server *data, Client *user);	
+		Message(std::string line, Server *data, Client *user);
 		~Message();
 
 	private :
@@ -30,17 +30,25 @@ class   Message
 		irc::Client*	 		_sender;	
 		std::string				_fullCommand;	//full sent command, before splitting
 
+	// AFTER PARSING
+		std::string					_prefix;
+		std::string					_cmds;
+		std::vector<std::string>	_params;
+	// retour charriot mais on s en fiche
+
 		std::vector<std::string>	v_split(std::string line);
 		Message();
 
 	public :
 
 		irc::Client*			getSender() const;
-		
+//		irc::Client*			getnonconstSender();
+		irc::Server*			getServer()	const;
+//		irc::Server*			getnonconstServer();
 		void					initCommands();
 		void					fillCommand(std::string fullCommand);
-
-
+//		void					messageparse(std::string line, Server *server, Client *sender)
+		void					parse(std::string line);
 
 
 };
