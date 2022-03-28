@@ -5,6 +5,7 @@
 
 /*	Server class is initialized with a specific port and password (set at launch with the executable)	*/
 irc::Server::Server(int port, std::string password) :
+_servername("IRC"),
 _port(port),
 _password(ft_rotix(password)),
 _on(true)
@@ -146,7 +147,7 @@ void		irc::Server::activityCheck()
 {
 	for (size_t i = 0; i < _clients.size(); i++)
 	{	//if a client exists
-		if (/*_clients[i] && */FD_ISSET(_clients[i]->getSocket(), &_clientFds))
+		if (FD_ISSET(_clients[i]->getSocket(), &_clientFds))
 		{
 			_socketFd = _clients[i]->getSocket();		//temp socket storage
 			int status = readLine(*_clients[i]);		//get the line from the socket
@@ -190,22 +191,27 @@ std::string					irc::Server::getPassword() const
 	return (this->_password);
 }
 
+std::string					irc::Server::getServername() const
+{
+	return (this->_servername);
+}
+
 std::vector<irc::Channel*>	irc::Server::getChannels()
 {
 	return (this->_channels);
 }
 
-std::vector<irc::Client*>		irc::Server::getClients()
+std::vector<irc::Client*>	irc::Server::getClients()
 {
 	return (this->_clients);
 }
 
-int const &								irc::Server::getRotKey() const
+int const &					irc::Server::getRotKey() const
 {
 	return (this->_rotKey);
 }
 
-void									irc::Server::setRotKey(int key) 
+void						irc::Server::setRotKey(int key) 
 {
 	this->_rotKey = key;
 	return ;

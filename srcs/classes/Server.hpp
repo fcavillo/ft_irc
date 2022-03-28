@@ -44,6 +44,7 @@ class   Server
 		void	activityCheck();
 
 	private :
+		std::string				_servername;
 		int						_port;					//port number for the server (set at the start by './ircserv *port* *password*')
 		std::string				_password;				//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
 		bool					_on;					//status
@@ -61,6 +62,7 @@ class   Server
 	public :
 		int	const &							getPort() const;
 		std::string							getPassword() const;
+		std::string							getServername() const;
 		int const &							getRotKey() const;
 		void								setRotKey(int key);
 		std::vector<Channel*>				getChannels();			//used by server command /list that shows all member channels

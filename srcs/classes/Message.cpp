@@ -24,6 +24,22 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	}
 	return ;
 }
+/*
+irc::Message::Nick(std:string line, Server *server, Client *sender)
+{
+	std::vector<std::string> command = v_split(line);
+
+	if(cmd[0] == 'NICK')
+	{
+		if(!cmd[1])
+			sender->sendMsg(message_print(server->getServername(), RPL_NONICKNAMEGIVEN, RPL_NONICKNAMEGIVEN_MSG(), false));
+		if(server->findnickname(cmd[1]))
+			sender->sendMsg(message_print(server->getServername(), RPL_NICKNAMEINUSE, RPL_NICKNAMEINUSE_MSG(), false));
+		else
+			sender->setUsername(cmd[1]);
+	}
+
+}*/
 
 std::vector<std::string>	irc::Message::v_split(std::string line)
 {
