@@ -1,0 +1,1599 @@
+duplicate symbol 'RPL_NOWAWAY_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_UNAWAY_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOPERMFORHOST_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOOPERHOST_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_USSERSSTART_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_NOUSERS_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFUSERS_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOPRIVILEGES_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_CANTKILLSERVER_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_YOUREOPER_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_YOUREBANNEDCREEP_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFINFO_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOORIGIN_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NONICKNAMEGIVEN_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_USERSDONTMATCH_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_PASSWDMISMATCH_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_UMODEUNKNOWNFLAG_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOMOTD_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFMOTD_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_LISTEND_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOTEXTTOSEND_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_RESTRICTED_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_ALREADYREGISTRED_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOTREGISTERED_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_USERSDISABLED_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_SUMMONDISABLED_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_UNIQOPPRIVSNEEDED_MSG()' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_WHOREPLY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_STATSLINKINFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACELINK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_SERVLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_LINKS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_STATSCOMMANDS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACESERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_WHOISUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_WHOWASUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_MYINFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_VERSION_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_NAMEREPLY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_LIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_LUSERCLIENT_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_USERS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_CHANNELMODEIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_WHOISSERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACESERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_AWAY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_YOURHOST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_EXCEPTLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_BANLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_INVITELIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_TOOMANYTARGETS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACECLASS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_WHOISCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_UNIQOPIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_FILEERORR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACEOPERATOR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACEUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACEUNKNOWN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_BANLISTFULL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_USERONCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACELOG_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_INVITING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACECONNECTING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACENEWTYPE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_LUSERNE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_STATOLINE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TIME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_WHOISIDLE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACEHANDSHAKE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_BOUNCE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_SERVLISTEND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRACEEND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TOPIC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_USERNOTINCHANNEL_MSF(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_BADCHANNELKEY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_USERHOST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFEXCEPTLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFBANLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFINVITELIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_MOTDSTART_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NORECIPIENT_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_KEYSET_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFSTATS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NEEDMOREPARAMS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_TOOMANYCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_LUSERCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFLINKS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFWHOIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_UNODEIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFNAMES_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOCHANMODES_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFWHOWAS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_WHOISOPERATOR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOSUCHSERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_LUSEROP_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ENDOFWHO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_INFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOADMININFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_LUSERUNKNOWN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ISON_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NICKCOLLISION_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOLOGIN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_TRYAGAIN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_INVITEONLYCHAN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_CONNOTSENDTOCHAN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_CHANNELISFULL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ADMINEMAIL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOTOPLEVEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_WILDTOPLEVEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOTONCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOSUCHCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_BADCHANMASK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_BADMASK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOSUCHNICK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_WASNOSUCHNICK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_SUMMONING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_REHASHING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NICKNAMEINUSE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_WELCOME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ADMINME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_STARTUPTIME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_ERRONEUSNICKNAME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_UNKNOWMODE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_UNAVAILLABLERESOURCE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_NOSUCHSERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_YOURESERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_MOTD_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_UNKNOWCOMMAND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_CREATED_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'ERR_CHANOPRIVSNEEDED_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ADMINLOC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_NOTOPIC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_ADMINLOC1_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Server.o
+duplicate symbol 'RPL_NOWAWAY_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_UNAWAY_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOPERMFORHOST_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOOPERHOST_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_USSERSSTART_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_NOUSERS_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFUSERS_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOPRIVILEGES_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_CANTKILLSERVER_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_YOUREOPER_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_YOUREBANNEDCREEP_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFINFO_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOORIGIN_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NONICKNAMEGIVEN_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_USERSDONTMATCH_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_PASSWDMISMATCH_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_UMODEUNKNOWNFLAG_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOMOTD_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFMOTD_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_LISTEND_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOTEXTTOSEND_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_RESTRICTED_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_ALREADYREGISTRED_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOTREGISTERED_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_USERSDISABLED_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_SUMMONDISABLED_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_UNIQOPPRIVSNEEDED_MSG()' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_WHOREPLY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_STATSLINKINFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACELINK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_SERVLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_LINKS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_STATSCOMMANDS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACESERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_WHOISUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_WHOWASUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_MYINFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_VERSION_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_NAMEREPLY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_LIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_LUSERCLIENT_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_USERS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_CHANNELMODEIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_WHOISSERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACESERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_AWAY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_YOURHOST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_EXCEPTLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_BANLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_INVITELIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_TOOMANYTARGETS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACECLASS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_WHOISCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_UNIQOPIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_FILEERORR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACEOPERATOR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACEUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACEUNKNOWN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_BANLISTFULL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_USERONCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACELOG_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_INVITING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACECONNECTING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACENEWTYPE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_LUSERNE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_STATOLINE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TIME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_WHOISIDLE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACEHANDSHAKE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_BOUNCE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_SERVLISTEND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRACEEND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TOPIC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_USERNOTINCHANNEL_MSF(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_BADCHANNELKEY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_USERHOST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFEXCEPTLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFBANLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFINVITELIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_MOTDSTART_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NORECIPIENT_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_KEYSET_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFSTATS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NEEDMOREPARAMS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_TOOMANYCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_LUSERCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFLINKS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFWHOIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_UNODEIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFNAMES_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOCHANMODES_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFWHOWAS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_WHOISOPERATOR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOSUCHSERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_LUSEROP_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ENDOFWHO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_INFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOADMININFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_LUSERUNKNOWN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ISON_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NICKCOLLISION_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOLOGIN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_TRYAGAIN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_INVITEONLYCHAN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_CONNOTSENDTOCHAN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_CHANNELISFULL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ADMINEMAIL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOTOPLEVEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_WILDTOPLEVEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOTONCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOSUCHCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_BADCHANMASK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_BADMASK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOSUCHNICK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_WASNOSUCHNICK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_SUMMONING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_REHASHING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NICKNAMEINUSE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_WELCOME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ADMINME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_STARTUPTIME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_ERRONEUSNICKNAME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_UNKNOWMODE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_UNAVAILLABLERESOURCE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_NOSUCHSERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_YOURESERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_MOTD_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_UNKNOWCOMMAND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_CREATED_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'ERR_CHANOPRIVSNEEDED_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ADMINLOC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_NOTOPIC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_ADMINLOC1_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Channel.o
+duplicate symbol 'RPL_NOWAWAY_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_UNAWAY_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOPERMFORHOST_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOOPERHOST_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_USSERSSTART_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_NOUSERS_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFUSERS_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOPRIVILEGES_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_CANTKILLSERVER_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_YOUREOPER_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_YOUREBANNEDCREEP_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFINFO_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOORIGIN_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NONICKNAMEGIVEN_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_USERSDONTMATCH_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_PASSWDMISMATCH_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_UMODEUNKNOWNFLAG_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOMOTD_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFMOTD_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_LISTEND_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOTEXTTOSEND_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_RESTRICTED_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_ALREADYREGISTRED_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOTREGISTERED_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_USERSDISABLED_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_SUMMONDISABLED_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_UNIQOPPRIVSNEEDED_MSG()' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_WHOREPLY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_STATSLINKINFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACELINK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_SERVLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_LINKS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_STATSCOMMANDS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACESERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_WHOISUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_WHOWASUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_MYINFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_VERSION_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_NAMEREPLY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_LIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_LUSERCLIENT_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_USERS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_CHANNELMODEIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_WHOISSERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACESERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_AWAY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_YOURHOST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_EXCEPTLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_BANLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_INVITELIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_TOOMANYTARGETS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACECLASS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_WHOISCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_UNIQOPIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_FILEERORR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACEOPERATOR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACEUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACEUNKNOWN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_BANLISTFULL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_USERONCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACELOG_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_INVITING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACECONNECTING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACENEWTYPE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_LUSERNE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_STATOLINE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TIME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_WHOISIDLE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACEHANDSHAKE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_BOUNCE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_SERVLISTEND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRACEEND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TOPIC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_USERNOTINCHANNEL_MSF(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_BADCHANNELKEY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_USERHOST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFEXCEPTLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFBANLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFINVITELIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_MOTDSTART_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NORECIPIENT_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_KEYSET_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFSTATS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NEEDMOREPARAMS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_TOOMANYCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_LUSERCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFLINKS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFWHOIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_UNODEIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFNAMES_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOCHANMODES_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFWHOWAS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_WHOISOPERATOR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOSUCHSERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_LUSEROP_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ENDOFWHO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_INFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOADMININFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_LUSERUNKNOWN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ISON_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NICKCOLLISION_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOLOGIN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_TRYAGAIN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_INVITEONLYCHAN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_CONNOTSENDTOCHAN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_CHANNELISFULL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ADMINEMAIL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOTOPLEVEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_WILDTOPLEVEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOTONCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOSUCHCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_BADCHANMASK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_BADMASK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOSUCHNICK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_WASNOSUCHNICK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_SUMMONING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_REHASHING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NICKNAMEINUSE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_WELCOME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ADMINME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_STARTUPTIME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_ERRONEUSNICKNAME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_UNKNOWMODE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_UNAVAILLABLERESOURCE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_NOSUCHSERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_YOURESERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_MOTD_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_UNKNOWCOMMAND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_CREATED_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'ERR_CHANOPRIVSNEEDED_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ADMINLOC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_NOTOPIC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_ADMINLOC1_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Client.o
+duplicate symbol 'RPL_NOWAWAY_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_UNAWAY_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOPERMFORHOST_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOOPERHOST_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_USSERSSTART_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_NOUSERS_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFUSERS_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOPRIVILEGES_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_CANTKILLSERVER_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_YOUREOPER_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_YOUREBANNEDCREEP_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFINFO_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOORIGIN_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NONICKNAMEGIVEN_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_USERSDONTMATCH_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_PASSWDMISMATCH_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_UMODEUNKNOWNFLAG_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOMOTD_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFMOTD_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_LISTEND_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOTEXTTOSEND_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_RESTRICTED_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_ALREADYREGISTRED_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOTREGISTERED_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_USERSDISABLED_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_SUMMONDISABLED_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_UNIQOPPRIVSNEEDED_MSG()' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_WHOREPLY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_STATSLINKINFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACELINK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_SERVLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_LINKS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_STATSCOMMANDS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACESERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_WHOISUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_WHOWASUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_MYINFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_VERSION_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_NAMEREPLY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_LIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_LUSERCLIENT_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_USERS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_CHANNELMODEIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_WHOISSERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACESERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_AWAY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_YOURHOST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_EXCEPTLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_BANLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_INVITELIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_TOOMANYTARGETS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACECLASS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_WHOISCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_UNIQOPIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_FILEERORR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACEOPERATOR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACEUSER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACEUNKNOWN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_BANLISTFULL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_USERONCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACELOG_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_INVITING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACECONNECTING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACENEWTYPE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_LUSERNE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_STATOLINE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TIME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_WHOISIDLE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACEHANDSHAKE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_BOUNCE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_SERVLISTEND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRACEEND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TOPIC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_USERNOTINCHANNEL_MSF(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_BADCHANNELKEY_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_USERHOST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFEXCEPTLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFBANLIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFINVITELIST_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_MOTDSTART_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NORECIPIENT_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_KEYSET_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFSTATS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NEEDMOREPARAMS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_TOOMANYCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_LUSERCHANNELS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFLINKS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFWHOIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_UNODEIS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFNAMES_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOCHANMODES_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFWHOWAS_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_WHOISOPERATOR_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOSUCHSERVER_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_LUSEROP_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ENDOFWHO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_INFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOADMININFO_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_LUSERUNKNOWN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ISON_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NICKCOLLISION_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOLOGIN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_TRYAGAIN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_INVITEONLYCHAN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_CONNOTSENDTOCHAN_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_CHANNELISFULL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ADMINEMAIL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOTOPLEVEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_WILDTOPLEVEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOTONCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOSUCHCHANNEL_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_BADCHANMASK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_BADMASK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOSUCHNICK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_WASNOSUCHNICK_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_SUMMONING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_REHASHING_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NICKNAMEINUSE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_WELCOME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ADMINME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_STARTUPTIME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_ERRONEUSNICKNAME_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_UNKNOWMODE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_UNAVAILLABLERESOURCE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_NOSUCHSERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_YOURESERVICE_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_MOTD_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_UNKNOWCOMMAND_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_CREATED_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'ERR_CHANOPRIVSNEEDED_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ADMINLOC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_NOTOPIC_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+duplicate symbol 'RPL_ADMINLOC1_MSG(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)' in:
+    main.o
+    srcs/classes/Message.o
+ld: 532 duplicate symbols for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [ircserv] Error 1

@@ -1,7 +1,5 @@
 #include "Message.hpp"
-
-#define		RPL_WELCOME				"001"
-
+#include "numeric_replies.hpp"
 
 /*	The constructor handles the user registration and the message splitting	*/
 irc::Message::Message(std::string line, Server *server, Client *sender) : _server(server), _sender(sender), _fullCommand(line)
@@ -22,7 +20,7 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	{
 		sender->setUsername(command[1]);
 		std::cout << "Username set" << std::endl;
-		sender->sendMsg(std::string(RPL_WELCOME));
+		sender->sendMsg(message_print("fcavillo@localhost", RPL_WELCOME, sender->getNick(), RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),"fcavillo@localhost"), false));
 	}
 	return ;
 }
