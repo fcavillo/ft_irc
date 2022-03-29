@@ -11,6 +11,15 @@ irc::Client::~Client()
 	return ;
 }
 
+/*	FUNCTIONS	*/
+
+
+void					irc::Client::sendMsg(std::string msg)
+{
+	std::cout << "-> Socket[" << _socket << "] : " << msg << std::endl;
+	send(_socket, (msg + "\r\n").c_str(), (msg + "\r\n").length(), 0);	//send, on the client socket, the char* str wth no flag
+}
+
 /*	GETTERS & SETTERS	*/
 
 int	const &				irc::Client::getSocket() const
@@ -50,13 +59,6 @@ std::string &			irc::Client::getBufferLine()
 { 
 	return (this->_bufferLine); 
 }
-
-void					irc::Client::sendMsg(std::string msg)
-{
-	std::cout << "-> Socket[" << _socket << "] : " << msg << std::endl;
-	send(_socket, (msg + "\r\n").c_str(), (msg + "\r\n").length(), 0);	//send, on the client socket, the char* str wth no flag
-}
-
 
 std::string const &		irc::Client::getUsername() const
 {
