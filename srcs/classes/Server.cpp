@@ -7,7 +7,7 @@
 irc::Server::Server(int port, std::string password) :
 _servername("IRC"),
 _port(port),
-_password(ft_rotix(password)),
+_password(password),
 _on(true)
 {
 	std::cout << "Creating Server - port : " << port << std::endl;
@@ -226,12 +226,12 @@ void					irc::Server::rmChannel(irc::Channel* chan)
 
 irc::Channel*				irc::Server::findChannel(irc::Channel* chan)
 {
-	std::vector<Channel*>::iterator	it;
-
-	for (it = _channels.begin(); it != _channels.end() || *(it) != chan ; it++);	
-	if (it == this->_channels.end())		//the channel is not found
-		return (NULL);
-	return (*it);
+	for (size_t i = 0; i < _channels.size(); i++)
+	{
+		if (_channels[i] == chan)
+			return (_channels[i]);
+	}
+	return (NULL);
 }
 
 /*	CLIENT MANAGEMENT	*/
@@ -253,13 +253,26 @@ void					irc::Server::rmClient(irc::Client* client)
 
 irc::Client*				irc::Server::findClient(irc::Client* client)
 {
-	std::vector<Client*>::iterator	it;
-
-	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++);	
-	if (it == this->_clients.end())		//the client is not found
-		return (NULL);
-	return (*it);
+	for (size_t i = 0; i < _clients.size(); i++)
+	{
+		if (_clients[i] == client)
+			return (_clients[i]);
+	}
+	return (NULL);
 }
+
+
+irc::Client*		irc::Server::findNick(std::string nick)
+{
+	for (size_t i = 0; i < _clients.size(); i++)
+	{
+		if (_clients[i]->getNick() == nick)
+			return (_clients[i]);
+	}
+	return (NULL);
+}
+
+
 
 // if (_clients[i] && FD_ISSET(_clients[i]->getSd(), &_read_fds))
 // 		{
@@ -300,19 +313,3 @@ irc::Client*				irc::Server::findClient(irc::Client* client)
 // 				}
 // 			}
 // 		}
-
-
-/*	PASSWORD CRYPTING/UNCRYPTING	*/
-
-std::string		irc::Server::ft_rotix(std::string pass)
-{
-// 	srand(time(NULL));
-
-// 	setRotKey((rand() % 93));
-
-	std::string	s;
-	for (int i = 0; pass[i]; i++)
-		s.push_back(pass[i]);
-
-	return (s);
-}

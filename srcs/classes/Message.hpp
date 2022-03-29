@@ -46,7 +46,6 @@ class   Message
 		irc::Server*			getServer()	const;
 //		irc::Server*			getnonconstServer();
 		void					initCommands();
-		void					fillCommand(std::string fullCommand);
 //		void					messageparse(std::string line, Server *server, Client *sender)
 		void					parse(std::string line);
 

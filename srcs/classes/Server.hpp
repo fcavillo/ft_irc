@@ -48,15 +48,15 @@ class   Server
 		int						_port;					//port number for the server (set at the start by './ircserv *port* *password*')
 		std::string				_password;				//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
 		bool					_on;					//status
-		std::vector<Client*>	_clients;		//list of all the users on the channel
+		std::vector<Client*>	_clients;				//list of all the users on the server
 		int						_mainSocket;
 		struct sockaddr_in		_address;				//address structure with address family, port and IP address
 		size_t					_addressSize;
 		fd_set 					_clientFds;				//structure containing the fds used
 		int						_socketFd;				//temp storage for the use of one socket
-		int						_fdMax;	
+		int						_fdMax;					//highest fd used 
 		int						_fdReady;				//used to store an fd when it is ready to receive/send 
-		int						_newSocket;
+		int						_newSocket;				//used to store incoming fds
 		std::vector<Channel*>	_channels;				//list of all the channels on the server
 
 	public :
@@ -78,6 +78,7 @@ class   Server
 		void								rmClient(Client* client);
 		Client*								findClient(Client* client);	
 
+		Client*								findNick(std::string nick);	
 
 
 	private :
@@ -89,9 +90,6 @@ class   Server
 		struct timeval						_timeout;		//time before the server closes without activity
 		time_t								_startTime;		//time of server start
 
-		//password encryption
-		std::string							ft_rotix(std::string pass);		
-		// std::string							ft_unrotix();
 };
 
 
