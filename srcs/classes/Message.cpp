@@ -23,9 +23,15 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	{
 		sender->setUsername(this->_params[0]);
 		std::cout << "Username set" << std::endl;
-		sender->sendMsg(message_print("fcavillo@localhost", RPL_WELCOME, sender->getNick(), RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),"fcavillo@localhost"), false));
+
 	}
-	
+
+	if (sender->getRegistered() == false)
+	{
+		if (sender->checkRegistered() == true)
+			sender->sendMsg(message_print("fcavillo@localhost", RPL_WELCOME, sender->getNick(), RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),"fcavillo@localhost"), false));		
+	}	
+
 /*
 	if (command[0] == "PASS")
 	{
@@ -95,7 +101,7 @@ void	irc::Message::parse(std::string line)
 		else if(line[i] != ' ')
 		{
 			word += line[i];
-			std::cout << word << std::endl;
+//			std::cout << word << std::endl;			//commenté pour y voir plus clair, déso :)
 		}
 	}
 	if (word.size() > 0)

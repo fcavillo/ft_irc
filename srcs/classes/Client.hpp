@@ -29,10 +29,13 @@ class   Client
 		void					setAddress(std::string address);
 		std::string &			getBufferLine();
 		void					setPass(std::string pass);
+		std::string	&			getPass();
 		void					setRegistered(bool b);
 		bool					getRegistered();
+		bool					checkRegistered();
 		void					setLogged(bool b);
 		bool					getLogged();
+
 		void					sendMsg(std::string msg);
 
 
@@ -41,7 +44,7 @@ class   Client
 		std::string const &		getNick() const;
 		std::string const &		getRealName() const;
 		bool const &			getOper() const;
-		void					setUsername(std::string clientname);
+		void					setUsername(std::string username);
 		void					setNick(std::string nick);
 		void					setRealName(std::string realName);
 		void					setOper(bool oper);					//used in client command /oper

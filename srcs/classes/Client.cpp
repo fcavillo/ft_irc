@@ -1,6 +1,6 @@
 #include "Client.hpp"
 
-irc::Client::Client(Server* server) : _registered(0), _logged(1), _server(server)
+irc::Client::Client(Server* server) : _oper(0), _registered(0), _logged(1), _server(server)
 {
 	(void)_server;
 	return ;
@@ -39,6 +39,11 @@ void					irc::Client::setPass(std::string pass)
 {
 	_password = pass;
 	return ;
+}
+
+std::string &			irc::Client::getPass() 
+{ 
+	return (this->_password); 
 }
 
 std::string &			irc::Client::getBufferLine() 
@@ -95,11 +100,20 @@ void					irc::Client::setOper(bool oper)
 
 void					irc::Client::setRegistered(bool b)
 {
+	if (b == true)
+		std::cout << "User " << getNick() << " successfully registered !" << std::endl;
 	this->_registered = b;
 }
 
 bool					irc::Client::getRegistered()
 {
+	return (this->_registered);
+}
+
+bool					irc::Client::checkRegistered()
+{
+	if (getUsername() != "" && getPass() != "" && getNick() != "" && this->_registered == false)
+		setRegistered(true);
 	return (this->_registered);
 }
 

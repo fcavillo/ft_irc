@@ -163,7 +163,7 @@ void		irc::Server::activityCheck()
 				if (_clients[i]->getLogged() == false)			//if the client just quit
 				{
 					std::cout << "Client disconnected !" << std::endl;
-//make sure the client is erased					
+//make sure the client is erased + set _logged as false when quitting				
 				}
 			}			
 		}
