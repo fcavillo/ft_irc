@@ -144,11 +144,11 @@ void		irc::Server::activityCheck()
 			if (status == -1)
 			{
 				std::cout << "readline error" << std::endl;
-//
+//disconnect the client[i] + erase it
 			}
-			else if (status == 0)
+			else if (status == 0)			//nothing to read, user force disconnected
 			{
-//
+//disconnect the client[i] + erase
 			}
 			else if (status == 2)
 			{
@@ -160,13 +160,29 @@ void		irc::Server::activityCheck()
 					std::cout << "<- Socket[" << _clients[i]->getSocket() << "] : " << line << std::endl;
 					Message message(line, this, _clients[i]);	//create new message from line
 				}
-
-// 					delete _clients[i];
-// 				}
+				if (_clients[i]->getLogged() == false)			//if the client just quit
+				{
+					std::cout << "Client disconnected !" << std::endl;
+//make sure the client is erased					
+				}
 			}			
 		}
 	}
 }
+
+// 			else if (status == 2)
+// 			{
+// 				std::string line = std::string(_clients[i]->getBufferLine());
+
+
+// 				if (_clients[i]->getKill())
+// 				{
+// 					std::cout << "Client disconnected!" << std::endl;
+// 					close(_sd);
+// 					delete _clients[i];
+// 					_clients[i] = NULL;
+// 				}
+// 			}
 
 
 /*	GETTERS & SETTERS	*/

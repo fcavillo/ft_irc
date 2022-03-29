@@ -1,6 +1,6 @@
 #include "Client.hpp"
 
-irc::Client::Client(Server* server) : _server(server)
+irc::Client::Client(Server* server) : _registered(0), _logged(1), _server(server)
 {
 	(void)_server;
 	return ;
@@ -76,23 +76,39 @@ bool const &			irc::Client::getOper() const
 void					irc::Client::setUsername(std::string username)
 {
 	this->_username = username;
-	return ;
 }
 
 void					irc::Client::setNick(std::string nick)
 {
 	this->_nick = nick;
-	return ;
 }
 
 void					irc::Client::setRealName(std::string realName)
 {
 	this->_realName = realName;
-	return ;
 }
 
 void					irc::Client::setOper(bool oper)
 {
 	this->_oper = oper;
-	return ;
+}
+
+void					irc::Client::setRegistered(bool b)
+{
+	this->_registered = b;
+}
+
+bool					irc::Client::getRegistered()
+{
+	return (this->_registered);
+}
+
+void					irc::Client::setLogged(bool b)
+{
+	this->_logged = b;
+}
+
+bool					irc::Client::getLogged()
+{
+	return (this->_logged);
 }

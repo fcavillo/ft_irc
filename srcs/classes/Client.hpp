@@ -29,6 +29,10 @@ class   Client
 		void					setAddress(std::string address);
 		std::string &			getBufferLine();
 		void					setPass(std::string pass);
+		void					setRegistered(bool b);
+		bool					getRegistered();
+		void					setLogged(bool b);
+		bool					getLogged();
 		void					sendMsg(std::string msg);
 
 
@@ -45,7 +49,8 @@ class   Client
 	private :
 
 		bool			_oper;										//1 if client is operator, 0 by default
-		// bool			_registered;								//1 if client is registered, 0 by default
+		bool			_registered;								//1 if client is registered, 0 by default
+		bool			_logged;									//0 if client disconnects, 0 by default
 		std::string 	_username;
 		std::string		_nick;
 		std::string		_realName;

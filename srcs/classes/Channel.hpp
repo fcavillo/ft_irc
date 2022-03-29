@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <cstring>
-#include <map>
+#include <vector>
 #include <utility>
 
 #include "Client.hpp"
@@ -24,18 +24,18 @@ class   Channel
 		~Channel();
 
 		std::string const &				getName() const;
-		std::map<std::string, Client*>	getClients();
+		std::vector<Client*>			getClients();
 
 		//user management
-		int								addClient(Client* user);
-		int								rmClient(std::string nick);
-		Client*							findClient(std::string nick);
+		void							addClient(Client* client);
+		void							rmClient(Client* client);
+		Client*							findClient(Client* client);
 
 	private :
 		Channel();
 
-		std::map<std::string, Client*>		_clients;		//list of all the users on the channel, the pair is <nick, address>
-		std::string 						_name;		//name of the channel (initialized by the user command '/join *name*')
+		std::vector<Client*>				_clients;		//list of all the users on the channel
+		std::string 						_name;			//name of the channel (initialized by the user command '/join *name*')
 };
 
 
