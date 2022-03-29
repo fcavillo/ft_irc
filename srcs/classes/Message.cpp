@@ -25,7 +25,10 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		std::cout << "Username set" << std::endl;
 
 	}
-
+	else if (this->_cmds == "PING")
+	{
+		// pong();
+	}
 	if (sender->getRegistered() == false)
 	{
 		if (sender->checkRegistered() == true)

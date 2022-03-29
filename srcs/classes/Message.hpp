@@ -9,6 +9,7 @@
 
 #include "Client.hpp"
 #include "Server.hpp"
+#include "cmds/cmds_pong.cpp"
 
 /*	This is the main class for the Message : it groups the main info about it, 
 *	like the sender, receiver, command called and command map	*/
@@ -25,7 +26,7 @@ class   Message
 		Message(std::string line, Server *data, Client *user);
 		~Message();
 
-	private :
+//	private :
 		irc::Server*			_server;
 		irc::Client*	 		_sender;	
 		std::string				_fullCommand;	//full sent command, before splitting
