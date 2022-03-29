@@ -212,17 +212,6 @@ std::vector<irc::Client*>	irc::Server::getClients()
 	return (this->_clients);
 }
 
-int const &					irc::Server::getRotKey() const
-{
-	return (this->_rotKey);
-}
-
-void						irc::Server::setRotKey(int key) 
-{
-	this->_rotKey = key;
-	return ;
-}
-
 /*	CHANNEL MANAGEMENT	*/
 
 void					irc::Server::addChannel(irc::Channel* chan)
@@ -288,44 +277,3 @@ irc::Client*		irc::Server::findNick(std::string nick)
 	return (NULL);
 }
 
-
-
-// if (_clients[i] && FD_ISSET(_clients[i]->getSd(), &_read_fds))
-// 		{
-// 			_sd = _clients[i]->getSd();
-
-// 			int status = readLine(*_clients[i]);
-// 			if (status == -1)
-// 			{
-// 				std::cerr << "Error inr recv(). Quiting" << std::endl;
-// 				_clients[i]->disconnect();
-// 				delete _clients[i];
-// 				_clients[i] = NULL;
-// 			}
-// 			else if (status == 0)
-// 			{
-// 				std::cout << "Client disconnected!" << std::endl;
-// 				_clients[i]->disconnect();
-// 				delete _clients[i];
-// 				_clients[i] = NULL;
-// 			}
-// 			else if (status == 2)
-// 			{
-// 				std::string line = std::string(_clients[i]->getBufferLine());
-// 				_clients[i]->getBufferLine().erase();
-
-// 				if (line.length() > 0)
-// 				{
-// 					std::cout << "<- [" << _clients[i]->getSd() << "] " << line << std::endl;
-// 					Parser parser(line, this, _clients[i]);
-// 				}
-
-// 				if (_clients[i]->getKill())
-// 				{
-// 					std::cout << "Client disconnected!" << std::endl;
-// 					close(_sd);
-// 					delete _clients[i];
-// 					_clients[i] = NULL;
-// 				}
-// 			}
-// 		}

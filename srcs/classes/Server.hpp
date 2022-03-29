@@ -37,57 +37,52 @@ class   Server
 		Server(int port, std::string password);
 		~Server();
 
+	/*	Functions	*/
 		int		start();
 		void	setUpFds();
 		void	connectionCheck();
 		void	activityCheck();
-
-	private :
-		std::string				_servername;
-		int						_port;					//port number for the server (set at the start by './ircserv *port* *password*')
-		std::string				_password;				//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
-		bool					_on;					//status
-		std::vector<Client*>	_clients;				//list of all the users on the server
-		int						_mainSocket;
-		struct sockaddr_in		_address;				//address structure with address family, port and IP address
-		size_t					_addressSize;
-		fd_set 					_clientFds;				//structure containing the fds used
-		int						_socketFd;				//temp storage for the use of one socket
-		int						_fdMax;					//highest fd used 
-		int						_fdReady;				//used to store an fd when it is ready to receive/send 
-		int						_newSocket;				//used to store incoming fds
-		std::vector<Channel*>	_channels;				//list of all the channels on the server
-
-	public :
-		int	const &							getPort() const;
-		std::string							getPassword() const;
-		std::string							getServername() const;
-		int const &							getRotKey() const;
-		void								setRotKey(int key);
-		std::vector<Channel*>				getChannels();			//used by server command /list that shows all member channels
-		std::vector<Client*>				getClients();
-
-		//channel management
+	//channel management
 		void								addChannel(Channel* chan);
 		void								rmChannel(Channel* chan);
 		Channel*							findChannel(Channel* chan);
-
-		//user management
+	//user management
 		void								addClient(Client* client);
 		void								rmClient(Client* client);
 		Client*								findClient(Client* client);	
-
 		Client*								findNick(std::string nick);	
+
+	/*	Setters/getters	*/
+		int	const &							getPort() const;
+		std::string							getPassword() const;
+		std::string							getServername() const;
+		std::vector<Channel*>				getChannels();			//used by server command /list that shows all member channels
+		std::vector<Client*>				getClients();
 
 
 	private :
 		Server();
 
-		int									_rotKey;		//randomized key for password rotation algo
-		std::string							_operLog;		//operator login
-		std::string							_operPass;		//operator password
-		struct timeval						_timeout;		//time before the server closes without activity
-		time_t								_startTime;		//time of server start
+		std::string				_servername;
+		int						_port;			//port number for the server (set at the start by './ircserv *port* *password*')
+		std::string				_password;		//needed password to connect to the server (set at the start by './ircserv *port* *password*') then rotixed
+		bool					_on;			//status
+		std::vector<Client*>	_clients;		//list of all the users on the server
+		int						_mainSocket;
+		struct sockaddr_in		_address;		//address structure with address family, port and IP address
+		size_t					_addressSize;
+		fd_set 					_clientFds;		//structure containing the fds used
+		int						_socketFd;		//temp storage for the use of one socket
+		int						_fdMax;			//highest fd used 
+		int						_fdReady;		//used to store an fd when it is ready to receive/send 
+		int						_newSocket;		//used to store incoming fds
+		std::vector<Channel*>	_channels;		//list of all the channels on the server
+
+	//to do
+		std::string				_operLog;		//operator login
+		std::string				_operPass;		//operator password
+		struct timeval			_timeout;		//time before the server closes without activity
+		time_t					_startTime;		//time of server start
 
 };
 

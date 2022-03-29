@@ -26,7 +26,6 @@ class   Channel
 		std::string const &				getName() const;
 		std::vector<Client*>			getClients();
 
-		//user management
 		void							addClient(Client* client);
 		void							rmClient(Client* client);
 		Client*							findClient(Client* client);
