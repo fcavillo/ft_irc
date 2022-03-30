@@ -50,10 +50,31 @@ class   Message
 //		void					messageparse(std::string line, Server *server, Client *sender)
 		void					parse(std::string line);
 
+	// CMDS REGISTER
 
-};
+	// CMDS CHANNEL
 
+	// CMDS OPPER
+	void	Message_p(std::string code, std::string code_msg);
+	void	pass();
+	void	nick();
+	void	user();
+	void	opper();
+	void	join();
+	void	part();
+	void	topic();
+	void	names();
+	void	list();
+	void	invite();
+	void	kick();
+	void	privmsg();
+	void	notice();
+	void	admin();
+	void	kill();
+	void	die();
+	void	restart();
+	};
 
-}   //namespace end
+};   //namespace end
 
 #endif

@@ -6,7 +6,7 @@
 #    By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 01:49:00 by fcavillo          #+#    #+#              #
-#    Updated: 2022/03/15 11:12:31 by fcavillo         ###   ########.fr        #
+#    Updated: 2022/03/30 18:06:40 by labintei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,10 @@ SRCS =	main.cpp \
 		srcs/classes/Channel.cpp \
 		srcs/classes/Client.cpp \
 		srcs/classes/Message.cpp \
-		
+		srcs/classes/cmds/cmds_parsing.cpp \
+		srcs/classes/cmds/cmds_pass.cpp \
+		srcs/classes/cmds/cmds_pong.cpp \
+		srcs/classes/cmds/cmds_quit.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

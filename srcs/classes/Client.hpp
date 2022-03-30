@@ -47,6 +47,7 @@ class   Client
 	//username
 		void					setUsername(std::string username);
 		std::string const &		getUsername() const;
+		std::string				GetUsername();
 	//nickname
 		std::string const &		getNick() const;
 		void					setNick(std::string nick);
@@ -55,6 +56,7 @@ class   Client
 		void					setRealName(std::string realName);
 	//operator status	
 		bool const &			getOper() const;
+		bool					getOpper();
 		void					setOper(bool oper);					//used in client command /oper
 	//buffer for the command line
 		std::string &			getBufferLine();

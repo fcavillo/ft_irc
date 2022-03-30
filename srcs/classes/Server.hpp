@@ -59,8 +59,8 @@ class   Server
 		std::vector<Channel*>				getChannels();			//used by server command /list that shows all member channels
 		std::vector<Client*>				getClients();
 
-		bool				irc::Server::findClient_user(std::string user);
-		bool				irc::Server::findClient_nick(std::string nick);
+		bool								findClient_user(std::string user);
+		bool								findClient_nick(std::string nick);
 
 
 
@@ -88,9 +88,7 @@ class   Server
 		struct timeval			_timeout;		//time before the server closes without activity
 		time_t					_startTime;		//time of server start
 
+	};
 };
-
-
-}   //namespace end
 
 #endif

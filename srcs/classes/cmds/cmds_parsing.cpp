@@ -6,12 +6,13 @@
 /*   By: labintei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:42:50 by labintei          #+#    #+#             */
-/*   Updated: 2022/03/28 19:00:57 by labintei         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:55:57 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 irc::Message::messageparse(std::string line, Server *server, Client *sender)
 {
 
 
-}
+}*/

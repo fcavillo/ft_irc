@@ -65,6 +65,11 @@ std::string const &		irc::Client::getUsername() const
 	return (this->_username);
 }
 
+std::string				irc::Client::GetUsername()
+{
+	return (this->_username);
+}
+
 std::string const &		irc::Client::getNick() const
 {
 	return (this->_nick);
@@ -79,6 +84,13 @@ bool const &			irc::Client::getOper() const
 {
 	return (this->_oper);
 }
+
+bool					irc::Client::getOpper()
+{
+	return (this->_oper);
+}
+
+
 
 void					irc::Client::setUsername(std::string username)
 {
