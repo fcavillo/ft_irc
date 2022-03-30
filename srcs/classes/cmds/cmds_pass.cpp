@@ -6,7 +6,7 @@
 /*   By: labintei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/03/30 21:00:07 by labintei         ###   ########.fr       */
+/*   Updated: 2022/03/30 21:26:05 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,32 @@ void	irc::Message::join()
 {
 	if(this->_params[0] == "")
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	
-
+	/*this->Message_p(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_MSG());
+	this->Message_p(ERR_CHANNELISTFULL, ERR_CHANNELISTFULL_MSG());
+	this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
+	this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
+	this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
+	this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
+	this->Message_p(ERR_BADCHANMASK, ERR_BADCHANMASK_MSG());
+	this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS());
+	this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());*/
 }
 
 void	irc::Message::part()
 {
-
-
+	/*this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS(this->_cmds));
+	this->Message_p(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_MSG());
+	this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
+	*/
 }
 
 void	irc::Message::topic()
-{
-
+{/*
+	this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
+	this->Message_p(ERR_NOTOPIC, ERR_NOTOPIC_MSG());
+	this->Message_p(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_MSG());
+	this->Message_p(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_MSG());
+	this->Message_p(ERR_NOCHANMODES, ERR_NOCHANMODES_MSG());*/
 }
 
 void	irc::Message::names()
