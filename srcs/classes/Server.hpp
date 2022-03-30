@@ -59,6 +59,10 @@ class   Server
 		std::vector<Channel*>				getChannels();			//used by server command /list that shows all member channels
 		std::vector<Client*>				getClients();
 
+		bool				irc::Server::findClient_user(std::string user);
+		bool				irc::Server::findClient_nick(std::string nick);
+
+
 
 	private :
 		Server();
