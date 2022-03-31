@@ -1,9 +1,41 @@
 #include "Channel.hpp"
 
+Client*		irc::Channel::getCreator()
+{
+	return(this->_creator);
+}
+
+
+/*
+bool							isOpper(Client* client);
+{
+	for(size_t i = 0; i < _opper.size(); i++)
+	{
+		if(_opper[i] == client)
+			return(true);
+	}
+	return(false);
+}
+*/
+
+bool		irc::Channel::isBan(Client* client);
+{
+	for(size_t i = 0; i < _opper.size(); i++)
+	{
+		if(_ban[i] == client)
+			return(true);
+	}
+	return(false);
+}
+
+
+
 irc::Channel::Channel(std::string name) : _name(name)
 {
 	return ;
 }
+
+irc::Channel::Channel(std::string name, mode)
 
 irc::Channel::~Channel()
 {
@@ -39,11 +71,17 @@ void					irc::Channel::rmClient(irc::Client* client)
 	this->_clients.erase(it);			//erase only takes an iterator
 }
 
+
 irc::Client*				irc::Channel::findClient(irc::Client* client)
 {
 	for (size_t i = 0; i < _clients.size(); i++)
 	{
 		if (_clients[i] == client)
+			return (_clients[i]);
+	}
+	for (size_t i = 0; i < _opper.size(); i++)
+	{
+		if(_opper[i] == client)
 			return (_clients[i]);
 	}
 	return (NULL);

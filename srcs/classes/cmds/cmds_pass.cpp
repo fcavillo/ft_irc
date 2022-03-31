@@ -6,7 +6,7 @@
 /*   By: labintei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/03/31 18:33:55 by labintei         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:22:28 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,22 +110,112 @@ void	irc::Message::opper()
 			this->Message_p(ERR_NOOPERHOST, ERR_NOOPERHOST_MSG());
 	}
 }
+/*
+void	irc::Message::parse(std::string line)
+{
+	int							pref = 0;
+	int							j = 0;
+	std::vector<std::string>	v;
+	std::string					word;
+
+	for (int i = 0; i < (int)line.size(); i++)
+	{
+		if (line[i] == ' ')
+		{
+			while (line[i] == ' ' && line[i + 1] == ' ')
+				i++;
+			if (word.size() > 0)
+			{
+				if(pref == 0 && line[i] == ':')
+				{
+					this->_prefix = word;
+					pref++;
+				}
+				else if(this->_cmds == "")
+					this->_cmds = word;
+				else
+					this->_params.push_back(word);
+				pref++;
+			}
+			word.clear();
+		}
+		else if(line[i] != ' ')
+		{
+			word += line[i];
+//			std::cout << word << std::endl;			//commenté pour y voir plus clair, déso :)
+		}
+	}
+	if (word.size() > 0)
+	{
+		if(pref == 0 && line[j] == ':')
+			this->_prefix = word;
+		else if(this->_cmds == "")
+			this->_cmds = word;
+		else
+			this->_params.push_back(word);
+	}
+	word.clear();
+	return (v);
+}*/
+
+std::vector<std::string>		splitChar(std::string line, char c)
+{
+	std::string		word;
+	std::vector<std::string>	v;
+
+	for (int i = 0; i < (int)line.size(); i++)
+	{
+		if(line[i] == c)
+		{
+			if(word.size())
+			{
+				v.pushback(word);
+				word.clear();
+			}
+		}
+		else
+			word += line[i];
+	}
+	if(word.size())
+		v.push_back(word);
+	return(v);
+}
 
 
 // Les channel se trouve au niveau du Server
 void	irc::Message::join()
 {
+	std::vector<std::string>	names;
+	std::vector<std::string>	key;
+
 	if(this->_params[0] == "")
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	/*this->Message_p(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_MSG());
-	this->Message_p(ERR_CHANNELISTFULL, ERR_CHANNELISTFULL_MSG());
+	v = splitChar(this->_params[0], ',');
+	if(this->_params[1] != "")
+		key = splitChar(this->_params[1], ',');
+	if()
+
+
+	// PAS A GERER LES MODES
+	//this->Message_p(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_MSG());
+	// quand un server va fermer et que l acces au serveur va etre fermmee
+	//this->Message_p(ERR_CHANNELISTFULL, ERR_CHANNELISTFULL_MSG());
+	
+	// Pour un nom de channel invalide
 	this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
+	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
 	this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
+	// Quand un client est ban
 	this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
+	// Quand le client donne la mauvaise clee pour acceder au channel;
 	this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
-	this->Message_p(ERR_BADCHANMASK, ERR_BADCHANMASK_MSG());
+	// MEME QUE CHANNELLIST IS FULL
+	//this->Message_p(ERR_BADCHANMASK, ERR_BADCHANMASK_MSG());
+	
+	// Users join the max number of channels;
 	this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS());
-	this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());*/
+	// Bloquer par le channel delay mecanism;
+	this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());
 }
 
 void	irc::Message::part()
