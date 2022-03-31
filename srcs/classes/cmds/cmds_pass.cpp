@@ -6,7 +6,7 @@
 /*   By: labintei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/03/30 21:26:05 by labintei         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:33:55 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ std::string		message_print1(std::string nameserver, std::string code, std::strin
 }
 */
 
+bool		irc::isSpecial(char c){ return (c >= '[' && c <= ''') || (c >= '{' && c <= '}');}
+bool		irc::isLetter(char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');}
+bool		irc::isChiffre(char c){ return (c >= '0' && c <= '9');}
+
+
+
 void	irc::Message::Message_p(std::string code, std::string code_msg)
 {
 	this->_sender->sendMsg(message_print(this->_server->getServername(), code , this->_sender->getNick(), code_msg , this->_sender->getOpper()));
@@ -48,18 +54,30 @@ void	irc::Message::pass()
 		this->_sender->setPass(this->_params[0]);
 }
 
+bool	irc::nick_check_char(std::string params)
+{
+	for(size_t index = 1; index < params.lenght(); ++index)
+		if(!isLetter(params[index]) && !isSpecial(params[index]) && !isChiffre(params[index]))
+			return(false);
+	return(true);
+}
+
+void	irc::irc::Client*		irc::Server::findNick(std::string nick)
+
 void	irc::Message::nick()
 {
 	if(this->_params[0] == "")
 		this->Message_p(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_MSG());
-	else if(this->_server->findClient_nick(this->_params[0]))
+	else if(this->_server->findNick(this->_params[0])) // Si c est deja le meme nickname
 		this->Message_p(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_MSG(this->_params[0]));
+	else if(this->_params[0].lenght() > 9 || (!isLetter(this->-params[0][0]) && !isSpecial(this->_params[0][0])))
+		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
+	else if(!(nick_check_char(this->_params[0])))
+		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
 	else
 		this->_sender->setNick(this->_params[0]);
-	// ERRONEUSNICKNAME
-	// UNAVAILLABLERESOURCE
-	// ERRNICKCOLLISION
-	// ERRRESTRICTED
+	// RETOURNER PAR UN SERVER SI LA CONNECTION EST DITE RESTRICTED user mode "+r"
+//	this->Message_p(ERR_RESTRICTED, ERR_RESTRICTED_MSG());
 }
 
 void	irc::Message::user()
@@ -83,10 +101,14 @@ void	irc::Message::opper()
 		this->Message_p(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_MSG());
 	else
 	{
-		this->_sender->setOper(true);
-		this->Message_p(RPL_YOUREOPER, RPL_YOUREOPER_MSG());
+		if(this->_sender->getUsername() == "labintei" || this->_sender->getUsername() == "fcavillo")
+		{
+			this->_sender->setOper(true);
+			this->Message_p(RPL_YOUREOPER, RPL_YOUREOPER_MSG());
+		}
+		else
+			this->Message_p(ERR_NOOPERHOST, ERR_NOOPERHOST_MSG());
 	}
-	// MANQUE ERR_NOOPERHOST
 }
 
 
@@ -125,7 +147,7 @@ void	irc::Message::topic()
 
 void	irc::Message::names()
 {
-
+//	this->Message_p(ERR_TOOMANYMATCHES, )
 }
 
 void	irc::Message::list()
@@ -154,8 +176,12 @@ void	irc::Message::notice()
 }
 
 void	irc::Message::admin()
-{
-
+{/*
+	this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG());
+	this->Message_p(ERR_ADMINME, ERR_ADMINME_MSG());
+	this->Message_p(ERR_ADMINLOC1, ERR_ADMINLOC1_MSG());
+	this->Message_p(ERR_ADMINLOC2, ERR_ADMINLOC2_MSG());
+	this->Message_p(ERR_ADMINEMAIL, ERR_ADMINEMAIL_MSG());*/
 }
 
 //(nick name collision)

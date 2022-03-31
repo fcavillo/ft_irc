@@ -1,0 +1,122 @@
+
+Un channel name
+
+peut commencer par
+"& # + !
+
+& : Local channel
+
++ : Don t support channel mode, all mode unset except 't'
+
+
+
+Si il y a un channel mask (connu uniquement des servers)
+Sinon connu uniquement des local server
+
+
+faire 50 char
+
+Ne doit pas avoir de ' ' , ascii 7 , ',' , ':,
+
+',' list items separator
+
+':' delimiter de channel mask
+
+
+INVITE
+KICK
+MODE 
+PRIVMSG 
+TOPIC
+
+Channel Operators
+
+associe avec un @ next to their nicknames
+
+Channel creator
+
+quand tu creer un channel avec pour prefix ! , user identifie comme channel Operators
+-> Le channel creator peut utiliser mode
+
+
+sTANDARD CHANNELS PREFIX & # + , '!' "safe channels"
+
+
+O	"channel creator"
+	Pour les safe channels not use par les users
+
+o	Operator
+	operator
+
+v	voice privilege
+	peut parler et modere les channels
+
+a	anonymous flag
+	doit masker l origine des messages origin "anonymous!anonymous@anonymous" 
+	username = anonymous nick = anonymous host = anonymous
+	n en voit pas de QUIT messages  pour les utilisateur partant de telles channel mais
+	generer un PART message en contre partie
+	avec ! prefix seul le Channel Creator peut set ce flag
+
+	WHO, WHOIS , NAMES ne doit rien reveller
+
+i	invite only channel
+	ACCEPT SI LEUR MASK MATCH AVEC iNVITE LIST , ou qu il ont ete invite par un operator
+	INVITE cmds uniquement gere par les operators
+
+
+m	toogle the moderated channel
+	seul o et v peuvent envoyer des messages aux channels
+
+n	toogle the no message to outsides clients
+	Seul les membres peuvent envoyer des messages
+
+q	quiet flag
+	utilise par le server uniquement , quand envoyer restreint le type de data envoyer.
+	other user joins, parts et nick are not sent . D un point de vue user, le channel n a qu un seul user
+	plus fexible que s
+
+
+p	private channel flag		s	secret channel flag
+
+	on ne peut pas avoir le channel_name a partir du server sans en etre membres
+
+	TOPIC, NAMES, LIST ne marche pas sur les s
+	MODE fonctionnne
+	
+	ne peut pas set les deux modes en meme temps , si deja s et qu on le change en p cela ne fonctionne pas
+
+
+
+r	reop channel flag
+
+	prend un mask en arguments, est valable uniquement avec les ! ???
+
+t	topic settable
+
+	permet de restreindre l usage de TOPIC aux channels operators
+
+k	set/remove channel/key (password)
+
+	ne peut pas JOIN si il ne donne pas la clee (password)
+
+
+DERNIERES CATEGORIES UTILISES POUR CONTROLER les gens
+
+	Ils prennent un mask comme arguments
+
+l	set/remove the user limit to channel
+
+b	set/remove ban mask to keep users outsides
+
+e	set/remove an exception mask pour overide un ban mask
+
+I	set/remove an invitation mask pour overirde the invite-only flag
+
+
+
+
+
+
+
+

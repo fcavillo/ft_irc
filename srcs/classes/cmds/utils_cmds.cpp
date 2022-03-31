@@ -1,22 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmds_parsing.cpp                                   :+:      :+:    :+:   */
+/*   utils_cmds.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labintei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 18:42:50 by labintei          #+#    #+#             */
-/*   Updated: 2022/03/31 17:16:21 by labintei         ###   ########.fr       */
+/*   Created: 2022/03/31 17:17:14 by labintei          #+#    #+#             */
+/*   Updated: 2022/03/31 17:26:04 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstring>
+//bool		irc::isSpecial(char c){ return (c >= '[' && c <= ''') || (c >= '{' && c <= '}');}
 
-//#include "../numeric_replies.hpp"
-
-/*
-irc::Message::messageparse(std::string line, Server *server, Client *sender)
-{
-
-
-}*/

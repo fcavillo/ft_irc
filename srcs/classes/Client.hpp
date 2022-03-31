@@ -75,7 +75,7 @@ class   Client
 		Server*			_server;									//pointer to the global server
 		std::string 	_bufferLine;
 
-
+		std::string		_mode; // differents flags aiwroOS
 
 };
 

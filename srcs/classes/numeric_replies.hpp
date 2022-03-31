@@ -6,14 +6,15 @@
 /*   By: labintei <labintei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:44:52 by labintei          #+#    #+#             */
-/*   Updated: 2022/03/30 19:26:43 by labintei         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:10:40 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		NUMERIC_REPLIES_HPP
 #define		NUMERIC_REPLIES_HPP
 
-#include "cstring"
+#include <iostream>
+#include <cstring>
 
 std::string message_print(std::string nameserver, std::string code, std::string nick, std::string msg, bool op)
 {
