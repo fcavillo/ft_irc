@@ -25,7 +25,7 @@ class   Client
 
 	/*	Functions	*/	
 		void					sendMsg(std::string msg);
-
+		// void					welcome();
 
 	/* Getters/setters	*/
 	//socket
@@ -73,7 +73,9 @@ class   Client
 		std::string		_address;
 		int				_socket;									//socket on which the client is
 		Server*			_server;									//pointer to the global server
-		std::string 	_bufferLine; 
+		std::string 	_bufferLine;
+
+
 
 };
 

@@ -27,12 +27,13 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	}
 	else if (this->_cmds == "PING")
 	{
-		// pong();
+		pong();
 	}
 	if (sender->getRegistered() == false)
 	{
-//		if (sender->checkRegistered() == true)
-//			sender->sendMsg(message_print("fcavillo@localhost", RPL_WELCOME, sender->getNick(), RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),"fcavillo@localhost"), false));		
+		if (sender->checkRegistered() == true)
+//a remplacer par le message de bienvenue
+			sender->sendMsg("001");		
 	}
 
 /*
@@ -172,9 +173,17 @@ irc::Server*			getnonconstServer()
 }*/
 
 
-void					irc::Message::initCommands()
-{
-//to do : implement each command one by one in a vector of function pointers
-}
+////////////commands_florian//////////
+
+// void		irc::Message::pong()
+// {
+// 	if (_params.size() == 0)
+// 		Message_p(ERR_NOORIGIN, ERR_NOORIGIN_MSG());
+// 	else
+// 		_sender->sendMsg("PONG : " + _params[0]);
+	
+// }
+
+
 
 

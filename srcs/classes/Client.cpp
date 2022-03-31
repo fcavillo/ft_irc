@@ -20,6 +20,11 @@ void					irc::Client::sendMsg(std::string msg)
 	send(_socket, (msg + "\r\n").c_str(), (msg + "\r\n").length(), 0);	//send, on the client socket, the char* str wth no flag
 }
 
+// void					irc::Client::welcome()
+// {
+// 	sendMsg(Message_p(RPL_WELCOME, RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),server->getServername())));
+// }
+
 /*	GETTERS & SETTERS	*/
 
 int	const &				irc::Client::getSocket() const

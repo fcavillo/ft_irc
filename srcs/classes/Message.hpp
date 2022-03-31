@@ -7,9 +7,10 @@
 #ifndef MESSAGE_HPP
 #define MESSAGE_HPP
 
+// #include "numeric_replies.hpp"
 #include "Client.hpp"
 #include "Server.hpp"
-#include "cmds/cmds_pong.cpp"
+// #include "cmds/cmds_pong.cpp"
 
 /*	This is the main class for the Message : it groups the main info about it, 
 *	like the sender, receiver, command called and command map	*/
@@ -46,7 +47,6 @@ class   Message
 //		irc::Client*			getnonconstSender();
 		irc::Server*			getServer()	const;
 //		irc::Server*			getnonconstServer();
-		void					initCommands();
 //		void					messageparse(std::string line, Server *server, Client *sender)
 		void					parse(std::string line);
 
@@ -73,6 +73,8 @@ class   Message
 	void	kill();
 	void	die();
 	void	restart();
+	void	pong();
+	void	quit();
 	};
 
 };   //namespace end
