@@ -6,12 +6,14 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/01 05:42:00 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:09:12 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Message.hpp"
 #include "../numeric_replies.hpp"
+
+#include "utils.hpp"
 //#include "cstring"
 
 /*
@@ -32,11 +34,11 @@ std::string		message_print1(std::string nameserver, std::string code, std::strin
         return(":" + nameserver + " " + code + " " + nick + " " + msg);
 }
 */
-
+/*
 bool		irc::isSpecial(char c){ return (c >= '[' && c <= '\'') || (c >= '{' && c <= '}');}
 bool		irc::isLetter(char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');}
 bool		irc::isChiffre(char c){ return (c >= '0' && c <= '9');}
-
+*/
 
 
 void	irc::Message::Message_p(std::string code, std::string code_msg)
@@ -54,15 +56,17 @@ void	irc::Message::pass()
 		this->_sender->setPass(this->_params[0]);
 }
 
+
+/*
 bool	irc::nick_check_char(std::string params)
 {
 	for(size_t index = 1; index < params.lenght(); ++index)
 		if(!isLetter(params[index]) && !isSpecial(params[index]) && !isChiffre(params[index]))
 			return(false);
 	return(true);
-}
+}*/
 
-void	irc::irc::Client*		irc::Server::findNick(std::string nick)
+//void	irc::irc::Client*		irc::Server::findNick(std::string nick)
 
 void	irc::Message::nick()
 {
@@ -70,7 +74,7 @@ void	irc::Message::nick()
 		this->Message_p(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_MSG());
 	else if(this->_server->findNick(this->_params[0])) // Si c est deja le meme nickname
 		this->Message_p(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_MSG(this->_params[0]));
-	else if(this->_params[0].lenght() > 9 || (!isLetter(this->-params[0][0]) && !isSpecial(this->_params[0][0])))
+	else if(this->_params[0].length() > 9 || (!isLetter(this->_params[0][0]) && !isSpecial(this->_params[0][0])))
 		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
 	else if(!(nick_check_char(this->_params[0])))
 		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
@@ -158,7 +162,7 @@ void	irc::Message::parse(std::string line)
 	return (v);
 }*/
 
-std::vector<std::string>		splitChar(std::string line, char c)
+/*std::vector<std::string>		splitChar(std::string line, char c)
 {
 	std::string		word;
 	std::vector<std::string>	v;
@@ -180,7 +184,7 @@ std::vector<std::string>		splitChar(std::string line, char c)
 		v.push_back(word);
 	return(v);
 }
-
+*/
 
 // Les channel se trouve au niveau du Server
 void	irc::Message::join()
@@ -190,10 +194,10 @@ void	irc::Message::join()
 
 	if(this->_params[0] == "")
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	v = splitChar(this->_params[0], ',');
+	names = splitChar(this->_params[0], ',');
 	if(this->_params[1] != "")
 		key = splitChar(this->_params[1], ',');
-	if()
+//	if()
 
 
 	// PAS A GERER LES MODES
@@ -202,20 +206,20 @@ void	irc::Message::join()
 	//this->Message_p(ERR_CHANNELISTFULL, ERR_CHANNELISTFULL_MSG());
 	
 	// Pour un nom de channel invalide
-	this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
+//	this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
 	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
-	this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
+//	this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
 	// Quand un client est ban
-	this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
+//	this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
 	// Quand le client donne la mauvaise clee pour acceder au channel;
-	this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
+//	this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
 	// MEME QUE CHANNELLIST IS FULL
 	//this->Message_p(ERR_BADCHANMASK, ERR_BADCHANMASK_MSG());
 	
 	// Users join the max number of channels;
-	this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS());
+//	this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS());
 	// Bloquer par le channel delay mecanism;
-	this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());
+//	this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());
 }
 
 void	irc::Message::part()

@@ -2,6 +2,131 @@
 //#include "numeric_replies.hpp"
 
 /*	The constructor handles the user registration and the message splitting	*/
+
+
+irc::Message::Message(std::string line, Server *server, Client *sender) : _server(server), _sender(sender), _fullCommand(line)
+{
+	//std::vector<std::string>	command = v_split(line);
+	this->parse(line);
+	std::cout << "PREFIX : " << this->_prefix << std::endl;
+	std::cout << "CMDS : " << this->_cmds << std::endl;
+	std::cout << "PARAMS :" << this->_params[0] << std::endl;
+	if(this->_cmds == "PASS")
+	{
+		this->pass();
+		std::cout << "Pass set" << std::endl;
+	}
+	else if(this->_cmds == "NICK")
+	{
+		this->nick();
+		sender->setNick(this->_params[0]);
+		std::cout << "Nick set" << std::endl;
+	}
+	else if(this->_cmds == "USER")
+	{
+		this->user();
+		sender->setUsername(this->_params[0]);
+		std::cout << "Username set" << std::endl;
+
+	}
+	if(sender->getRegistered() == true)
+	{
+		if(this->_cmds == "PING")
+		{
+			pong();
+		}
+		else if(this->_cmds == "OPPER")
+		{
+			this->opper();
+		}
+		else if(this->_cmds == "JOIN")
+		{
+			this->join();
+		}
+		else if(this->_cmds == "PART")
+		{
+			this->part();
+		}
+		else if(this->_cmds == "TOPIC")
+		{
+			this->topic();
+		}
+		else if(this->_cmds == "NAMES")
+		{
+			this->names();
+		}
+		else if(this->_cmds == "LIST")
+		{
+			this->list();
+		}
+		else if(this->_cmds == "INVITE")
+		{
+			this->invite();
+		}
+		else if(this->_cmds == "KICK")
+		{
+			this->kick();
+		}
+		else if(this->_cmds == "PRIVMSG")
+		{
+			this->privmsg();
+		}
+		else if(this->_cmds == "NOTICE")
+		{
+			this->notice();
+		}
+		else if(this->_cmds == "ADMIN")
+		{
+			this->admin();
+		}
+		else if(this->_cmds == "KILL")
+		{
+			this->kill();
+		}
+		else if(this->_cmds == "DIE")
+		{
+			this->die();
+		}
+		else if(this->_cmds == "RESTART")
+		{
+			this->restart();
+		}
+		else if(this->_cmds == "QUIT")
+		{
+			this->quit();
+		}
+	}
+	else
+	{
+		if (sender->checkRegistered() == true)
+		{
+			welcome();
+		}
+	}
+
+/*
+	if (command[0] == "PASS")
+	{
+		sender->setPass(command[1]);
+		std::cout << "Pass set" << std::endl;
+	}
+	else if (command[0] == "NICK")
+	{
+		sender->setNick(command[1]);
+		std::cout << "Nick set" << std::endl;
+	}
+	else if (command[0] == "USER")
+	{
+		sender->setUsername(command[1]);
+		std::cout << "Username set" << std::endl;
+		sender->sendMsg(message_print("fcavillo@localhost", RPL_WELCOME, sender->getNick(), RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),"fcavillo@localhost"), false));
+	}
+	*/
+	return ;
+}
+/*
+
+
 irc::Message::Message(std::string line, Server *server, Client *sender) : _server(server), _sender(sender), _fullCommand(line)
 {
 	//std::vector<std::string>	command = v_split(line);
@@ -37,7 +162,7 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		}
 	}
 
-/*
+
 	if (command[0] == "PASS")
 	{
 		sender->setPass(command[1]);
@@ -54,10 +179,10 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		std::cout << "Username set" << std::endl;
 		sender->sendMsg(message_print("fcavillo@localhost", RPL_WELCOME, sender->getNick(), RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),"fcavillo@localhost"), false));
 	}
-	*/
+	
 	return ;
 }
-/*
+
 irc::Message::Nick(std:string line, Server *server, Client *sender)
 {
 	std::vector<std::string> command = v_split(line);
