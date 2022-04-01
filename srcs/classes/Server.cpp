@@ -175,10 +175,6 @@ void		irc::Server::activityCheck()
 	}
 }
 
-// 			else if (status == 2)
-// 			{
-// 				std::string line = std::string(_clients[i]->getBufferLine());
-
 
 // 				if (_clients[i]->getKill())
 // 				{
@@ -252,6 +248,16 @@ irc::Channel*				irc::Server::findChannel(irc::Channel* chan)
 	for (size_t i = 0; i < _channels.size(); i++)
 	{
 		if (_channels[i] == chan)
+			return (_channels[i]);
+	}
+	return (NULL);
+}
+
+irc::Channel*		irc::Server::findChannelFromName(std::string chan)
+{
+	for (size_t i = 0; i < _channels.size(); i++)
+	{
+		if (_channels[i]->getName() == chan)
 			return (_channels[i]);
 	}
 	return (NULL);

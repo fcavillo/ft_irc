@@ -12,7 +12,8 @@
 #include <csignal>		//signal()
 #include <netinet/ip.h>	//sockaddr_in
 #include <arpa/inet.h>	//inet_ntoa()
- #include <unistd.h>	//close() socket
+#include <unistd.h>		//close() socket
+
 
 #include "Channel.hpp"
 #include "Client.hpp"
@@ -44,10 +45,12 @@ class   Server
 		void	connectionCheck();
 		void	activityCheck();
 		void	setUpStartTime();
+
 	//channel management
 		void								addChannel(Channel* chan);
 		void								rmChannel(Channel* chan);
 		Channel*							findChannel(Channel* chan);
+		Channel*							findChannelFromName(std::string chan);
 	//user management
 		void								addClient(Client* client);
 		void								rmClient(Client* client);

@@ -25,6 +25,7 @@ class   Channel
 
 		std::string const &				getName() const;
 		std::vector<Client*>			getClients();
+		std::string						getTopic();
 
 		void							addClient(Client* client);
 		void							rmClient(Client* client);
@@ -40,6 +41,7 @@ class   Channel
 		std::vector<Client*>				_ban;
 		std::vector<Client*>				_clients;		//list of all the users on the channel
 		std::string 						_name;			//name of the channel (initialized by the user 		command '/join *name*')
+		std::string							_topic;
 
 		std::string							_mode;
 };

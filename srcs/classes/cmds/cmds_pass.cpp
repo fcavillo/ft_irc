@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/01 03:02:55 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/01 05:42:00 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,9 +240,33 @@ void	irc::Message::names()
 //	this->Message_p(ERR_TOOMANYMATCHES, )
 }
 
+
+char* itoa(int val, int base){
+	
+	static char buf[32] = {0};
+	
+	int i = 30;
+	
+	for(; val && i ; --i, val /= base)
+	
+		buf[i] = "0123456789abcdef"[val % base];
+	
+	return &buf[i+1];
+	
+}
+
 void	irc::Message::list()
 {
+//to do ?	ERR_TOOMANYMATCHES              
 
+	if (this->_params[0] != "\0" && this->_params[0] != _server->getServername())
+		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
+	for (int i = 0; i < (int)this->_server->getChannels().size(); i++)
+	{
+		Channel*	tmp = this->_server->getChannels()[i];
+		this->Message_p(RPL_LIST, RPL_LIST_MSG(tmp->getName(), itoa(tmp->getClients().size(), 10), tmp->getTopic()));
+	}
+	this->Message_p(RPL_LISTEND, RPL_LISTEND_MSG());
 }
 
 void	irc::Message::invite()
@@ -360,6 +384,7 @@ void	irc::Message::quit()
 	_sender->leaveAllChannels();
 	_sender->leaveServer();
 	close(_sender->getSocket());
+	_sender->setLogged(false);
 }
 
 void	irc::Message::welcome()

@@ -54,6 +54,11 @@ std::vector<irc::Client*>			irc::Channel::getClients()
 	return (this->_clients);
 }
 
+std::string						irc::Channel::getTopic()
+{
+	return (this->_topic);
+}
+
 /*	CLIENT MANAGEMENT	*/
 
 void					irc::Channel::addClient(irc::Client* client)
