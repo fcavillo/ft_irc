@@ -1,4 +1,5 @@
 #include "Client.hpp"
+#include "Message.hpp"
 
 irc::Client::Client(Server* server) : _oper(0), _registered(0), _logged(1), _server(server)
 {
@@ -18,6 +19,24 @@ void					irc::Client::sendMsg(std::string msg)
 {
 	std::cout << "-> Socket[" << _socket << "] : " << msg << std::endl;
 	send(_socket, (msg + "\r\n").c_str(), (msg + "\r\n").length(), 0);	//send, on the client socket, the char* str wth no flag
+}
+
+void					irc::Client::leaveChannel(irc::Channel* chan)
+{
+	rmMembership(chan);
+	chan->rmClient(this);
+}
+
+void					irc::Client::leaveAllChannels()
+{
+	for (std::vector<Channel*>::iterator it = _membership.begin(); it != _membership.end() ; it++)
+		leaveChannel(*(it));
+}
+
+void					irc::Client::leaveServer()
+{
+	_server->rmClient(this);
+//close stuff ?
 }
 
 // void					irc::Client::welcome()
@@ -120,7 +139,9 @@ void					irc::Client::setOper(bool oper)
 void					irc::Client::setRegistered(bool b)
 {
 	if (b == true)
+	{
 		std::cout << "User " << getNick() << " successfully registered !" << std::endl;
+	}
 	this->_registered = b;
 }
 
@@ -144,4 +165,27 @@ void					irc::Client::setLogged(bool b)
 bool					irc::Client::getLogged()
 {
 	return (this->_logged);
+}
+
+void						irc::Client::addMembership(irc::Channel* chan)
+{
+	for (std::vector<Channel*>::iterator it = _membership.begin(); it != _membership.end() ; it++)
+		if (*(it) == chan)
+			return ;
+	_membership.push_back(chan);
+}
+
+void						irc::Client::rmMembership(irc::Channel* chan)
+{
+	std::vector<Channel*>::iterator	it;
+
+	for (it = _membership.begin(); it != _membership.end() || *(it) != chan ; it++);	
+	if (it == this->_membership.end())		//the client is not found
+		return ;
+	this->_membership.erase(it);			//erase only takes an iterator	
+}
+
+std::vector<irc::Channel*>	irc::Client::getMembership()
+{
+	return (_membership);
 }

@@ -16,6 +16,7 @@ namespace irc
 {
 
 class	Server;
+class	Channel;
 
 class   Client
 {
@@ -25,7 +26,9 @@ class   Client
 
 	/*	Functions	*/	
 		void					sendMsg(std::string msg);
-		// void					welcome();
+		void					leaveChannel(irc::Channel* chan);
+		void					leaveAllChannels();
+		void					leaveServer();
 
 	/* Getters/setters	*/
 	//socket
@@ -60,6 +63,11 @@ class   Client
 		void					setOper(bool oper);					//used in client command /oper
 	//buffer for the command line
 		std::string &			getBufferLine();
+	//channel membership
+		void						addMembership(irc::Channel* chan);
+		void						rmMembership(irc::Channel* chan);
+		std::vector<irc::Channel*>	getMembership();
+
 
 	private :
 
@@ -74,6 +82,8 @@ class   Client
 		int				_socket;									//socket on which the client is
 		Server*			_server;									//pointer to the global server
 		std::string 	_bufferLine;
+		
+		std::vector<irc::Channel*>	_membership;					//list of Channels the user is a member of
 
 		std::string		_mode; // differents flags aiwroOS
 

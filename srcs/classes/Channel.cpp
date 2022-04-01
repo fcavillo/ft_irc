@@ -1,6 +1,6 @@
 #include "Channel.hpp"
 
-Client*		irc::Channel::getCreator()
+irc::Client*		irc::Channel::getCreator()
 {
 	return(this->_creator);
 }
@@ -18,7 +18,7 @@ bool							isOpper(Client* client);
 }
 */
 
-bool		irc::Channel::isBan(Client* client);
+bool		irc::Channel::isBan(irc::Client* client)
 {
 	for(size_t i = 0; i < _opper.size(); i++)
 	{
@@ -35,7 +35,7 @@ irc::Channel::Channel(std::string name) : _name(name)
 	return ;
 }
 
-irc::Channel::Channel(std::string name, mode)
+// irc::Channel::Channel(std::string name, mode) 	//désolé, commenté pour que ca compile :)
 
 irc::Channel::~Channel()
 {
@@ -58,6 +58,9 @@ std::vector<irc::Client*>			irc::Channel::getClients()
 
 void					irc::Channel::addClient(irc::Client* client)
 {
+	for (std::vector<Client*>::iterator it = _clients.begin(); it != _clients.end() ; it++)	//checks if user already is member
+		if (*(it) == client)
+			return ;
 	this->_clients.push_back(client);	
 }
 
@@ -86,3 +89,4 @@ irc::Client*				irc::Channel::findClient(irc::Client* client)
 	}
 	return (NULL);
 }
+

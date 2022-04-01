@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds_pass.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: labintei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/03/31 21:22:28 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/01 03:02:55 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ std::string		message_print1(std::string nameserver, std::string code, std::strin
 }
 */
 
-bool		irc::isSpecial(char c){ return (c >= '[' && c <= ''') || (c >= '{' && c <= '}');}
+bool		irc::isSpecial(char c){ return (c >= '[' && c <= '\'') || (c >= '{' && c <= '}');}
 bool		irc::isLetter(char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');}
 bool		irc::isChiffre(char c){ return (c >= '0' && c <= '9');}
 
@@ -338,4 +338,34 @@ void	irc::Message::oper()
 }
 */
 
+/////////////////////partie de Flo//////////////////////
 
+void	irc::Message::pong()
+{
+	if (_params.size() == 0)
+		Message_p(ERR_NOORIGIN, ERR_NOORIGIN_MSG());
+	else if (_params.size() > 1)
+		Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_server->getServername()));
+	else
+		_sender->sendMsg("PONG : " + _params[0]);
+	std::cout << "user is a member of : " << std::endl;
+	for (int i = 0; i < (int)_sender->getMembership().size(); i++)
+		std::cout << _sender->getMembership()[i]->getName() << std::endl;
+	
+}
+
+/*	A client session is terminated with a quit message.  */
+void	irc::Message::quit()
+{
+	_sender->leaveAllChannels();
+	_sender->leaveServer();
+	close(_sender->getSocket());
+}
+
+void	irc::Message::welcome()
+{
+	Message_p(RPL_WELCOME, RPL_WELCOME_MSG(_sender->getNick(), _sender->getUsername(), _server->getServername()));
+	Message_p(RPL_YOURHOST, RPL_YOURHOST_MSG(_server->getServername(), "1.0"));
+	Message_p(RPL_CREATED, RPL_CREATED_MSG(_server->getStartTimeString()));
+	Message_p(RPL_MYINFO, RPL_MYINFO_MSG(_server->getServername(), "1.0", "aiwroOS", "c_modes"));
+}

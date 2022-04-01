@@ -75,6 +75,7 @@ class   Message
 	void	restart();
 	void	pong();
 	void	quit();
+	void	welcome();
 	};
 
 };   //namespace end

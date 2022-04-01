@@ -32,8 +32,9 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	if (sender->getRegistered() == false)
 	{
 		if (sender->checkRegistered() == true)
-//a remplacer par le message de bienvenue
-			sender->sendMsg("001");		
+		{
+			welcome();
+		}
 	}
 
 /*

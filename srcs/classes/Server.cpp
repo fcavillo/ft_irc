@@ -11,6 +11,11 @@ _password(password),
 _on(true)
 {
 	std::cout << "Creating Server - port : " << port << std::endl;
+
+	//set start time
+	_startTime = time(0);
+	_startTimeString = ctime(&_startTime);
+
 	return ;
 }
 
@@ -202,6 +207,16 @@ std::string					irc::Server::getServername() const
 	return (this->_servername);
 }
 
+time_t						irc::Server::getStartTime() 
+{
+	return (this->_startTime);
+}
+
+std::string					irc::Server::getStartTimeString() 
+{
+	return (this->_startTimeString);
+}
+
 std::vector<irc::Channel*>	irc::Server::getChannels()
 {
 	return (this->_channels);
@@ -216,6 +231,9 @@ std::vector<irc::Client*>	irc::Server::getClients()
 
 void					irc::Server::addChannel(irc::Channel* chan)
 {
+	for (std::vector<Channel*>::iterator it = _channels.begin(); it != _channels.end() ; it++)	//checks if user already is member
+		if (*(it) == chan)
+			return ;
 	this->_channels.push_back(chan);	
 }
 
@@ -243,6 +261,9 @@ irc::Channel*				irc::Server::findChannel(irc::Channel* chan)
 
 void					irc::Server::addClient(irc::Client* client)
 {
+	for (std::vector<Client*>::iterator it = _clients.begin(); it != _clients.end() ; it++)	//checks if user already is member
+		if (*(it) == client)
+			return ;
 	this->_clients.push_back(client);	
 }
 

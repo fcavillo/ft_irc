@@ -12,6 +12,7 @@
 #include <csignal>		//signal()
 #include <netinet/ip.h>	//sockaddr_in
 #include <arpa/inet.h>	//inet_ntoa()
+ #include <unistd.h>	//close() socket
 
 #include "Channel.hpp"
 #include "Client.hpp"
@@ -42,6 +43,7 @@ class   Server
 		void	setUpFds();
 		void	connectionCheck();
 		void	activityCheck();
+		void	setUpStartTime();
 	//channel management
 		void								addChannel(Channel* chan);
 		void								rmChannel(Channel* chan);
@@ -58,6 +60,8 @@ class   Server
 		std::string							getServername() const;
 		std::vector<Channel*>				getChannels();			//used by server command /list that shows all member channels
 		std::vector<Client*>				getClients();
+		time_t								getStartTime();
+		std::string							getStartTimeString();
 
 		bool								findClient_user(std::string user);
 		bool								findClient_nick(std::string nick);
@@ -81,12 +85,13 @@ class   Server
 		int						_fdReady;		//used to store an fd when it is ready to receive/send 
 		int						_newSocket;		//used to store incoming fds
 		std::vector<Channel*>	_channels;		//list of all the channels on the server
-
+		time_t					_startTime;		//time of server start
+		std::string				_startTimeString;
 	//to do
 		std::string				_operLog;		//operator login
 		std::string				_operPass;		//operator password
 		struct timeval			_timeout;		//time before the server closes without activity
-		time_t					_startTime;		//time of server start
+		
 
 	};
 };
