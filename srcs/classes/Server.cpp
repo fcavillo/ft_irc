@@ -326,4 +326,17 @@ bool				irc::Server::findClient_nick(std::string nick)
 	return (true);
 }
 
+int					irc::Server::numberChannelsJoin(Client* a)
+{
+	int		i = 0;
+	std::vector<Client*>::iterator	it;
+
+	i = 0;
+	for(it = _client.begin() ; it != _clients.end() ; it++)
+	{
+		if(a == *(it))
+			i++;
+	}
+	return(i);
+}
 

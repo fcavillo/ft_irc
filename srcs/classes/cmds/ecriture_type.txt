@@ -1,0 +1,36 @@
+
+MSG
+
+[:prefix] command params ctlf
+
+PREFIX
+
+server_name/(nickname[["!user"]@"host"])
+
+CMDS
+
+??
+
+PARAMS
+
+params params params
+
+TARGET
+
+nickname/server
+
+IPV4
+
+(local host)
+000.000.000.000
+
+IPV6
+
+hexdigit:hexdigit:hexdigit:hexdigit
+127:0:0:1
+
+NICK
+
+1(letter / special) 8(letter / digit / special)
+
+

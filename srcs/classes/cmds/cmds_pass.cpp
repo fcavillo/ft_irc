@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/01 17:09:12 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/02 21:42:39 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,27 +197,25 @@ void	irc::Message::join()
 	names = splitChar(this->_params[0], ',');
 	if(this->_params[1] != "")
 		key = splitChar(this->_params[1], ',');
-//	if()
+	Channel*	a = this->_server->findChannelFromName(params[0]);
+	if( a != NULL)
+	{
+		if(a->getPassword() != "" && a->getPassword() != params[1])
+			return(Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG()));
+		if(a->isBan(this->_sender->getNick()))
+			return(Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG()));
+		if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
+			return(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG());
+	}
+	else
+	{
+		this->_server->getChannels().push_back((New Channel(this->_params[0]));
+	}
 
-
-	// PAS A GERER LES MODES
-	//this->Message_p(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_MSG());
-	// quand un server va fermer et que l acces au serveur va etre fermmee
-	//this->Message_p(ERR_CHANNELISTFULL, ERR_CHANNELISTFULL_MSG());
-	
 	// Pour un nom de channel invalide
 //	this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
 	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
 //	this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
-	// Quand un client est ban
-//	this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
-	// Quand le client donne la mauvaise clee pour acceder au channel;
-//	this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
-	// MEME QUE CHANNELLIST IS FULL
-	//this->Message_p(ERR_BADCHANMASK, ERR_BADCHANMASK_MSG());
-	
-	// Users join the max number of channels;
-//	this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS());
 	// Bloquer par le channel delay mecanism;
 //	this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());
 }

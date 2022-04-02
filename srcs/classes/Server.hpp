@@ -69,7 +69,7 @@ class   Server
 		bool								findClient_user(std::string user);
 		bool								findClient_nick(std::string nick);
 
-
+		int									numberChannelsJoin(Client* a);
 
 	private :
 		Server();
