@@ -257,8 +257,33 @@ irc::Channel*		irc::Server::findChannelFromName(std::string chan)
 {
 	for (size_t i = 0; i < _channels.size(); i++)
 	{
-		if (_channels[i]->getName() == chan)
+		std::string s = _channels[i]->getName();
+		if (s == chan)
+		{
+			s.clear();
 			return (_channels[i]);
+		}
+		if(chan && (chan[0] == '#' || chan[0] == '&' || chan[0] == '!' || chan[0] == '+'))
+		{
+			size_t	j;
+			size_t	e = 1;
+			if(s[0] == '#' || s[0] == '&' || s[0] == '!' || s[0] == '+')
+				e = 0;
+			for(j = 1; chan[j] && s[j - e]; j++)
+			{
+				if(chan[j] != s[j - e])
+				{
+					s.clear();
+					return(NULL);
+				}
+			}
+			if(chan[j] == '\0' && s[j - e] == '\0')
+			{
+				s.clear();
+				return(_channels[i]);
+			}
+		}
+		s.clear();
 	}
 	return (NULL);
 }

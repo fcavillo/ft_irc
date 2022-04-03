@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/02 21:42:39 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/03 17:46:05 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,22 +198,30 @@ void	irc::Message::join()
 	if(this->_params[1] != "")
 		key = splitChar(this->_params[1], ',');
 	Channel*	a = this->_server->findChannelFromName(params[0]);
-	if( a != NULL)
+	for(size_t v; names[v] != ""; v++)
 	{
-		if(a->getPassword() != "" && a->getPassword() != params[1])
-			return(Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG()));
-		if(a->isBan(this->_sender->getNick()))
-			return(Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG()));
-		if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
-			return(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG());
+		Channel*	a = this->_server->findChannelFromName(params[0]);
+		if( a != NULL)
+		{
+			if(a->getPassword() != "" && a->getPassword() != key[v])
+				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
+			else if(a->isBan(this->_sender->getNick()))
+				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
+			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
+				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG());
+			a = NULL;
+		}
+		else
+		{
+			if(validChannelName(names[v]))
+			{
+				Channel *h(names[v]);
+				this->_server->getChannels().push_back(h);
+			}
+			else
+				this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
+		}
 	}
-	else
-	{
-		this->_server->getChannels().push_back((New Channel(this->_params[0]));
-	}
-
-	// Pour un nom de channel invalide
-//	this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
 	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
 //	this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
 	// Bloquer par le channel delay mecanism;

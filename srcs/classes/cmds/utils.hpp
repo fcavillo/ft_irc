@@ -6,7 +6,7 @@
 /*   By: labintei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:36:15 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/01 16:43:19 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/03 17:11:28 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ namespace	irc
 			v.push_back(word);
 		return(v);
 	};
-
+	
+	bool	validChannelName(std::string s)
+	{
+		return true;
+		//for
+	};
 
 
 
