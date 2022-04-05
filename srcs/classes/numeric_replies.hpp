@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:44:52 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 14:48:50 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:55:11 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -381,5 +381,8 @@ std::string	ERR_NOOPERHOST_MSG(){return ":No 0-lines for your host";}
 std::string	ERR_UMODEUNKNOWNFLAG_MSG(){return ":Unknown MODE flag";}
 #define		ERR_USERSDONTMATCH			"502"
 std::string	ERR_USERSDONTMATCH_MSG(){return ":Cannot change mode for other users";}
+
+#define		ERR_BANNEDFROMCHAN			"474"
+std::string	ERR_BANNEDFROMCHAN_MSG(std::string channel){return channel + " :Cannot join channel (+b)";}
 
 #endif

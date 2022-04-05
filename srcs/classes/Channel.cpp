@@ -79,6 +79,20 @@ void					irc::Channel::rmClient(irc::Client* client)
 	this->_clients.erase(it);			//erase only takes an iterator
 }
 
+void					irc::Channel::setPass(std::string pass)
+{
+	this->_pass = pass;
+}
+
+std::string					irc::Channel::getPass()
+{
+	return this->_pass;
+}
+
+std::string					irc::Channel::getName()
+{
+	return this->_name;
+}
 
 irc::Client*				irc::Channel::findClient(irc::Client* client)
 {

@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 15:11:48 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:57:18 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@ bool		irc::isLetter(char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 
 bool		irc::isChiffre(char c){ return (c >= '0' && c <= '9');}
 */
 
+void	irc::Message::Message_cmds(std::string cmds, std::string facultatif, Client *a)
+{
+	a->sendMsg(this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + this->_sender->getRealName() + " " + cmds + " " + facultatif);
+}
+
+
+
+
+void	irc::Message::Message_c(std::string code, std::string code_msg, Client *a)
+{
+	a->sendMsg(message_print(this->_server->getServername(), code , this->_sender->getNick(), code_msg , this->_sender->getOper()));
+}
 
 void	irc::Message::Message_p(std::string code, std::string code_msg)
 {
@@ -187,46 +199,66 @@ void	irc::Message::parse(std::string line)
 */
 
 // Les channel se trouve au niveau du Server
-// void	irc::Message::join()
-// {
-// 	std::vector<std::string>	names;
-// 	std::vector<std::string>	key;
+ void	irc::Message::join()
+ {
+ 	std::vector<std::string>	names;
+ 	std::vector<std::string>	key;
 
-// 	if(this->_params[0] == "")
-// 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-// 	names = splitChar(this->_params[0], ',');
-// 	if(this->_params[1] != "")
-// 		key = splitChar(this->_params[1], ',');
-// 	Channel*	a = this->_server->findChannelFromName(_params[0]);
-// 	for(size_t v; names[v] != ""; v++)
-// 	{
-// 		Channel*	a = this->_server->findChannelFromName(_params[0]);
-// 		if( a != NULL)
-// 		{
-// 			if(a->getPassword() != "" && a->getPassword() != key[v])
-// 				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
-// 			else if(a->isBan(this->_sender))
-// 				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
-// 			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
-// 				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG());
-// 			a = NULL;
-// 		}
-// 		else
-// 		{
-// 			if(validChannelName(names[v]))
-// 			{
-// 				Channel *h(names[v]);
-// 				this->_server->getChannels().push_back(h);
-// 			}
-// 			else
-// 				this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
-// 		}
-// 	}
-// 	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
-// 	// this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
-// 	// Bloquer par le channel delay mecanism;
-// 	// this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());
-// }
+ 	if(this->_params[0] == "")
+ 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
+ 	names = splitChar(this->_params[0], ',');
+ 	if(this->_params[1] != "")
+ 		key = splitChar(this->_params[1], ',');
+ 	Channel*	a;
+	a = this->_server->findChannelFromName(_params[0]);
+ 	for(size_t v = 0; names[v] != ""; v++)
+ 	{
+ 		Channel*	a = this->_server->findChannelFromName(_params[0]);
+ 		if( a != NULL)
+ 		{
+ 			if(a->getPass() != "" && a->getPass() != key[v])
+ 				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG(names[v]));
+ 			else if(a->isBan(this->_sender))
+ 				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG(names[v]));
+ 			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
+ 				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG(names[v]));
+			else if(names[v][0] == '!' && (a->getName())[0] != '!')
+				this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG(names[v], "abbort messages"));
+			else
+			{
+				
+				for(std::vector<Client*>::iterator it  = (a->getClients()).begin(); it !- (a->getClients()).end() ; it++)
+				{
+					Message_cmds("JOIN " , a->getName() , (*it));
+				}
+				a->addClient(this->_sender);
+			}
+			a = NULL;
+ 		}
+ 		else
+ 		{
+ 			if(validChannelName(names[v]))
+ 			{
+ 				Channel		h(names[v]);
+				for(size_t c = 0; key[c] != "" ; c++)
+				{
+					if(c == v)
+						h.setPass(key[c]);
+				}
+ 				this->_server->getChannels().push_back(&h);
+ 			}
+ 			else
+ 				this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG(names[v]));
+ 		}
+ 	}
+
+	// Des qu un user join un channel touts les autres user sont imforme
+	// nick!user@client_name
+
+
+	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
+	// this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
+}
 
 void	irc::Message::part()
 {
@@ -234,6 +266,8 @@ void	irc::Message::part()
 	this->Message_p(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_MSG());
 	this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
 	*/
+
+	// part LEAVING A CHANNEL
 }
 
 void	irc::Message::topic()
@@ -287,14 +321,50 @@ void	irc::Message::kick()
 
 }
 
+	std::string		cutChar(std::string s, char c, int i)
+
+
+
 void	irc::Message::privmsg()
 {
+	// PREND EN PARAMETRE SOIT
+	//
+	// UN user 
+	// UN channel
+	//
+	//
+	//
+	std::string		real_name_search;
+	std::string		user_search;
+
+	if(this->_params[0] == "")
+		Message_p(ERR_NORECIPIENT, ERR_NORECIPIENT_MSG(this->_cmds));
+	if(ft_find('@', this->_params[0]))
+	{
+		r = cutChar(this->_params[0], '@' , 1);
+		u = cutChar(this->_params[0], '@' , 0);
+	}
+	if(ft_find('%', this->params[0]))
+	{
+		r = cutChar(this->_params[0], '%' , 1);
+		u = cutChar(this->_params[0], '%' , 0);
+	}
+
+	Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG());
+	Message_p(ERR_WILDTOPLEVEL, ERR_WILDTOPLEVEL_MSG());
+	Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG());
+	Message_p(ERR_NOTEXTTOSEND, ERR_NOTEXTTOSEND_MSG());
+	Message_p(ERR_NOTOPLEVEL, ERR_NOTOPLEVEL_MSG());
+	Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
+
+	Message_p(RPL_AWAY, RPL_AWAY_MSG());
 
 }
 
 void	irc::Message::notice()
 {
-
+// notice similaire a PRIVMSG sauf que un automatic replies ne doit jamais etre
+// en reponce a un NOTICE MESSAGE
 }
 
 void	irc::Message::admin()
