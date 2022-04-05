@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 11:28:52 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:24:20 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,18 @@ void	irc::Message::nick()
 
 void	irc::Message::user()
 {
+std::cout << "u params0 = " << _params[0] << std::endl;
+		
 	if(this->_params[0] == "")
+	{std::cout << "1" << std::endl;
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
+	}
 	else if(this->_server->findClient_user(this->_params[0]))
+	{std::cout << "2" << std::endl;
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
+	}
 	else
-	{
+	{std::cout << "3" << std::endl;
 		this->_sender->setUsername(this->_params[0]);
 		// voir pour mettre les mode et real name
 	}
@@ -187,46 +193,46 @@ void	irc::Message::parse(std::string line)
 */
 
 // Les channel se trouve au niveau du Server
-void	irc::Message::join()
-{
-	std::vector<std::string>	names;
-	std::vector<std::string>	key;
+// void	irc::Message::join()
+// {
+// 	std::vector<std::string>	names;
+// 	std::vector<std::string>	key;
 
-	if(this->_params[0] == "")
-		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	names = splitChar(this->_params[0], ',');
-	if(this->_params[1] != "")
-		key = splitChar(this->_params[1], ',');
-	Channel*	a = this->_server->findChannelFromName(_params[0]);
-	for(size_t v; names[v] != ""; v++)
-	{
-		Channel*	a = this->_server->findChannelFromName(_params[0]);
-		if( a != NULL)
-		{
-			if(a->getPassword() != "" && a->getPassword() != key[v])
-				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
-			else if(a->isBan(this->_sender))
-				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
-			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
-				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG());
-			a = NULL;
-		}
-		else
-		{
-			if(validChannelName(names[v]))
-			{
-				Channel *h(names[v]);
-				this->_server->getChannels().push_back(h);
-			}
-			else
-				this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
-		}
-	}
-	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
-//	this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
-	// Bloquer par le channel delay mecanism;
-//	this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());
-}
+// 	if(this->_params[0] == "")
+// 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
+// 	names = splitChar(this->_params[0], ',');
+// 	if(this->_params[1] != "")
+// 		key = splitChar(this->_params[1], ',');
+// 	Channel*	a = this->_server->findChannelFromName(_params[0]);
+// 	for(size_t v; names[v] != ""; v++)
+// 	{
+// 		Channel*	a = this->_server->findChannelFromName(_params[0]);
+// 		if( a != NULL)
+// 		{
+// 			if(a->getPassword() != "" && a->getPassword() != key[v])
+// 				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
+// 			else if(a->isBan(this->_sender))
+// 				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
+// 			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
+// 				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG());
+// 			a = NULL;
+// 		}
+// 		else
+// 		{
+// 			if(validChannelName(names[v]))
+// 			{
+// 				Channel *h(names[v]);
+// 				this->_server->getChannels().push_back(h);
+// 			}
+// 			else
+// 				this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG());
+// 		}
+// 	}
+// 	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
+// 	// this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
+// 	// Bloquer par le channel delay mecanism;
+// 	// this-<Message_p(ERR_UNAVAILRESOURCE, ERR_UNAVAILRESOURCE_MSG());
+// }
 
 void	irc::Message::part()
 {

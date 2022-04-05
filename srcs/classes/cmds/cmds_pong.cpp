@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:15:01 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/05 11:27:16 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:00:55 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 //	team : change IRC for localhost in servername ?
 //  team : need passwords for channels ?
 //	client : store messages from a client in a client-unique vector
+//  server : handling signals
 
 
 // void	irc::Message::pong()

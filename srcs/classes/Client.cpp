@@ -138,6 +138,7 @@ void					irc::Client::setOper(bool oper)
 
 void					irc::Client::setRegistered(bool b)
 {
+	std::cout << "sR" << std::endl;
 	if (b == true)
 	{
 		std::cout << "User " << getNick() << " successfully registered !" << std::endl;
@@ -152,8 +153,15 @@ bool					irc::Client::getRegistered()
 
 bool					irc::Client::checkRegistered()
 {
+	if (getUsername() != "")
+		std::cout << "user : " << _username << std::endl;
+	if (_password != "")
+		std::cout << "pass : " << _password << std::endl;
+	if (_nick != "")
+		std::cout << "nick : " << _nick << std::endl;				
 	if (getUsername() != "" && getPass() != "" && getNick() != "" && this->_registered == false)
 		setRegistered(true);
+	std::cout << "cR" << std::endl;
 	return (this->_registered);
 }
 

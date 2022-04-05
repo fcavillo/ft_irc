@@ -19,13 +19,11 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	else if(this->_cmds == "NICK")
 	{
 		this->nick();
-		sender->setNick(this->_params[0]);
 		std::cout << "Nick set" << std::endl;
 	}
 	else if(this->_cmds == "USER")
 	{
 		this->user();
-		sender->setUsername(this->_params[0]);
 		std::cout << "Username set" << std::endl;
 
 	}
@@ -41,7 +39,7 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		}
 		else if(this->_cmds == "JOIN")
 		{
-			this->join();
+			// this->join();
 		}
 		else if(this->_cmds == "PART")
 		{
