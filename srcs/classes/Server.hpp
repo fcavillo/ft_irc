@@ -45,6 +45,7 @@ class   Server
 		void	connectionCheck();
 		void	activityCheck();
 		void	setUpStartTime();
+		void	clear();
 
 	//channel management
 		void								addChannel(Channel* chan);

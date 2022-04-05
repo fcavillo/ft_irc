@@ -1,7 +1,7 @@
 #include "Server.hpp"
 
-#include <cstdio>
-
+bool	forceStop = false;
+void	sigC(int) {forceStop = true;}
 
 /*	Server class is initialized with a specific port and password (set at launch with the executable)	*/
 irc::Server::Server(int port, std::string password) :
@@ -32,6 +32,8 @@ int		irc::Server::start() //->connect + setup
 {
 	//ignoring the SIGPIPE signal that shuts the program down in case of write error : error will be handled another way here
 	std::signal(SIGPIPE, SIG_IGN);
+	// //setting ^C as a clean stop
+	std::signal(SIGINT, sigC);
 
 	/*	CREATING MAIN SOCKET	*/
 	//AF_INET for Address Family = PF_INET (ipv4), SOCK_STREAM = two-way, connection-based byte streams
@@ -53,11 +55,8 @@ int		irc::Server::start() //->connect + setup
 
 	std::cout << "Socket created" << std::endl;
 
-	while (1)
+	while (_on && forceStop == false)
 	{
-		if (!this->_on)		//server shutdown
-			break;
-
 		setUpFds();
 
 		//select() monitors a set of fds, waiting for one to be ready to send/receive info
@@ -71,7 +70,7 @@ int		irc::Server::start() //->connect + setup
 		activityCheck();	//iterates through sockets to catch incoming requests and answers them
 	}
 
-
+//clean all
 	return (0);
 }
 
@@ -185,6 +184,17 @@ void		irc::Server::activityCheck()
 // 				}
 // 			}
 
+
+void	irc::Server::clear()
+{
+	std::vector<Client*>::iterator	it = _clients.begin();
+	for (; it != _clients.end() ; it++)
+		delete *it;
+	std::vector<Channel*>::iterator	it2 = _channels.begin();
+	for (; it2 != _channels.end() ; it2++)
+		delete *it2;
+std::cout << "memory wiped" << std::endl;	
+}
 
 /*	GETTERS & SETTERS	*/
 

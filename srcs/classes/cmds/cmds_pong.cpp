@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:15:01 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/05 15:07:40 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:38:02 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 //to do : 
 //	client : store messages from a client in a client-unique vector
-//  server : handling signals
 
 
 // void	irc::Message::pong()
