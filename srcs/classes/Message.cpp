@@ -287,18 +287,3 @@ irc::Server*			getnonconstServer()
 	return (this->_server);
 }*/
 
-
-////////////commands_florian//////////
-
-// void		irc::Message::pong()
-// {
-// 	if (_params.size() == 0)
-// 		Message_p(ERR_NOORIGIN, ERR_NOORIGIN_MSG());
-// 	else
-// 		_sender->sendMsg("PONG : " + _params[0]);
-	
-// }
-
-
-
-

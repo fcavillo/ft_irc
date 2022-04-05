@@ -5,7 +5,7 @@ void	sigC(int) {forceStop = true;}
 
 /*	Server class is initialized with a specific port and password (set at launch with the executable)	*/
 irc::Server::Server(int port, std::string password) :
-_servername("IRC"),
+_servername("localhost"),
 _port(port),
 _password(password),
 _on(true)
