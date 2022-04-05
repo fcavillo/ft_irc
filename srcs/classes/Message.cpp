@@ -12,30 +12,21 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	std::cout << "CMDS : " << this->_cmds << std::endl;
 	std::cout << "PARAMS :" << this->_params[0] << std::endl;
 	if(this->_cmds == "PASS")
-	{
 		this->pass();
-		std::cout << "Pass set" << std::endl;
-	}
 	else if(this->_cmds == "NICK")
-	{
 		this->nick();
-		std::cout << "Nick set" << std::endl;
-	}
 	else if(this->_cmds == "USER")
-	{
 		this->user();
-		std::cout << "Username set" << std::endl;
-
-	}
+	
 	if(sender->getRegistered() == true)
 	{
 		if(this->_cmds == "PING")
 		{
 			pong();
 		}
-		else if(this->_cmds == "OPPER")
+		else if(this->_cmds == "OPER")
 		{
-			this->opper();
+			this->oper();
 		}
 		else if(this->_cmds == "JOIN")
 		{

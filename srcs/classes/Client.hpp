@@ -59,7 +59,7 @@ class   Client
 		void					setRealName(std::string realName);
 	//operator status	
 		bool const &			getOper() const;
-		bool					getOpper();
+		bool					getOper();
 		void					setOper(bool oper);					//used in client command /oper
 	//buffer for the command line
 		std::string &			getBufferLine();

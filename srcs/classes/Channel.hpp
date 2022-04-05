@@ -31,13 +31,13 @@ class   Channel
 		void							rmClient(Client* client);
 		Client*							findClient(Client* client);
 		Client*							getCreator();
-//		bool							isOpper(Client* client);
+//		bool							isOper(Client* client);
 		bool							isBan(Client* client);
 	private :
 		Channel();
 
 		Client*								_creator;
-		std::vector<Client*>				_opper;
+		std::vector<Client*>				_oper;
 		std::vector<Client*>				_ban;
 		std::vector<Client*>				_clients;		//list of all the users on the channel
 		std::string 						_name;			//name of the channel (initialized by the user 		command '/join *name*')

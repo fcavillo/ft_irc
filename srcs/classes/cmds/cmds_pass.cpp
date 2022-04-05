@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 12:24:20 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:50:12 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool		irc::isChiffre(char c){ return (c >= '0' && c <= '9');}
 
 void	irc::Message::Message_p(std::string code, std::string code_msg)
 {
-	this->_sender->sendMsg(message_print(this->_server->getServername(), code , this->_sender->getNick(), code_msg , this->_sender->getOpper()));
+	this->_sender->sendMsg(message_print(this->_server->getServername(), code , this->_sender->getNick(), code_msg , this->_sender->getOper()));
 }
 
 void	irc::Message::pass()
@@ -86,24 +86,18 @@ void	irc::Message::nick()
 
 void	irc::Message::user()
 {
-std::cout << "u params0 = " << _params[0] << std::endl;
-		
 	if(this->_params[0] == "")
-	{std::cout << "1" << std::endl;
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	}
 	else if(this->_server->findClient_user(this->_params[0]))
-	{std::cout << "2" << std::endl;
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
-	}
 	else
-	{std::cout << "3" << std::endl;
+	{
 		this->_sender->setUsername(this->_params[0]);
 		// voir pour mettre les mode et real name
 	}
 }
 
-void	irc::Message::opper()
+void	irc::Message::oper()
 {
 	if(this->_params[0] == "")
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
@@ -320,7 +314,7 @@ void	irc::Message::kill()
 
 }
 
-//(DIE opper)
+//(DIE oper)
 void	irc::Message::die()
 {
 
@@ -336,9 +330,9 @@ void	irc::Message::restart()
 void	irc::Message::pass()
 {
 	if(this->_params[0] == "")
-		sender->sendMsg(message_print(this->_server->_servername, ERR_NEEDMOREPARAMS, this->sender->getNick(), ERR_NEEDMOREPARAMS_MSG() , this->_sender->getUsername(), this->_sender->_opper));
+		sender->sendMsg(message_print(this->_server->_servername, ERR_NEEDMOREPARAMS, this->sender->getNick(), ERR_NEEDMOREPARAMS_MSG() , this->_sender->getUsername(), this->_sender->_oper));
 	else if(this->_sender->_pass != "")
-		sender->sendMsg(message_print(this->_server->_servername, ERR_ALREADYREGISTERED, this->sender->getNick(), ERR_ALREADYREGISTERED_MSG() , this->_sender->getUsername(), this->_sender->_opper));
+		sender->sendMsg(message_print(this->_server->_servername, ERR_ALREADYREGISTERED, this->sender->getNick(), ERR_ALREADYREGISTERED_MSG() , this->_sender->getUsername(), this->_sender->_oper));
 	else
 		sender->setPass(this->_params[0]);
 }
@@ -346,9 +340,9 @@ void	irc::Message::pass()
 void	irc::Message::nick()
 {
 	if(this->_params[0] == "")
-		sender->sendMsg(message_print(this->_server->_servername, ERR_NONICKNAMEGIVEN, this->sender->getNick(), ERR_NONICKNAMEGIVEN_MSG() , this->_sender->getUsername(), this->_sender->_opper));
+		sender->sendMsg(message_print(this->_server->_servername, ERR_NONICKNAMEGIVEN, this->sender->getNick(), ERR_NONICKNAMEGIVEN_MSG() , this->_sender->getUsername(), this->_sender->_oper));
 	else if(this->_server->findClient_nick(this->_params[0]))
-		sender->sendMsg(message_print(this->_server->_servername, ERR_NICKNAMEINUSE, this->sender->getNick(), ERR_NICKNAMEINUSE_MSG() , this->_sender->getUsername(), this->_sender->_opper));
+		sender->sendMsg(message_print(this->_server->_servername, ERR_NICKNAMEINUSE, this->sender->getNick(), ERR_NICKNAMEINUSE_MSG() , this->_sender->getUsername(), this->_sender->_oper));
 	else
 		this->_sender->setNick(this->_params[0]);
 	// ERRONEUSNICKNAME
@@ -360,9 +354,9 @@ void	irc::Message::nick()
 void	irc::Message::user()
 {
 	if(this->params[0] == "")
-		sender->sendMsg(message_print(this->_server->_servername, ERR_NEEDMOREPARAMS, this->sender->getNick(), ERR_NEEDMOREPARAMS_MSG() , this->_sender->getUsername(), this->_sender->_opper));
+		sender->sendMsg(message_print(this->_server->_servername, ERR_NEEDMOREPARAMS, this->sender->getNick(), ERR_NEEDMOREPARAMS_MSG() , this->_sender->getUsername(), this->_sender->_oper));
 	else if(this->_server->findClient_user(this->_params[0]))
-		sender->sendMsg(message_print(this->_server->_servername, ERR_ALREADYREGISTERED, this->sender->getNick(), ERR_ALREADYREGISTERED_MSG() , this->_sender->getUsername(), this->_sender->_opper));
+		sender->sendMsg(message_print(this->_server->_servername, ERR_ALREADYREGISTERED, this->sender->getNick(), ERR_ALREADYREGISTERED_MSG() , this->_sender->getUsername(), this->_sender->_oper));
 	else
 	{
 		this->_sender->setUsername(params[0]);
@@ -371,7 +365,7 @@ void	irc::Message::user()
 }
 
 
-// On va partir du principe que tout le monde peut devenir opper
+// On va partir du principe que tout le monde peut devenir oper
 void	irc::Message::oper()
 {
 
@@ -388,9 +382,9 @@ void	irc::Message::pong()
 		Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_server->getServername()));
 	else
 		_sender->sendMsg("PONG : " + _params[0]);
-	std::cout << "user is a member of : " << std::endl;
-	for (int i = 0; i < (int)_sender->getMembership().size(); i++)
-		std::cout << _sender->getMembership()[i]->getName() << std::endl;
+	// std::cout << "user is a member of : " << std::endl;
+	// for (int i = 0; i < (int)_sender->getMembership().size(); i++)
+	// 	std::cout << _sender->getMembership()[i]->getName() << std::endl;
 	
 }
 

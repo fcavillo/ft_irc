@@ -54,12 +54,12 @@ class   Message
 
 	// CMDS CHANNEL
 
-	// CMDS OPPER
+	// CMDS OPER
 	void	Message_p(std::string code, std::string code_msg);
 	void	pass();
 	void	nick();
 	void	user();
-	void	opper();
+	void	oper();
 	void	join();
 	void	part();
 	void	topic();

@@ -7,11 +7,11 @@ irc::Client*		irc::Channel::getCreator()
 
 
 /*
-bool							isOpper(Client* client);
+bool							isOper(Client* client);
 {
-	for(size_t i = 0; i < _opper.size(); i++)
+	for(size_t i = 0; i < _oper.size(); i++)
 	{
-		if(_opper[i] == client)
+		if(_oppr[i] == client)
 			return(true);
 	}
 	return(false);
@@ -20,7 +20,7 @@ bool							isOpper(Client* client);
 
 bool		irc::Channel::isBan(irc::Client* client)
 {
-	for(size_t i = 0; i < _opper.size(); i++)
+	for(size_t i = 0; i < _oper.size(); i++)
 	{
 		if(_ban[i] == client)
 			return(true);
@@ -87,9 +87,9 @@ irc::Client*				irc::Channel::findClient(irc::Client* client)
 		if (_clients[i] == client)
 			return (_clients[i]);
 	}
-	for (size_t i = 0; i < _opper.size(); i++)
+	for (size_t i = 0; i < _oper.size(); i++)
 	{
-		if(_opper[i] == client)
+		if(_oper[i] == client)
 			return (_clients[i]);
 	}
 	return (NULL);

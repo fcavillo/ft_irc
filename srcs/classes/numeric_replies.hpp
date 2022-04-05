@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:44:52 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 11:27:51 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:48:50 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ std::string	RPL_MOTD_MSG(std::string text){return ":- " + text;}
 #define		RPL_ENDOFMOTD			"376"
 std::string	RPL_ENDOFMOTD_MSG(){return ": End of MOTD command";}
 
-// Sucessful OPPER
+// Sucessful OPER
 
 #define		RPL_YOUREOPER			"381"
 std::string	RPL_YOUREOPER_MSG(){return ":You are now an IRC operator";}

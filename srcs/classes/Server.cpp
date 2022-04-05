@@ -334,7 +334,7 @@ bool				irc::Server::findClient_user(std::string user)
 {
 	std::vector<Client*>::iterator	it;
 
-	for (it = _clients.begin(); it != _clients.end() || (*(it))->getUsername() != user ; it++);
+	for (it = _clients.begin(); it != _clients.end() && (*(it))->getUsername() != user ; it++);
 	if (it == this->_clients.end())		//the client is not found
 		return (false);
 	return (true);
