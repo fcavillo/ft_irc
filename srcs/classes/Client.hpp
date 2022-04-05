@@ -73,7 +73,7 @@ class   Client
 
 		bool			_oper;										//1 if client is operator, 0 by default
 		bool			_registered;								//1 if client is registered (nick + pass + username), 0 by default
-		bool			_logged;									//0 if client disconnects, 0 by default
+		bool			_logged;									//0 if client disconnects, 1 by default
 		std::string 	_username;
 		std::string		_nick;
 		std::string		_realName;

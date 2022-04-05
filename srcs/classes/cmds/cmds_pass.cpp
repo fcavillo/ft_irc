@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/03 17:46:05 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:28:52 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,15 +197,15 @@ void	irc::Message::join()
 	names = splitChar(this->_params[0], ',');
 	if(this->_params[1] != "")
 		key = splitChar(this->_params[1], ',');
-	Channel*	a = this->_server->findChannelFromName(params[0]);
+	Channel*	a = this->_server->findChannelFromName(_params[0]);
 	for(size_t v; names[v] != ""; v++)
 	{
-		Channel*	a = this->_server->findChannelFromName(params[0]);
+		Channel*	a = this->_server->findChannelFromName(_params[0]);
 		if( a != NULL)
 		{
 			if(a->getPassword() != "" && a->getPassword() != key[v])
 				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG());
-			else if(a->isBan(this->_sender->getNick()))
+			else if(a->isBan(this->_sender))
 				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG());
 			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
 				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG());

@@ -263,7 +263,7 @@ irc::Channel*		irc::Server::findChannelFromName(std::string chan)
 			s.clear();
 			return (_channels[i]);
 		}
-		if(chan && (chan[0] == '#' || chan[0] == '&' || chan[0] == '!' || chan[0] == '+'))
+		if(chan != "\0" && (chan[0] == '#' || chan[0] == '&' || chan[0] == '!' || chan[0] == '+'))
 		{
 			size_t	j;
 			size_t	e = 1;
@@ -357,7 +357,7 @@ int					irc::Server::numberChannelsJoin(Client* a)
 	std::vector<Client*>::iterator	it;
 
 	i = 0;
-	for(it = _client.begin() ; it != _clients.end() ; it++)
+	for(it = _clients.begin() ; it != _clients.end() ; it++)
 	{
 		if(a == *(it))
 			i++;
