@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 14:50:12 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:11:48 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,8 +267,6 @@ char* itoa(int val, int base){
 
 void	irc::Message::list()
 {
-//to do ?	ERR_TOOMANYMATCHES              
-
 	if (this->_params[0] != "\0" && this->_params[0] != _server->getServername())
 		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
 	for (int i = 0; i < (int)this->_server->getChannels().size(); i++)

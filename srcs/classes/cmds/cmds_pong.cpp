@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:15:01 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/05 14:42:12 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:07:40 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 // #include "../numeric_replies.hpp"
 
 //to do : 
-//	team : ask about the version : is 1.0 ok ?
-//	team : change IRC for localhost in servername ?
-//  team : need passwords for channels ?
 //	client : store messages from a client in a client-unique vector
 //  server : handling signals
 
