@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/06 16:25:01 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:42:06 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,7 +318,10 @@ void	irc::Message::kill()
 //(DIE oper)
 void	irc::Message::die()
 {
-
+	if (_sender->getOper() == false)
+		this->Message_p(ERR_NOPRIVILEGES, ERR_NOPRIVILEGES_MSG());
+	else
+		_server->switchOff();
 }
 
 void	irc::Message::restart()

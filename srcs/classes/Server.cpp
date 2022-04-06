@@ -201,6 +201,12 @@ void	irc::Server::clear()
 std::cout << "memory wiped" << std::endl;	
 }
 
+void		irc::Server::switchOff()
+{
+	this->_on = false;
+}
+
+
 /*	GETTERS & SETTERS	*/
 
 int	const &					irc::Server::getPort() const
