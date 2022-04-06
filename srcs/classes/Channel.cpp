@@ -5,9 +5,19 @@ irc::Client*		irc::Channel::getCreator()
 	return(this->_creator);
 }
 
+bool				irc::Channel::isClient(Client* client);
+{
+	if(this->isOper(client))
+		return(true);
+	for(size_t i = 0; i < _clients.size(); i++)
+	{
+		if(_clients[i] == client)
+			return(true);
+	}
+	return(false);
+}
 
-/*
-bool							isOper(Client* client);
+bool				irc::Channel::isOper(Client* client);
 {
 	for(size_t i = 0; i < _oper.size(); i++)
 	{
@@ -16,7 +26,7 @@ bool							isOper(Client* client);
 	}
 	return(false);
 }
-*/
+
 
 bool		irc::Channel::isBan(irc::Client* client)
 {

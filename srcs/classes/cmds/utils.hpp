@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:36:15 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 19:04:33 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:15:09 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ namespace	irc
 		return(false);
 	}
 
+
+	bool	ftFinds(std::string find, std::string s)
+	{
+		for(size_t e = 0; s[e] != '\0'; e++)
+		{
+			for(size_t o = 0; find[o] != '\0' ; o++)
+			{
+				if(find[o] == s[e])
+					return(true);
+			}
+		}
+		return(false);
+	}
+
+
 	std::string		cutChar(std::string s, char c, int i)
 	{
 		std::string		u;
@@ -93,18 +108,48 @@ namespace	irc
 
 	}
 
-	std::string		convertVectortoString(std::vector<string> s)
+	std::string		convertVectortoString(std::vector<string> s, int c)
 	{
 		std::string		r;
 
 		while(std::vector<string>::iterator it = s.begin() ; it != s.end() ; y++)
 		{
-			r += (*it);
-			if(it + 1 != s.end())
+			if(j >= c)
 			{
-				r += " ";
+				r += (*it);
+				if(it + 1 != s.end())
+				{
+					r += " ";
+				}
 			}
+			j++;
 		}
+		return(r);
+	}
+
+	std::string		extensionValidPrivmsg(std::string	params)
+	{
+		std::string		extension;
+		std::string		p;
+
+		if(params != "")
+		{
+			if(params[0] != '#' || params[0] != '$')
+				return(NULL);
+			if(params[1] != '*')
+				return(NULL);
+			if(params[2] != '.')
+				return(NULL);
+			for(int		i = 3; params[i] != '\0'; i++)
+			{
+				extension += params[i];
+			}
+			if(ft_find('?', extension) || ft_find('#', extension))
+				return(NULL);
+			return(extension);
+		}
+		else
+			return(NULL);
 	}
 
 };

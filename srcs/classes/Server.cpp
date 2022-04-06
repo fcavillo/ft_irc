@@ -375,3 +375,62 @@ int					irc::Server::numberChannelsJoin(Client* a)
 	return(i);
 }
 
+Client*				irc::Server::findClientUser(std::string user)
+{
+	int		i = 0;
+	std::vector<Client*>::iterator	it;
+
+	i = 0;
+	for(it = _clients.begin() ; it != _clients.end() ; it++)
+	{
+		if(user == (*(it))->getUsername())
+			return(*it);
+	}
+	return(NULL);
+}
+
+
+
+
+
+std::vector<Client*>				findClientUserExtension(std::string extension)
+{
+	std::vector<Client*>	c;
+
+	for(std::vector<Client*>::iterator it = _clients.begin() ; it != _clients.end() ; it++)
+	{
+		std::string		user = (*(it))->getUsername();
+		size_t			u;
+		for(u = 0; (user.size() - u) >= 0 && (extension.size() - u) >= 0; u++)
+		{
+			if(extension.size - u == 0 && extension[extension.size() - u] == user[user.size() - u] && (user.size() - u - 1 >= 0 && user[user.size() - u - 1] == '.'))
+				c.push_back((*it));
+			else if(user[user.size() - u ] != extension[extension.size - u])
+				break ;
+		}
+		user.clear();
+	}
+	return(c);
+}
+
+
+std::vector<Channel*>				findChannelNameExtension(std::string extension)
+{
+	std::vector<Channel*>	c;
+
+	for(std::vector<Channel*>::iterator it = _channels.begin() ; it != _channels.end() ; it++)
+	{
+		std::string		user = (*(it))->getName();
+		size_t			u;
+		for(u = 0; (user.size() - u) >= 0 && (extension.size() - u) >= 0; u++)
+		{
+			if(extension.size - u == 0 && extension[extension.size() - u] == user[user.size() - u] && (user.size() - u - 1 >= 0 && user[user.size() - u - 1] == '.'))
+				c.push_back((*it));
+			else if(user[user.size() - u ] != extension[extension.size - u])
+				break ;
+		}
+		user.clear();
+	}
+	return(c);
+}
+

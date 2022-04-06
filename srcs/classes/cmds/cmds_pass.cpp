@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 18:57:18 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/06 21:13:50 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ bool		irc::isChiffre(char c){ return (c >= '0' && c <= '9');}
 
 void	irc::Message::Message_cmds(std::string cmds, std::string facultatif, Client *a)
 {
-	a->sendMsg(this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + this->_sender->getRealName() + " " + cmds + " " + facultatif);
+	if(facultatif == "")
+		a->sendMsg(this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + this->_sender->getRealName() + " " + cmds + " " + facultatif);
+	else
+		a->sendMsg(this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + this->_sender->getRealName() + " " + cmds);
 }
 
 
@@ -334,30 +337,124 @@ void	irc::Message::privmsg()
 	//
 	//
 	//
-	std::string		real_name_search;
-	std::string		user_search;
+	std::string		hist;
+	std::string		user;
+	std::string		extension;
+	
+	std::string		msg;
+	// WILDCARD '*' && '?' // NE CONNAIT PAS L UTILITEE DE ?
 
 	if(this->_params[0] == "")
-		Message_p(ERR_NORECIPIENT, ERR_NORECIPIENT_MSG(this->_cmds));
+		return(Message_p(ERR_NORECIPIENT, ERR_NORECIPIENT_MSG(this->_cmds)));
+	if(this->_params[1] == "")
+		return(Message_p(ERR_NOTEXTTOSEND, ERR_NOTEXTTOSEND_MSG()));
+	msg = 	convertVectortoString(this->_params, 1);
 	if(ft_find('@', this->_params[0]))
 	{
-		r = cutChar(this->_params[0], '@' , 1);
-		u = cutChar(this->_params[0], '@' , 0);
+		host = cutChar(this->_params[0], '@' , 1);
+		user = cutChar(this->_params[0], '@' , 0);
+		if(ft_finds("?#", user) || ft_finds("?#", host))
+			return(Message_p(ERR_WILDTOPLEVEL, ERR_WILDTOPLEVEL_MSG());
 	}
-	if(ft_find('%', this->params[0]))
+	if(ft_find('%', this->_params[0]))
 	{
-		r = cutChar(this->_params[0], '%' , 1);
-		u = cutChar(this->_params[0], '%' , 0);
+		host = cutChar(this->_params[0], '%' , 1);
+		user = cutChar(this->_params[0], '%' , 0);
+		if(ft_finds("?#", user) || ft_finds("?#", host))
+			return(Message_p(ERR_WILDTOPLEVEL, ERR_WILDTOPLEVEL_MSG());
+	}
+	if(ft_find('*', this->_params[0]))
+	{
+		extension = extensionValidPrivmsg(this->params[0]);
+		if(extension == "")
+			return(Message_p(ERR_WILDTOPLEVEL, ERR_WILDTOPLEVEL_MSG()));
+	}
+	// si mode incorrect (pas gerer) ou le user est ban du channel ou ne se trouve pas dans le channel
+	// sera un envoit user
+	if(this->params[0] && this->params[0][0] != '#')
+	{
+		Client*					a;
+		std::vector<Client*>	ext;
+
+		if(extension != "")
+			ext = this->_server->findClientUserExtension(extension);
+		else if(user != "" && host != "" && host == this->_server->getServername())
+			a = findClientUser(user);
+		else if(user == "")
+			a = findClientUser(this->_params[0]);
+		if(a == NULL || extension)
+		{
+			if(extension)
+				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(ext));
+			else if(user != "")
+				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(user));
+			else
+				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[0]));
+		}
+		else
+		{
+			if(extension == "")
+				this->Message_c("PRIVMSG", msg, a);
+			else if(extension && ext)
+			{
+				for(std::vector<Client*>::iterator it = ext.begin(); it != it.end(); ++it)
+				{
+					this->Message_c("PRIVMSG", msg , (*it));
+				}
+			}
+		}
+	}
+	else
+	{
+		Channel*				b;
+		std::vector<Channel*>	ext;
+
+		if(extension != "")
+			ext = this->_server->findChannelNameExtension(extension);
+		else if(user != "" && host != "" && host == this->_server->getServername())
+			b = findChannelFromName(user);
+		else if(user == "")
+			b = findChannelFromName(this->params[0]);
+		if(b == NULL && ext == NULL)
+		{
+			return(this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN(this->_params[0])));
+		}
+		else
+		{
+			if(ext && extension)
+			{
+				for(std::vector<Channel*>::iterator it = ext.begin(); it != ext.end() ; it++)
+				{
+					if((*it)->isClient(this->_sender))
+					{
+						for(std::vector<Client*>::iterator ut = ((*it)->getClients()).begin(); ut != ((*it)->getClients()).end() ; ut++)
+						{
+							this->Message_c("PRIVMSG", msg, (*ut));
+						}
+					}
+					else
+						this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG());
+				}
+			}
+			else
+			{
+				if(b->isClient(this->_sender))
+					this->Message_c("PRIVMSG", msg, (b));
+				else
+					this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG());
+			}
+		}
+
 	}
 
-	Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG());
-	Message_p(ERR_WILDTOPLEVEL, ERR_WILDTOPLEVEL_MSG());
-	Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG());
-	Message_p(ERR_NOTEXTTOSEND, ERR_NOTEXTTOSEND_MSG());
-	Message_p(ERR_NOTOPLEVEL, ERR_NOTOPLEVEL_MSG());
-	Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
-
-	Message_p(RPL_AWAY, RPL_AWAY_MSG());
+	//Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG());
+	//Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[0]));
+	// quand invalid utilite de Privmsg <server> <host>
+	//Message_p(ERR_NOTOPLEVEL, ERR_NOTOPLEVEL_MSG());
+	// Envouers si user@host(sender) a plusieurs occurences ???
+	//Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
+	// Replies valides ?? REPLIES QUAND LE SERVER EST AILLEURS ???
+	//Message_p(RPL_AWAY, RPL_AWAY_MSG());
 
 }
 

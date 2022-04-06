@@ -68,7 +68,6 @@ class   Client
 		void						rmMembership(irc::Channel* chan);
 		std::vector<irc::Channel*>	getMembership();
 
-
 	private :
 
 		bool			_oper;										//1 if client is operator, 0 by default

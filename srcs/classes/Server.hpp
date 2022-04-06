@@ -72,6 +72,14 @@ class   Server
 
 		int									numberChannelsJoin(Client* a);
 
+//		ADD lauranne
+		Client*								findClientUser(std::string user);
+
+		std::vector<Client*>				findClientUserExtension(std::string extension);
+
+		std::vector<Channel*>				findChannelNameExtension(std::string extension);
+
+
 	private :
 		Server();
 

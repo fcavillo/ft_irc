@@ -33,7 +33,8 @@ class   Channel
 		void							rmClient(Client* client);
 		Client*							findClient(Client* client);
 		Client*							getCreator();
-//		bool							isOper(Client* client);
+		bool							isClient(Client* client);
+		bool							isOper(Client* client);
 		bool							isBan(Client* client);
 		std::string						getName();
 
