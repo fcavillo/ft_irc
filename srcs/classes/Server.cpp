@@ -40,34 +40,39 @@ int		irc::Server::start() //->connect + setup
 	_mainSocket = socket(AF_INET, SOCK_STREAM, 0);
 	if (_mainSocket == 0)
 		throw std::runtime_error("Socket creation error\n");
+	//Allows the address to be reused as soon as it gets quit	
+	int enable = 1;	
+	if (setsockopt(_mainSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
+		throw std::runtime_error("setsockopt(SO_REUSEADDR) failed");
 
 	//Define the kind of socket created and the address
 	_address.sin_family = AF_INET;			//constant
 	_address.sin_port = htons(_port);		//converts unsigned int into network byte order (!= host byte order)
 	_address.sin_addr.s_addr = INADDR_ANY;	//accept any type of address
-
 	//Bind the socket to the desired port : assigning a name and address to a created socket
 	if (bind(_mainSocket, (struct sockaddr *)&_address, sizeof(_address)) < 0)
 		throw std::runtime_error("Socket binding error\n");
+
 	if (listen(_mainSocket, 3) < 0)			//marks the _mainSocket as a passive socket (able to accept incoming connections)
 		throw std::runtime_error("Socket listening after binding error\n");
 	_addressSize = sizeof(_address);
 
 	std::cout << "Socket created" << std::endl;
 
-	while (_on && forceStop == false)
+	while (_on && forceStop == false && _restart == false)
 	{
 		setUpFds();
 
 		//select() monitors a set of fds, waiting for one to be ready to send/receive info
 		//fd number is _max + 1, monitored set is clientFds, timeout is set at NULL so select() will wait forever
 		_fdReady = select(_fdMax + 1, &_clientFds, NULL, NULL, NULL);
+	
 		if ((_fdReady < 0)/* && (errno != EINTR)*/)
 			throw std::runtime_error("fd error during select()\n");
-		
+
 		connectionCheck();	//checks for new clients, sets the address and socket for the client
 
-		activityCheck();	//iterates through sockets to catch incoming requests and answers them
+		activityCheck();	//iterates through sockets to catch incoming requests and answers them	
 	}
 
 //clean all
@@ -113,7 +118,6 @@ void		irc::Server::connectionCheck()
 
 int 		readLine(irc::Client & user)
 {
-	(void)user;
 	char 			buff = 0;
 	int 			read;
 
@@ -133,7 +137,6 @@ int 		readLine(irc::Client & user)
 
 // std::cout << line << std::endl;
 // sleep(1);
-
 	return (1);
 }
 
@@ -187,6 +190,8 @@ void		irc::Server::activityCheck()
 
 void	irc::Server::clear()
 {
+	close(_mainSocket);
+
 	std::vector<Client*>::iterator	it = _clients.begin();
 	for (; it != _clients.end() ; it++)
 		delete *it;
@@ -231,6 +236,16 @@ std::vector<irc::Channel*>	irc::Server::getChannels()
 std::vector<irc::Client*>	irc::Server::getClients()
 {
 	return (this->_clients);
+}
+
+bool	irc::Server::getRestart()
+{
+	return (this->_restart);
+}
+
+void	irc::Server::setRestart(bool b)
+{
+	this->_restart = b;;
 }
 
 /*	CHANNEL MANAGEMENT	*/

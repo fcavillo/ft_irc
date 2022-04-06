@@ -6,12 +6,14 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:29:24 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/05 15:51:30 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:07:20 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "srcs/classes/Server.hpp"
+
+bool	restart = false;
 
 /*	Program is started with av[0] = ircserv, av[1] = port, av[2] = password	*/
 int     main(int ac, char **av)
@@ -33,22 +35,29 @@ int     main(int ac, char **av)
 		std::cerr << e.what() << '\n';
 		return (1);
 	}
-
-	irc::Server	server(atoi(av[1]), av[2]);
-
-	try
 	{
-		server.start();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
+		irc::Server	server(atoi(av[1]), av[2]);
+		restart = false;
+		try
+		{
+			server.start();
+		}
+		catch(const std::exception& e)
+		{
+			std::cout << errno << std::endl;
+			std::cerr << e.what() << '\n';
+			server.clear();
+			std::cout << "- Server shutdown -" << std::endl; 
+			return (1);
+		}
+		if (server.getRestart() == true)
+			restart = true;
+
 		server.clear();
-		std::cout << "- Server shutdown -" << std::endl; 
-		return (1);
+		std::cout << "- Server shutdown -" << std::endl;
 	}
-
-	server.clear();
-	std::cout << "- Server shutdown -" << std::endl; 		
+	if (restart == true)
+		main(ac, av);
+	
 	return (0);
 }

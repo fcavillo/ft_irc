@@ -6,11 +6,13 @@
 
 irc::Message::Message(std::string line, Server *server, Client *sender) : _server(server), _sender(sender), _fullCommand(line)
 {
-	//std::vector<std::string>	command = v_split(line);
 	this->parse(line);
+	for (int i = 0; i < (int)_cmds.size(); i++)
+		_cmds[i] = toupper(_cmds[i]);
 	std::cout << "PREFIX : " << this->_prefix << std::endl;
 	std::cout << "CMDS : " << this->_cmds << std::endl;
-	std::cout << "PARAMS :" << this->_params[0] << std::endl;
+	if (_params.size() != 0)
+		std::cout << "PARAMS :" << this->_params[0] << std::endl;
 	if(this->_cmds == "PASS")
 		this->pass();
 	else if(this->_cmds == "NICK")
@@ -92,25 +94,6 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 			welcome();
 		}
 	}
-
-/*
-	if (command[0] == "PASS")
-	{
-		sender->setPass(command[1]);
-		std::cout << "Pass set" << std::endl;
-	}
-	else if (command[0] == "NICK")
-	{
-		sender->setNick(command[1]);
-		std::cout << "Nick set" << std::endl;
-	}
-	else if (command[0] == "USER")
-	{
-		sender->setUsername(command[1]);
-		std::cout << "Username set" << std::endl;
-		sender->sendMsg(message_print("fcavillo@localhost", RPL_WELCOME, sender->getNick(), RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),"fcavillo@localhost"), false));
-	}
-	*/
 	return ;
 }
 /*

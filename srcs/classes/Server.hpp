@@ -13,6 +13,7 @@
 #include <netinet/ip.h>	//sockaddr_in
 #include <arpa/inet.h>	//inet_ntoa()
 #include <unistd.h>		//close() socket
+#include <cctype>		//toUpper()
 
 
 #include "Channel.hpp"
@@ -66,6 +67,8 @@ class   Server
 		std::vector<Client*>				getClients();
 		time_t								getStartTime();
 		std::string							getStartTimeString();
+		bool								getRestart();
+		void								setRestart(bool b);
 
 		bool								findClient_user(std::string user);
 		bool								findClient_nick(std::string nick);
@@ -91,6 +94,7 @@ class   Server
 		std::vector<Channel*>	_channels;		//list of all the channels on the server
 		time_t					_startTime;		//time of server start
 		std::string				_startTimeString;
+		bool					_restart;
 	//to do
 		std::string				_operLog;		//operator login
 		std::string				_operPass;		//operator password
