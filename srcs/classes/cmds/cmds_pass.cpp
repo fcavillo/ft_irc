@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/06 18:42:06 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:51:37 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,7 @@ char* itoa(int val, int base){
 
 void	irc::Message::list()
 {
-	if (this->_params[0] != "\0" && this->_params[0] != _server->getServername())
+	if (this->_params.size() == 0 || this->_params[0] != _server->getServername())
 	{
 		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
 		return ;
