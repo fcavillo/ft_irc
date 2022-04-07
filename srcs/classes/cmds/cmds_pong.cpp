@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:15:01 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/06 14:23:58 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/06 19:21:38 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 //to do : 
 //	client : store messages from a client in a client-unique vector
 //  fcntl ?
-//  restart
-//  die
+//	crashes on nc 0.0.0.0 6667 /oper
 
 // void	irc::Message::pong()
 // {

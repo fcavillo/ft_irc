@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/06 18:51:37 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:20:24 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	irc::Message::user()
 
 void	irc::Message::oper()
 {
-	if(this->_params[0] == "")
+	if(this->_params.size() == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else if(this->_params[1] != this->_server->getPassword())
 		this->Message_p(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_MSG());
@@ -312,7 +312,21 @@ void	irc::Message::admin()
 //(nick name collision)
 void	irc::Message::kill()
 {
-
+	if (_sender->getOper() == false)
+		this->Message_p(ERR_NOPRIVILEGES, ERR_NOPRIVILEGES_MSG());
+	else if (this->_params.size() < 2)
+		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));	// this->Message_p(ERR_CANTKILLSERVER, ERR_CANTKILLSERVER_MSG());
+	else if (_server->findClient_nick(_params[0]) == false)
+		this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(_params[0]));
+	else
+	{
+		Client*	tmp = _server->findNick(_params[0]);
+		tmp->sendMsg("You were killed by an operator for the following reason : " + _params[1]);
+		tmp->leaveAllChannels();
+		tmp->leaveServer();
+		close(tmp->getSocket());
+		tmp->setLogged(false);
+	}
 }
 
 //(DIE oper)
