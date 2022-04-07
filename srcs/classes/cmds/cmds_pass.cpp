@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 18:38:32 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 19:32:09 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,8 +248,10 @@ void	irc::Message::topic()
 
 void	irc::Message::names()
 {
+// std::cout << "FloNames()1" << std::endl;	
 	if (_params.size() > 0)
 	{
+	// std::cout << "FloNames()2" << std::endl;	
 		for (size_t i = 0; i < _params.size(); i++)
 		{
 			if (_server->findChannelFromName(_params[i]) != NULL)
@@ -263,6 +265,7 @@ void	irc::Message::names()
 	}
 	else
 	{
+	// std::cout << "FloNames()5" << std::endl;	
 		for (size_t i = 0; i < _server->getChannels().size(); i++)
 		{
 			Channel*	tmp = _server->getChannels()[i];
@@ -271,6 +274,7 @@ void	irc::Message::names()
 			this->Message_p(RPL_ENDOFNAMES, RPL_ENDOFNAMES_MSG(tmp->getName()));
 		}
 	}	
+// std::cout << "FloNames()9" << std::endl;	
 }
 
 
