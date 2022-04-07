@@ -33,6 +33,7 @@ class   Channel
 		void							rmClient(Client* client);
 		Client*							findClient(Client* client);
 		Client*							getCreator();
+		std::string 					clientList();
 
 		bool							isClient(Client* client);
 		bool							isOper(Client* client);

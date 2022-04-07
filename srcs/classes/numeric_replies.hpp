@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:44:52 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 20:30:08 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/07 23:26:47 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ std::string	RPL_ADMINME_MSG(std::string server){return server + " :Administrativ
 #define		RPL_ADMINLOC1			"257"
 std::string	RPL_ADMINLOC1_MSG(std::string admininfo1){return ":"+admininfo1;}
 #define		RPL_ADMINLOC2			"258"
-std::string	RPL_ADMINLOC_MSG(std::string admininfo2){return ":"+admininfo2;}
+std::string	RPL_ADMINLOC2_MSG(std::string admininfo2){return ":"+admininfo2;}
 #define		RPL_ADMINEMAIL			"259"
 std::string	RPL_ADMINEMAIL_MSG(std::string admininfo){return ":"+admininfo;}
 
@@ -274,11 +274,11 @@ std::string	RPL_TRYAGAIN_MSG(std::string cmds){return cmds + " :Please wait a wh
 
 
 #define		ERR_NOSUCHNICK			"401"
-std::string	ERR_NOSUCHNICK_MSG(std::string nick){return nick + " :No such server";}
+std::string	ERR_NOSUCHNICK_MSG(std::string nick){return nick + " :No such nickname";}
 #define		ERR_NOSUCHSERVER		"402"
 std::string	ERR_NOSUCHSERVER_MSG(std::string servername){return servername + " :No such server";}
 #define		ERR_NOSUCHCHANNEL		"403"
-std::string	ERR_NOSUCHCHANNEL_MSG(std::string channelname){return channelname + " :No suchchannel";}
+std::string	ERR_NOSUCHCHANNEL_MSG(std::string channelname){return channelname + " :No such channel";}
 #define		ERR_CANNOTSENDTOCHAN	"404"
 std::string	ERR_CANNOTSENDTOCHAN_MSG(std::string channelname){return channelname + " :Cannot send to channel";}
 #define		ERR_TOOMANYCHANNELS		"405"

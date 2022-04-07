@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 20:39:10 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/07 23:08:45 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	irc::Message::nick()
 
 void	irc::Message::user()
 {
-	if(this->_params[0] == "")
+	if(this->_params.size() == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else if(this->_server->findClient_user(this->_params[0]))
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
@@ -124,7 +124,7 @@ void	irc::Message::user()
 
 void	irc::Message::oper()
 {
-	if(this->_params[0] == "")
+	if(this->_params.size() == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else if(this->_params[1] != this->_server->getPassword())
 		this->Message_p(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_MSG());
@@ -337,7 +337,33 @@ void	irc::Message::topic()
 
 void	irc::Message::names()
 {
-//	this->Message_p(ERR_TOOMANYMATCHES, )
+// std::cout << "FloNames()1" << std::endl;	
+	if (_params.size() > 0)
+	{
+	// std::cout << "FloNames()2" << std::endl;	
+		for (size_t i = 0; i < _params.size(); i++)
+		{
+			if (_server->findChannelFromName(_params[i]) != NULL)
+			{
+				Channel*	tmp = _server->findChannelFromName(_params[i]);
+				
+				this->Message_p(RPL_NAMEREPLY, RPL_NAMEREPLY_MSG("no_channel_mod", tmp->getName(), tmp->clientList()));
+				this->Message_p(RPL_ENDOFNAMES, RPL_ENDOFNAMES_MSG(tmp->getName()));
+			}
+		}
+	}
+	else
+	{
+	// std::cout << "FloNames()5" << std::endl;	
+		for (size_t i = 0; i < _server->getChannels().size(); i++)
+		{
+			Channel*	tmp = _server->getChannels()[i];
+				
+			this->Message_p(RPL_NAMEREPLY, RPL_NAMEREPLY_MSG("no_channel_mod", tmp->getName(), tmp->clientList()));
+			this->Message_p(RPL_ENDOFNAMES, RPL_ENDOFNAMES_MSG(tmp->getName()));
+		}
+	}	
+// std::cout << "FloNames()9" << std::endl;	
 }
 
 
@@ -357,15 +383,23 @@ char* itoa(int val, int base){
 
 void	irc::Message::list()
 {
-	if (this->_params[0] != "\0" && this->_params[0] != _server->getServername())
+// std::cout << "FloList()1" << std::endl;
+	if (this->_params.size() > 0 && this->_params[0] != _server->getServername())
+	{
+// std::cout << "FloList()2" << std::endl;
 		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
+		return ;
+	}
 	for (int i = 0; i < (int)this->_server->getChannels().size(); i++)
 	{
+// std::cout << "FloList()6" << std::endl;
 		Channel*	tmp = this->_server->getChannels()[i];
 		this->Message_p(RPL_LIST, RPL_LIST_MSG(tmp->getName(), itoa(tmp->getClients().size(), 10), tmp->getTopic()));
 	}
 	this->Message_p(RPL_LISTEND, RPL_LISTEND_MSG());
+// std::cout << "FloList()9" << std::endl;
 }
+
 
 void	irc::Message::invite()
 {
@@ -585,29 +619,60 @@ void	irc::Message::notice()
 }
 
 void	irc::Message::admin()
-{/*
-	this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG());
-	this->Message_p(ERR_ADMINME, ERR_ADMINME_MSG());
-	this->Message_p(ERR_ADMINLOC1, ERR_ADMINLOC1_MSG());
-	this->Message_p(ERR_ADMINLOC2, ERR_ADMINLOC2_MSG());
-	this->Message_p(ERR_ADMINEMAIL, ERR_ADMINEMAIL_MSG());*/
+{
+	if (this->_params.size() > 0 && this->_params[0] != _server->getServername())
+		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
+	else
+	{
+		this->Message_p(RPL_ADMINME, RPL_ADMINME_MSG(_server->getIRCname()));
+		this->Message_p(RPL_ADMINLOC1, RPL_ADMINLOC1_MSG("This is our 42 IRC project :)"));
+		this->Message_p(RPL_ADMINLOC2, RPL_ADMINLOC2_MSG("The wonderful admins are Lauranne & Florian : "));
+		this->Message_p(RPL_ADMINEMAIL, RPL_ADMINEMAIL_MSG("<labintei@student.42.fr>, <fcavillo@student.42.fr>"));
+	}
 }
 
 //(nick name collision)
 void	irc::Message::kill()
 {
-
+	if (_sender->getOper() == false)
+		this->Message_p(ERR_NOPRIVILEGES, ERR_NOPRIVILEGES_MSG());
+	else if (this->_params.size() < 2)
+		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
+	else if (_server->findClient_nick(_params[0]) == false)
+		this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(_params[0]));
+	else
+	{
+		
+// std::cout << "FloKill()3" << std::endl;	
+		Client*	tmp = _server->findNick(_params[0]);
+		tmp->sendMsg("You were killed by an operator for the following reason : " + _params[1]);
+// std::cout << "FloKill()3.1 " << tmp->getServer()->getServername() << std::endl;	
+		tmp->leaveAllChannels();
+// std::cout << "FloKill()3.2 " << tmp->getServer()->getServername() << std::endl;	
+		tmp->leaveServer();
+// std::cout << "FloKill()4 " << std::endl;	
+		close(tmp->getSocket());
+// std::cout << "FloKill()5" << std::endl;	
+		tmp->setLogged(false);
+	}
+// std::cout << "FloKill()9" << std::endl;	
 }
 
 //(DIE oper)
 void	irc::Message::die()
 {
-
+	if (_sender->getOper() == false)
+		this->Message_p(ERR_NOPRIVILEGES, ERR_NOPRIVILEGES_MSG());
+	else
+		_server->switchOff();
 }
 
 void	irc::Message::restart()
 {
-
+	if (_sender->getOper() == false)
+		this->Message_p(ERR_NOPRIVILEGES, ERR_NOPRIVILEGES_MSG());
+	else
+		_server->setRestart(true);
 }
 
 
