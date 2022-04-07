@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/08 00:21:37 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/08 01:26:57 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -635,18 +635,20 @@ void	irc::Message::admin()
 //(nick name collision)
 void	irc::Message::kill()
 {
+	for (size_t i = 0; i < _params.size(); i++)
+		std::cout << "param" << i << " = " << _params[i] << std::endl;	
 	if (_sender->getOper() == false)
 		this->Message_p(ERR_NOPRIVILEGES, ERR_NOPRIVILEGES_MSG());
-	else if (this->_params.size() < 2)
-		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else if (_server->findClient_nick(_params[0]) == false)
-		this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(_params[0]));
+		this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(_params[0]));		
+	else if (this->_params.size() < 2 || _params[1].size() <= 1)
+		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else
 	{
 		
 // std::cout << "FloKill()3" << std::endl;	
 		Client*	tmp = _server->findNick(_params[0]);
-		tmp->sendMsg("You were killed by an operator for the following reason : " + _params[1]);
+		tmp->sendMsg("You were killed by an operator for the following reason " + _params[1]);
 // std::cout << "FloKill()3.1 " << tmp->getServer()->getServername() << std::endl;	
 		tmp->leaveAllChannels();
 // std::cout << "FloKill()3.2 " << tmp->getServer()->getServername() << std::endl;	
