@@ -95,3 +95,12 @@ irc::Client*				irc::Channel::findClient(irc::Client* client)
 	return (NULL);
 }
 
+std::string				irc::Channel::clientList()
+{
+	std::string	list;
+
+	for (size_t i = 0; i < _clients.size(); i++)
+		list.append(" " + _clients[i]->getNick());
+	
+	return (list);
+}

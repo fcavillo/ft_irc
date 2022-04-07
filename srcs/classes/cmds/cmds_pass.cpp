@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:42:18 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 18:38:32 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,9 +245,32 @@ void	irc::Message::topic()
 	this->Message_p(ERR_NOCHANMODES, ERR_NOCHANMODES_MSG());*/
 }
 
+
 void	irc::Message::names()
 {
-//	this->Message_p(ERR_TOOMANYMATCHES, )
+	if (_params.size() > 0)
+	{
+		for (size_t i = 0; i < _params.size(); i++)
+		{
+			if (_server->findChannelFromName(_params[i]) != NULL)
+			{
+				Channel*	tmp = _server->findChannelFromName(_params[i]);
+				
+				this->Message_p(RPL_NAMEREPLY, RPL_NAMEREPLY_MSG("no_channel_mod", tmp->getName(), tmp->clientList()));
+				this->Message_p(RPL_ENDOFNAMES, RPL_ENDOFNAMES_MSG(tmp->getName()));
+			}
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < _server->getChannels().size(); i++)
+		{
+			Channel*	tmp = _server->getChannels()[i];
+				
+			this->Message_p(RPL_NAMEREPLY, RPL_NAMEREPLY_MSG("no_channel_mod", tmp->getName(), tmp->clientList()));
+			this->Message_p(RPL_ENDOFNAMES, RPL_ENDOFNAMES_MSG(tmp->getName()));
+		}
+	}	
 }
 
 
