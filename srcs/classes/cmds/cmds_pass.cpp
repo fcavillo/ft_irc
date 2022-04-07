@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 23:39:31 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:21:37 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ void	irc::Message::parse(std::string line)
 					Message_cmds("JOIN " , a->getName() , (*it));
 				}
 				a->addClient(this->_sender);
+				// _sender->addMembership(a); a rajouter ?
 			}
 			a = NULL;
  		}
