@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:07:50 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:18:05 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,17 +267,21 @@ char* itoa(int val, int base){
 
 void	irc::Message::list()
 {
-	if (this->_params.size() == 0 || this->_params[0] != _server->getServername())
+// std::cout << "FloList()1" << std::endl;
+	if (this->_params.size() > 0 && this->_params[0] != _server->getServername())
 	{
+// std::cout << "FloList()2" << std::endl;
 		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
 		return ;
 	}
 	for (int i = 0; i < (int)this->_server->getChannels().size(); i++)
 	{
+// std::cout << "FloList()6" << std::endl;
 		Channel*	tmp = this->_server->getChannels()[i];
 		this->Message_p(RPL_LIST, RPL_LIST_MSG(tmp->getName(), itoa(tmp->getClients().size(), 10), tmp->getTopic()));
 	}
 	this->Message_p(RPL_LISTEND, RPL_LISTEND_MSG());
+// std::cout << "FloList()9" << std::endl;
 }
 
 void	irc::Message::invite()
