@@ -35,7 +35,9 @@ void					irc::Client::leaveAllChannels()
 
 void					irc::Client::leaveServer()
 {
+// std::cout << "FloLAC()1" << std::endl;
 	_server->rmClient(this);
+// std::cout << "FloLAC()1" << std::endl;
 //close stuff ?
 }
 
@@ -55,6 +57,11 @@ void					irc::Client::setSocket(int sd)
 {
 	_socket = sd;
 	return ;
+}
+
+irc::Server*			irc::Client::getServer()
+{
+	return (_server);
 }
 
 std::string	const &		irc::Client::getAddress() const

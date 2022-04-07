@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 15:20:24 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:07:50 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,18 +315,25 @@ void	irc::Message::kill()
 	if (_sender->getOper() == false)
 		this->Message_p(ERR_NOPRIVILEGES, ERR_NOPRIVILEGES_MSG());
 	else if (this->_params.size() < 2)
-		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));	// this->Message_p(ERR_CANTKILLSERVER, ERR_CANTKILLSERVER_MSG());
+		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else if (_server->findClient_nick(_params[0]) == false)
 		this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(_params[0]));
 	else
 	{
+		
+// std::cout << "FloKill()3" << std::endl;	
 		Client*	tmp = _server->findNick(_params[0]);
 		tmp->sendMsg("You were killed by an operator for the following reason : " + _params[1]);
+// std::cout << "FloKill()3.1 " << tmp->getServer()->getServername() << std::endl;	
 		tmp->leaveAllChannels();
+// std::cout << "FloKill()3.2 " << tmp->getServer()->getServername() << std::endl;	
 		tmp->leaveServer();
+// std::cout << "FloKill()4 " << std::endl;	
 		close(tmp->getSocket());
+// std::cout << "FloKill()5" << std::endl;	
 		tmp->setLogged(false);
 	}
+// std::cout << "FloKill()9" << std::endl;	
 }
 
 //(DIE oper)

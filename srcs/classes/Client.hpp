@@ -67,6 +67,8 @@ class   Client
 		void						addMembership(irc::Channel* chan);
 		void						rmMembership(irc::Channel* chan);
 		std::vector<irc::Channel*>	getMembership();
+	//server
+		irc::Server*		 				getServer();
 
 
 	private :

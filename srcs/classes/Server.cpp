@@ -268,7 +268,7 @@ void					irc::Server::rmChannel(irc::Channel* chan)
 {
 	std::vector<Channel*>::iterator	it;
 
-	for (it = _channels.begin(); it != _channels.end() || *(it) != chan ; it++);	
+	for (it = _channels.begin(); it != _channels.end() && *(it) != chan ; it++);	
 	if (it == this->_channels.end())		//the channel is not found
 		return ;
 	this->_channels.erase(it);
@@ -331,11 +331,17 @@ void					irc::Server::addClient(irc::Client* client)
 
 void					irc::Server::rmClient(irc::Client* client)
 {
+// std::cout << "FloRmClient()1" << std::endl;
 	std::vector<Client*>::iterator	it;
 
-	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++);	
+	for (it = _clients.begin(); it != _clients.end() && *(it) != client ; it++);
+	// {std::cout << "FloRmClient()3" << std::endl;}
 	if (it == this->_clients.end())		//the client is not found
+	{
+		// std::cout << "FloRmClient()4" << std::endl;
 		return ;
+	}
+// std::cout << "FloRmClient()9" << std::endl;
 	this->_clients.erase(it);
 }
 
@@ -363,23 +369,36 @@ irc::Client*		irc::Server::findNick(std::string nick)
 
 bool				irc::Server::findClient_user(std::string user)
 {
-	std::vector<Client*>::iterator	it;
+	for (size_t i = 0; i < _clients.size(); i++)
+	{
+		if (_clients[i]->getUsername() == user)
+			return (true);
+	}
+	return (false);	
+	
+	// std::vector<Client*>::iterator	it;
 
-	for (it = _clients.begin(); it != _clients.end() && (*(it))->getUsername() != user ; it++);
-	if (it == this->_clients.end())		//the client is not found
-		return (false);
-	return (true);
+	// for (it = _clients.begin(); it != _clients.end() && (*(it))->getUsername() != user ; it++);
+	// if (it == this->_clients.end())		//the client is not found
+	// 	return (false);
+	// return (true);
 }
 
 
 bool				irc::Server::findClient_nick(std::string nick)
 {
-	std::vector<Client*>::iterator	it;
+	for (size_t i = 0; i < _clients.size(); i++)
+	{
+		if (_clients[i]->getNick() == nick)
+			return (true);
+	}
+	return (false);
+// 	std::vector<Client*>::iterator	it;
 
-	for (it = _clients.begin(); it != _clients.end() || (*(it))->getNick() != nick ; it++);
-	if (it == this->_clients.end())		//the client is not found
-		return (false);
-	return (true);
+// 	for (it = _clients.begin(); it != _clients.end() || (*(it))->getNick() != nick ; it++);
+// 	if (it == this->_clients.end())		//the client is not found
+// 		return (false);
+// 	return (true);
 }
 
 int					irc::Server::numberChannelsJoin(Client* a)
