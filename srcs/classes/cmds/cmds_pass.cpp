@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:18:05 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:42:18 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,12 +305,16 @@ void	irc::Message::notice()
 }
 
 void	irc::Message::admin()
-{/*
-	this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG());
-	this->Message_p(ERR_ADMINME, ERR_ADMINME_MSG());
-	this->Message_p(ERR_ADMINLOC1, ERR_ADMINLOC1_MSG());
-	this->Message_p(ERR_ADMINLOC2, ERR_ADMINLOC2_MSG());
-	this->Message_p(ERR_ADMINEMAIL, ERR_ADMINEMAIL_MSG());*/
+{
+	if (this->_params.size() > 0 && this->_params[0] != _server->getServername())
+		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
+	else
+	{
+		this->Message_p(RPL_ADMINME, RPL_ADMINME_MSG(_server->getIRCname()));
+		this->Message_p(RPL_ADMINLOC1, RPL_ADMINLOC1_MSG("This is our 42 IRC project :)"));
+		this->Message_p(RPL_ADMINLOC2, RPL_ADMINLOC2_MSG("The wonderful admins are Lauranne & Florian : "));
+		this->Message_p(RPL_ADMINEMAIL, RPL_ADMINEMAIL_MSG("<labintei@student.42.fr>, <fcavillo@student.42.fr>"));
+	}
 }
 
 //(nick name collision)

@@ -8,7 +8,8 @@ irc::Server::Server(int port, std::string password) :
 _servername("localhost"),
 _port(port),
 _password(password),
-_on(true)
+_on(true),
+_IRCname("IRC_42")
 {
 	std::cout << "Creating Server - port : " << port << std::endl;
 
@@ -252,6 +253,11 @@ bool	irc::Server::getRestart()
 void	irc::Server::setRestart(bool b)
 {
 	this->_restart = b;;
+}
+
+std::string					irc::Server::getIRCname() 
+{
+	return (this->_IRCname);
 }
 
 /*	CHANNEL MANAGEMENT	*/

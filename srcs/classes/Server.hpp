@@ -70,6 +70,7 @@ class   Server
 		std::string							getStartTimeString();
 		bool								getRestart();
 		void								setRestart(bool b);
+		std::string							getIRCname();
 
 		bool								findClient_user(std::string user);
 		bool								findClient_nick(std::string nick);
@@ -96,6 +97,7 @@ class   Server
 		time_t					_startTime;		//time of server start
 		std::string				_startTimeString;
 		bool					_restart;
+		std::string				_IRCname;
 	//to do
 		std::string				_operLog;		//operator login
 		std::string				_operPass;		//operator password

@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:44:52 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 14:48:50 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:43:09 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ std::string	RPL_ADMINME_MSG(std::string server){return server + " :Administrativ
 #define		RPL_ADMINLOC1			"257"
 std::string	RPL_ADMINLOC1_MSG(std::string admininfo1){return ":"+admininfo1;}
 #define		RPL_ADMINLOC2			"258"
-std::string	RPL_ADMINLOC_MSG(std::string admininfo2){return ":"+admininfo2;}
+std::string	RPL_ADMINLOC2_MSG(std::string admininfo2){return ":"+admininfo2;}
 #define		RPL_ADMINEMAIL			"259"
 std::string	RPL_ADMINEMAIL_MSG(std::string admininfo){return ":"+admininfo;}
 
