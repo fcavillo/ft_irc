@@ -10,6 +10,11 @@
 // #include "numeric_replies.hpp"
 #include "Client.hpp"
 #include "Server.hpp"
+
+// ADD Lauranne
+#include "Channel.hpp"
+
+
 // #include "cmds/cmds_pong.cpp"
 
 /*	This is the main class for the Message : it groups the main info about it, 
@@ -20,6 +25,7 @@ namespace irc
 
 class	Client;
 class	Server;
+class	Channel;
 
 class   Message
 {
@@ -55,6 +61,8 @@ class   Message
 	// CMDS CHANNEL
 
 	// CMDS OPER
+	void	Message_cmds(std::string cmds, std::string facultatif, Client *a);
+	void	Message_c(std::string code, std::string code_msg, Client *a);
 	void	Message_p(std::string code, std::string code_msg);
 	void	pass();
 	void	nick();
@@ -76,6 +84,10 @@ class   Message
 	void	pong();
 	void	quit();
 	void	welcome();
+	
+	// ADD Lauranne
+	//
+	void	MessagetoChannel(std::string cdms, std::string facultatif, Channel* b);
 	};
 
 };   //namespace end

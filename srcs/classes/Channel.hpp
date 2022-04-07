@@ -27,13 +27,27 @@ class   Channel
 		std::vector<Client*>			getClients();
 		std::string						getTopic();
 
+		void							setPass(std::string pass);
+		std::string						getPass();
 		void							addClient(Client* client);
 		void							rmClient(Client* client);
 		Client*							findClient(Client* client);
-		std::string 					clientList();
 		Client*							getCreator();
-//		bool							isOper(Client* client);
+
+		bool							isClient(Client* client);
+		bool							isOper(Client* client);
+
+		// ban valid mais pas le reste
 		bool							isBan(Client* client);
+		std::string						getName();
+
+		// ADD lauranne
+		
+		void							addBan(Client*	client);
+		std::vector<Client*>			getBan();
+		void							setTopic(std::string	s);
+		Client*							findClientNick(std::string nick);
+
 	private :
 		Channel();
 
@@ -45,6 +59,7 @@ class   Channel
 		std::string							_topic;
 
 		std::string							_mode;
+		std::string							_pass;
 };
 
 

@@ -1,13 +1,45 @@
 #include "Channel.hpp"
 
-irc::Client*		irc::Channel::getCreator()
+void				irc::Channel::setTopic(std::string newtopic)
 {
-	return(this->_creator);
+	if(this->_topic !=  "")
+		this->_topic.clear();
+	this->_topic = newtopic;
+
+}
+
+
+irc::Client*				irc::Channel::findClientNick(std::string nick)
+{
+	for(std::vector<Client*>::iterator it = _clients.begin(); it != _clients.end(); it++)
+	{
+		if((*it)->getNick() == nick)
+			return((*it));
+	}
+	return(NULL);
+
+
 }
 
 
 /*
-bool							isOper(Client* client);
+irc::Client*		irc::Channel::findClientNick(std::string nick);
+{
+	for(std::vector<Client*>::iterator it = _clients.begin(); it != _clients.end(); it++)
+	{
+		if((*it)->getNick() == nick)
+			return((*it));
+	}
+	return(NULL);
+}
+
+*/
+irc::Client*		irc::Channel::getCreator()
+{
+	return(this->_creator);
+}
+/*
+bool				irc::Channel::isOper(irc::Client* client);
 {
 	for(size_t i = 0; i < _oper.size(); i++)
 	{
@@ -16,7 +48,18 @@ bool							isOper(Client* client);
 	}
 	return(false);
 }
-*/
+
+bool				irc::Channel::isClient(irc::Client* client);
+{
+	if(this->isOper(client))
+		return(true);
+	for(size_t i = 0; i < _clients.size(); i++)
+	{
+		if(_clients[i] == client)
+			return(true);
+	}
+	return(false);
+}
 
 bool		irc::Channel::isBan(irc::Client* client)
 {
@@ -26,7 +69,7 @@ bool		irc::Channel::isBan(irc::Client* client)
 			return(true);
 	}
 	return(false);
-}
+}*/
 
 
 
@@ -59,6 +102,10 @@ std::string						irc::Channel::getTopic()
 	return (this->_topic);
 }
 
+std::vector<irc::Client*>					irc::Channel::getBan()
+{
+	return(this->_ban);
+}
 /*	CLIENT MANAGEMENT	*/
 
 void					irc::Channel::addClient(irc::Client* client)
@@ -73,12 +120,26 @@ void					irc::Channel::rmClient(irc::Client* client)
 {
 	std::vector<Client*>::iterator	it;
 
-	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++);	
+	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++);
 	if (it == this->_clients.end())		//the client is not found
 		return ;
 	this->_clients.erase(it);			//erase only takes an iterator
 }
 
+void					irc::Channel::setPass(std::string pass)
+{
+	this->_pass = pass;
+}
+
+std::string					irc::Channel::getPass()
+{
+	return this->_pass;
+}
+
+std::string					irc::Channel::getName()
+{
+	return this->_name;
+}
 
 irc::Client*				irc::Channel::findClient(irc::Client* client)
 {
@@ -95,12 +156,40 @@ irc::Client*				irc::Channel::findClient(irc::Client* client)
 	return (NULL);
 }
 
-std::string				irc::Channel::clientList()
+bool		irc::Channel::isBan(irc::Client* client)
 {
-	std::string	list;
+	for(size_t i = 0; i < _ban.size(); i++)
+	{
+		if(_ban[i] == client)
+			return(true);
+	}
+	return(false);
+}
 
-	for (size_t i = 0; i < _clients.size(); i++)
-		list.append(" " + _clients[i]->getNick());
-	
-	return (list);
+
+bool		irc::Channel::isOper(irc::Client* client)
+{
+	for(size_t i = 0; i < _oper.size(); i++)
+	{
+		if(_oper[i] == client)
+			return(true);
+	}
+	return(false);
+}
+
+bool		irc::Channel::isClient(irc::Client* client)
+{
+	if(this->isOper(client))
+		return(true);
+	for(size_t i = 0; i < _clients.size(); i++)
+	{
+		if(_clients[i] == client)
+			return(true);
+	}
+	return(false);
+}
+
+void	irc::Channel::addBan(irc::Client* client)
+{
+	this->getBan().push_back(client);
 }

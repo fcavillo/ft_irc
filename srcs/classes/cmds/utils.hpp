@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:36:15 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/05 11:25:03 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:53:59 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,99 @@ namespace	irc
 		//for
 	};
 
+	bool	ftFind(char c, std::string s)
+	{
+		for(size_t e = 0; s[e] != '\0'; e++)
+		{
+			if(s[e] == c)
+				return(true);
+		}
+		return(false);
+	};
 
+
+	bool	ftFinds(std::string find, std::string s)
+	{
+		for(size_t e = 0; s[e] != '\0'; e++)
+		{
+			for(size_t o = 0; find[o] != '\0' ; o++)
+			{
+				if(find[o] == s[e])
+					return(true);
+			}
+		}
+		return(false);
+	};
+
+
+	std::string		cutChar(std::string s, char c, int i)
+	{
+		std::string		u;
+		int				b = 0;
+
+		for(size_t r = 0; s[r] != '\0'; r++)
+		{
+			if(s[r] == c)
+			{
+				b = 1;
+			}
+			else if(i == 0 && b == 0)
+			{
+				u += s[r];
+			}
+			else if(i == 1 && b == 1)
+			{
+				u += s[r];
+			}
+		}
+		return u;
+
+	};
+
+	std::string		convertVectortoString(std::vector<std::string> s, int c)
+	{
+		std::string		r;
+		int				j = 0;
+
+		for(std::vector<std::string>::iterator it = s.begin() ; it != s.end() ; it++)
+		{
+			if(j >= c)
+			{
+				r += (*it);
+				if(it + 1 != s.end())
+				{
+					r += " ";
+				}
+			}
+			j++;
+		}
+		return(r);
+	};
+
+	std::string		extensionValidPrivmsg(std::string	params)
+	{
+		std::string		extension;
+		std::string		p;
+
+		if(params != "")
+		{
+			if(params[0] != '#' || params[0] != '$')
+				return(NULL);
+			if(params[1] != '*')
+				return(NULL);
+			if(params[2] != '.')
+				return(NULL);
+			for(int		i = 3; params[i] != '\0'; i++)
+			{
+				extension += params[i];
+			}
+			if(ftFind('?', extension) || ftFind('#', extension))
+				return(NULL);
+			return(extension);
+		}
+		else
+			return(NULL);
+	};
 
 };
 

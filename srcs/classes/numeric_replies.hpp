@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:44:52 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 18:23:31 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:30:08 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ std::string	RPL_ADMINME_MSG(std::string server){return server + " :Administrativ
 #define		RPL_ADMINLOC1			"257"
 std::string	RPL_ADMINLOC1_MSG(std::string admininfo1){return ":"+admininfo1;}
 #define		RPL_ADMINLOC2			"258"
-std::string	RPL_ADMINLOC2_MSG(std::string admininfo2){return ":"+admininfo2;}
+std::string	RPL_ADMINLOC_MSG(std::string admininfo2){return ":"+admininfo2;}
 #define		RPL_ADMINEMAIL			"259"
 std::string	RPL_ADMINEMAIL_MSG(std::string admininfo){return ":"+admininfo;}
 
@@ -280,7 +280,7 @@ std::string	ERR_NOSUCHSERVER_MSG(std::string servername){return servername + " :
 #define		ERR_NOSUCHCHANNEL		"403"
 std::string	ERR_NOSUCHCHANNEL_MSG(std::string channelname){return channelname + " :No suchchannel";}
 #define		ERR_CANNOTSENDTOCHAN	"404"
-std::string	ERR_CONNOTSENDTOCHAN_MSG(std::string channelname){return channelname + " :Cannot send to channel";}
+std::string	ERR_CANNOTSENDTOCHAN_MSG(std::string channelname){return channelname + " :Cannot send to channel";}
 #define		ERR_TOOMANYCHANNELS		"405"
 std::string	ERR_TOOMANYCHANNELS_MSG(std::string channelname){return channelname + " :You have joined too many channel";}
 #define		ERR_WASNOSUCHNICK		"406"
@@ -324,7 +324,7 @@ std::string	ERR_NICKCOLLISION_MSG(std::string nick){return nick + " :Nickname co
 #define		ERR_UNAVAILLABLERESOURCE	"437"
 std::string	ERR_UNAVAILLABLERESOURCE_MSG(std::string nick){return nick +  " :Nick/chaannel is temporaryly unavailable";}
 #define		ERR_USERNOTINCHANNEL		"441"
-std::string	ERR_USERNOTINCHANNEL_MSF(std::string nick, std::string channel){return nick + " " + channel + " :They aren't on that channel";}
+std::string	ERR_USERNOTINCHANNEL_MSG(std::string nick, std::string channel){return nick + " " + channel + " :They aren't on that channel";}
 #define		ERR_NOTONCHANNEL			"442"
 std::string	ERR_NOTONCHANNEL_MSG(std::string channel){return channel + " :You're not on that channel";}
 #define		ERR_USERONCHANNEL			"443"
@@ -381,5 +381,8 @@ std::string	ERR_NOOPERHOST_MSG(){return ":No 0-lines for your host";}
 std::string	ERR_UMODEUNKNOWNFLAG_MSG(){return ":Unknown MODE flag";}
 #define		ERR_USERSDONTMATCH			"502"
 std::string	ERR_USERSDONTMATCH_MSG(){return ":Cannot change mode for other users";}
+
+#define		ERR_BANNEDFROMCHAN			"474"
+std::string	ERR_BANNEDFROMCHAN_MSG(std::string channel){return channel + " :Cannot join channel (+b)";}
 
 #endif
