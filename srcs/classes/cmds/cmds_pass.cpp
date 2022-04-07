@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 23:08:45 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/07 23:39:31 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	irc::Message::Message_p(std::string code, std::string code_msg)
 
 void	irc::Message::pass()
 {
-	if(this->_params[0] == "")
+	if(this->_params.size() == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else if(this->_sender->getPass() != "")
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
@@ -95,7 +95,7 @@ bool	irc::nick_check_char(std::string params)
 
 void	irc::Message::nick()
 {
-	if(this->_params[0] == "")
+	if(this->_params.size() == 0)
 		this->Message_p(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_MSG());
 	else if(this->_server->findNick(this->_params[0])) // Si c est deja le meme nickname
 		this->Message_p(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_MSG(this->_params[0]));
@@ -277,7 +277,7 @@ void	irc::Message::part()
 {
 	std::string		msg = convertVectortoString(this->_params, 1);
 
-	if(this->_params[0] == "")
+	if(this->_params.size() == 0)
 		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	Channel*	a = this->_server->findChannelFromName(this->_params[0]);
 	if(a != reinterpret_cast<Channel*>(NULL))
@@ -299,7 +299,7 @@ void	irc::Message::topic()
 {
 	std::string		msg = convertVectortoString(this->_params, 1);
 
-	if(this->_params[0] == "")
+	if(this->_params.size() == 0)
 		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG("TOPIC")));
 	Channel*	b;
 
@@ -404,7 +404,7 @@ void	irc::Message::list()
 void	irc::Message::invite()
 {
 
-	if(this->_params[0] == "" || this->_params[1] == "")
+	if(this->_params.size() < 2)
 		return(Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG("INVITE")));
 	Channel		*g;
 	g = this->_server->findChannelFromName(this->_params[1]);
@@ -436,7 +436,7 @@ void	irc::Message::invite()
 
 void	irc::Message::kick()
 {
-	if(this->_params[0] == "" || this->_params[1] == "")
+	if(this->_params.size() < 2)
 		return(Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	Channel		*a = this->_server->findChannelFromName(this->_params[0]);
 	if(a != reinterpret_cast<Channel*>(NULL))
@@ -480,9 +480,9 @@ void	irc::Message::privmsg()
 	std::string		msg;
 	// WILDCARD '*' && '?' // NE CONNAIT PAS L UTILITEE DE ?
 
-	if(this->_params[0] == "")
+	if(this->_params.size() == 0)
 		return(Message_p(ERR_NORECIPIENT, ERR_NORECIPIENT_MSG(this->_cmds)));
-	if(this->_params[1] == "")
+	if(this->_params.size() == 1)
 		return(Message_p(ERR_NOTEXTTOSEND, ERR_NOTEXTTOSEND_MSG()));
 	msg = 	convertVectortoString(this->_params, 1);
 	if(ftFind('@', this->_params[0]))
