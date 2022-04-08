@@ -16,6 +16,9 @@ _IRCname("IRC_42")
 	//set start time
 	_startTime = time(0);
 	_startTimeString = ctime(&_startTime);
+	std::string::iterator it = _startTimeString.end();	//removing \n
+	--it;
+	_startTimeString.erase(it);
 
 	return ;
 }
@@ -33,7 +36,7 @@ int		irc::Server::start() //->connect + setup
 {
 	//ignoring the SIGPIPE signal that shuts the program down in case of write error : error will be handled another way here
 	std::signal(SIGPIPE, SIG_IGN);
-	// //setting ^C as a clean stop
+	//setting ^C as a clean stop
 	std::signal(SIGINT, sigC);
 
 	/*	CREATING MAIN SOCKET	*/

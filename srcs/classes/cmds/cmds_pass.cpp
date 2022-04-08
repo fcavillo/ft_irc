@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/08 01:26:57 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/08 01:35:17 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -748,6 +748,9 @@ void	irc::Message::quit()
 	_sender->leaveServer();
 	close(_sender->getSocket());
 	_sender->setLogged(false);
+//add message
+	// if (_params.size() > 0)
+	//message public ?	
 }
 
 void	irc::Message::welcome()
