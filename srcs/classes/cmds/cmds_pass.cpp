@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/08 01:35:17 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/10 14:09:54 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,7 @@ void	irc::Message::parse(std::string line)
 						h.setPass(key[c]);
 				}
  				this->_server->getChannels().push_back(&h);
+				h->addClient(this->_sender);
  			}
  			else
  				this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG(names[v]));
