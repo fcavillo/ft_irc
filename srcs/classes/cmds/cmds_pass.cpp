@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/10 16:07:30 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:24:53 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,20 @@ void	irc::Message::nick()
 		this->_sender->setNick(this->_params[0]);
 	// RETOURNER PAR UN SERVER SI LA CONNECTION EST DITE RESTRICTED user mode "+r"
 //	this->Message_p(ERR_RESTRICTED, ERR_RESTRICTED_MSG());
+}
+
+
+void	irc::Message::userhost()
+{
+	if(this->_params.size() == 0)
+		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
+//	else if(this->_server->findClient_user(this->_params[0]))
+//		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
+//	else
+//	{
+	this->_sender->setUsername(this->_params[0]);
+		// voir pour mettre les mode et real name
+//	}
 }
 
 void	irc::Message::user()

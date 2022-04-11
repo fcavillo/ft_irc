@@ -84,6 +84,7 @@ class   Message
 	void	pong();
 	void	quit();
 	void	welcome();
+	void	userhost();
 	
 	// ADD Lauranne
 	//

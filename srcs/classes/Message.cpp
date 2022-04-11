@@ -87,6 +87,11 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		{
 			this->quit();
 		}
+		else if(this->_cmds == "USERHOST")
+		{
+			this->userhost();
+		}
+
 	}
 	else
 	{
