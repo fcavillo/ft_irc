@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/11 15:24:53 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/11 20:59:57 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,22 @@
 #include <cstdio>
 
 
+//void	
+
+
 void	irc::Message::MessagetoChannel(std::string cmds, std::string msg, Channel* b)
 {
 	std::vector<Client*>	n = b->getClients();
 	for(std::vector<Client*>::iterator ut = n.begin(); ut != n.end() ; ut++)
 	{
-		if((*ut) != this->_sender)
+//		if((*ut) != this->_sender)
 			this->Message_cmds(cmds, msg, (*ut));
 	}
 }
 
 void	irc::Message::Message_cmds(std::string cmds, std::string facultatif, Client *a)
 {
+	printf("\nMessage envoye : %s!%s@%s %s \n", (this->_sender->getNick()).c_str() , (this->_sender->getUsername()).c_str() , (this->_sender->getRealName()).c_str() , (cmds).c_str() );
 	if(facultatif == "")
 		a->sendMsg(this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + this->_sender->getRealName() + " " + cmds + " " + facultatif);
 	else
@@ -145,12 +149,15 @@ void	irc::Message::oper()
 	size_t		v = 0;
  	for(std::vector<std::string>::iterator it = names.begin() ; it != names.end() ; it++)
  	{
- 		Channel*	a = this->_server->findChannelFromName(_params[0]);
- 		if( a != NULL)
+ 		if( this->_server->findChannelFromName(_params[0]) != NULL)
  		{
+			printf("\nBIEN EN TRAIN DE JOINDRE LE CHANNEL DEJA CREEER\n");
+			Channel*	a = this->_server->findChannelFromName(_params[0]);
  			//if(a->getPass() != "" && a->getPass() != key[v])
  			//	this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG(names[v]));
- 			/*else*/ if(a->isBan(this->_sender))
+ 			/*else*/ 
+			printf("\n1\n");
+			if(a->isBan(this->_sender))
  				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG(names[v]));
  			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
  				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG(names[v]));
@@ -158,7 +165,8 @@ void	irc::Message::oper()
 				this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG(names[v], "abbort messages"));
 			else
 			{
-				std::vector<Client*>		g= a->getClients();
+				printf("\n2\n");
+				std::vector<Client*>		g = a->getClients();
 				for(std::vector<Client*>::iterator it  = g.begin(); it != g.end() ; it++)
 				{
 					Message_cmds("JOIN " , a->getName() , (*it));
@@ -166,7 +174,6 @@ void	irc::Message::oper()
 				a->addClient(this->_sender);
 				// _sender->addMembership(a); a rajouter ?
 			}
-			a = NULL;
  		}
  		else
  		{
@@ -193,7 +200,6 @@ void	irc::Message::oper()
 			else
  				this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG(names[v]));
 		}
-		a = NULL;
 		v++;
  	}
 
@@ -412,7 +418,10 @@ void	irc::Message::privmsg()
 	std::string		msg;
 	// WILDCARD '*' && '?' // NE CONNAIT PAS L UTILITEE DE ?
 
-/*	if(this->_params.size() == 0)
+
+	msg = 	convertVectortoString(this->_params, 1);
+
+/*if(this->_params.size() == 0)
 		return(Message_p(ERR_NORECIPIENT, ERR_NORECIPIENT_MSG(this->_cmds)));
 	if(this->_params.size() == 1)
 		return(Message_p(ERR_NOTEXTTOSEND, ERR_NOTEXTTOSEND_MSG()));
@@ -465,13 +474,13 @@ void	irc::Message::privmsg()
 		else
 		{
 			if(extension == "")
-				this->Message_c("PRIVMSG", msg, a);
+				this->Message_cmds("PRIVMSG", msg, a);
 			else if(extension != "" && ext.size() != 0)
 			{
-				for(std::vector<Client*>::iterator it = ext.begin(); it != ext.end(); ++it)
+				for(std::vector<Client*>::iterator it = ext.begin(); it != ext.end(); it++)
 				{
-					if((*it) != this->_sender)
-						this->Message_c("PRIVMSG", msg , (*it));
+			//		if((*it) != this->_sender)
+					this->Message_cmds("PRIVMSG", msg , (*it));
 				}
 			}
 		}
@@ -523,14 +532,15 @@ void	irc::Message::privmsg()
 			//	{
 			if(b == nullChannel)
 				printf("\nb est un null pointeur \n");
-
+			printf("\n ENVO DANS CHANNEL\n");
 			std::vector<Client*>	n = b->getClients();
 			for(std::vector<Client*>::iterator ut = n.begin(); ut != n.end() ; ut++)
 			{
-				if((*ut) != this->_sender)
-					this->Message_c("PRIVMSG", msg, (*ut));
+				//if((*ut) != this->_sender)
+				printf("\n A ENVOYER\n");
+				this->Message_cmds("PRIVMSG", msg, (*ut));
 			}
-			printf("\n3\n");
+			printf("\n\n");
 			//	}
 			//	else
 			//		this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG(this->_params[1]));
