@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:36:15 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 20:53:59 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/10 15:53:52 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,24 @@ namespace	irc
 		std::string		word;
 		std::vector<std::string>	v;
 
-		for (int i = 0; i < (int)line.size(); i++)
+		if(line.size() != 0)
 		{
-			if(line[i] == c)
+			for (int i = 0; i < (int)line.size(); i++)
 			{
-				if(word.size())
+				if(line[i] == c)
 				{
-					v.push_back(word);
-					word.clear();
+					if(word.size())
+					{
+						v.push_back(word);
+						word.clear();
+					}
 				}
+				else
+					word += line[i];
 			}
-			else
-				word += line[i];
+			if(word.size())
+				v.push_back(word);
 		}
-		if(word.size())
-			v.push_back(word);
 		return(v);
 	};
 	

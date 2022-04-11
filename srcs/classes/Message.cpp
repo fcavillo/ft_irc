@@ -32,7 +32,7 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		}
 		else if(this->_cmds == "JOIN")
 		{
-			// this->join();
+			this->join();
 		}
 		else if(this->_cmds == "PART")
 		{

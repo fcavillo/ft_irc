@@ -8,6 +8,10 @@ void				irc::Channel::setTopic(std::string newtopic)
 
 }
 
+void				irc::Channel::setName(std::string name)
+{
+	this->_name = name;
+}
 
 irc::Client*				irc::Channel::findClientNick(std::string nick)
 {

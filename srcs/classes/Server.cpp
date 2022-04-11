@@ -293,6 +293,23 @@ irc::Channel*				irc::Server::findChannel(irc::Channel* chan)
 	return (NULL);
 }
 
+irc::Channel*		irc::Server::findChannelFromName(std::string name)
+{
+	std::vector<Channel*>::iterator	it;
+
+	for (it = _channels.begin(); it != _channels.end() ; it++)
+	{
+		if(name == (*it)->getName())
+			return((*it));
+	}
+	return(NULL);
+//	if (it == this->_channels.end())		//the channel is not found
+//		return ;
+//	t
+
+}
+
+/*
 irc::Channel*		irc::Server::findChannelFromName(std::string chan)
 {
 	for (size_t i = 0; i < _channels.size(); i++)
@@ -301,7 +318,7 @@ irc::Channel*		irc::Server::findChannelFromName(std::string chan)
 		if (s == chan)
 		{
 			s.clear();
-			return (_channels[i]);
+			return (this->_channels[i]);
 		}
 		if(chan != "\0" && (chan[0] == '#' || chan[0] == '&' || chan[0] == '!' || chan[0] == '+'))
 		{
@@ -326,7 +343,7 @@ irc::Channel*		irc::Server::findChannelFromName(std::string chan)
 		s.clear();
 	}
 	return (NULL);
-}
+}*/
 
 /*	CLIENT MANAGEMENT	*/
 

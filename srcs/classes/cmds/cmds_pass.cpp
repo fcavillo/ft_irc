@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/10 14:09:54 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/10 16:07:30 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,7 @@
 #include "utils.hpp"
 #include <iostream>
 
-//#include "cstring"
-
-/*
-std::string message_print(
-std::string nameserver, 
-std::string code, 
-std::string nick, 
-std::string msg, 
-bool op)
-*/
-
-/*
-std::string		message_print1(std::string nameserver, std::string code, std::string nick, std::string msg, bool op)
-{
-    if(op == true)
-        return("*:" + nameserver + " " + code + " " + nick + " " + msg);
-    else
-        return(":" + nameserver + " " + code + " " + nick + " " + msg);
-}
-*/
-/*
-bool		irc::isSpecial(char c){ return (c >= '[' && c <= '\'') || (c >= '{' && c <= '}');}
-bool		irc::isLetter(char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');}
-bool		irc::isChiffre(char c){ return (c >= '0' && c <= '9');}
-*/
+#include <cstdio>
 
 
 void	irc::Message::MessagetoChannel(std::string cmds, std::string msg, Channel* b)
@@ -82,17 +58,6 @@ void	irc::Message::pass()
 }
 
 
-/*
-bool	irc::nick_check_char(std::string params)
-{
-	for(size_t index = 1; index < params.lenght(); ++index)
-		if(!isLetter(params[index]) && !isSpecial(params[index]) && !isChiffre(params[index]))
-			return(false);
-	return(true);
-}*/
-
-//void	irc::irc::Client*		irc::Server::findNick(std::string nick)
-
 void	irc::Message::nick()
 {
 	if(this->_params.size() == 0)
@@ -113,13 +78,13 @@ void	irc::Message::user()
 {
 	if(this->_params.size() == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	else if(this->_server->findClient_user(this->_params[0]))
-		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
-	else
-	{
-		this->_sender->setUsername(this->_params[0]);
+//	else if(this->_server->findClient_user(this->_params[0]))
+//		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
+//	else
+//	{
+	this->_sender->setUsername(this->_params[0]);
 		// voir pour mettre les mode et real name
-	}
+//	}
 }
 
 void	irc::Message::oper()
@@ -139,99 +104,39 @@ void	irc::Message::oper()
 			this->Message_p(ERR_NOOPERHOST, ERR_NOOPERHOST_MSG());
 	}
 }
-/*
-void	irc::Message::parse(std::string line)
-{
-	int							pref = 0;
-	int							j = 0;
-	std::vector<std::string>	v;
-	std::string					word;
 
-	for (int i = 0; i < (int)line.size(); i++)
-	{
-		if (line[i] == ' ')
-		{
-			while (line[i] == ' ' && line[i + 1] == ' ')
-				i++;
-			if (word.size() > 0)
-			{
-				if(pref == 0 && line[i] == ':')
-				{
-					this->_prefix = word;
-					pref++;
-				}
-				else if(this->_cmds == "")
-					this->_cmds = word;
-				else
-					this->_params.push_back(word);
-				pref++;
-			}
-			word.clear();
-		}
-		else if(line[i] != ' ')
-		{
-			word += line[i];
-//			std::cout << word << std::endl;			//commenté pour y voir plus clair, déso :)
-		}
-	}
-	if (word.size() > 0)
-	{
-		if(pref == 0 && line[j] == ':')
-			this->_prefix = word;
-		else if(this->_cmds == "")
-			this->_cmds = word;
-		else
-			this->_params.push_back(word);
-	}
-	word.clear();
-	return (v);
-}*/
+//		void								addChannel(Channel* chan);
 
-/*std::vector<std::string>		splitChar(std::string line, char c)
-{
-	std::string		word;
-	std::vector<std::string>	v;
 
-	for (int i = 0; i < (int)line.size(); i++)
-	{
-		if(line[i] == c)
-		{
-			if(word.size())
-			{
-				v.pushback(word);
-				word.clear();
-			}
-		}
-		else
-			word += line[i];
-	}
-	if(word.size())
-		v.push_back(word);
-	return(v);
-}
-*/
-
-// Les channel se trouve au niveau du Server
  void	irc::Message::join()
  {
  	std::vector<std::string>	names;
  	std::vector<std::string>	key;
 
+	printf("\nCommence join\n");
  	if(this->_params[0] == "")
  		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
- 	names = splitChar(this->_params[0], ',');
- 	if(this->_params[1] != "")
+ 	printf("\n1\n");
+	names = splitChar(this->_params[0], ',');
+ 	printf("\n2\n");/*
+	if(this->_params[0] != "" && this->_params[1] != "")
  		key = splitChar(this->_params[1], ',');
- 	Channel*	a;
-	a = this->_server->findChannelFromName(_params[0]);
- 	for(size_t v = 0; names[v] != ""; v++)
+	*/printf("\n3\n");
+ //	Channel*	a;
+//	a = this->_server->findChannelFromName(_params[0]);
+ 
+//	printf("\n %s \n", names[v]);
+//	size_t	v = 0;
+//	printf("\n %s \n", names[v].c_str());
+	size_t		v = 0;
+ 	for(std::vector<std::string>::iterator it = names.begin() ; it != names.end() ; it++)
  	{
  		Channel*	a = this->_server->findChannelFromName(_params[0]);
  		if( a != NULL)
  		{
- 			if(a->getPass() != "" && a->getPass() != key[v])
- 				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG(names[v]));
- 			else if(a->isBan(this->_sender))
+ 			//if(a->getPass() != "" && a->getPass() != key[v])
+ 			//	this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG(names[v]));
+ 			/*else*/ if(a->isBan(this->_sender))
  				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG(names[v]));
  			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
  				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG(names[v]));
@@ -253,18 +158,29 @@ void	irc::Message::parse(std::string line)
  		{
  			if(validChannelName(names[v]))
  			{
- 				Channel		h(names[v]);
+ 			Channel		*h = new Channel(names[v]);
+
+			printf("\n Prenom set\n");
+			/*if(this->_params[0] != "" && this->_params[1] != "")
+			{
 				for(size_t c = 0; key[c] != "" ; c++)
 				{
 					if(c == v)
-						h.setPass(key[c]);
+						h->setPass(key[c]);
 				}
- 				this->_server->getChannels().push_back(&h);
-				h->addClient(this->_sender);
- 			}
- 			else
+			}*/
+			 //CETTE FONCTION NE MARCHE PEUT ETRE PAS
+ 			//this->_server->getChannels().push_back(h);
+			h->addClient(this->_sender);
+			this->_server->addChannel(h);
+			if(this->_server->findChannel(h))
+				printf("\n CHannel bien integre \n");
+			}
+			else
  				this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG(names[v]));
- 		}
+		}
+		a = NULL;
+		v++;
  	}
 
 	// Des qu un user join un channel touts les autres user sont imforme
@@ -482,7 +398,7 @@ void	irc::Message::privmsg()
 	std::string		msg;
 	// WILDCARD '*' && '?' // NE CONNAIT PAS L UTILITEE DE ?
 
-	if(this->_params.size() == 0)
+/*	if(this->_params.size() == 0)
 		return(Message_p(ERR_NORECIPIENT, ERR_NORECIPIENT_MSG(this->_cmds)));
 	if(this->_params.size() == 1)
 		return(Message_p(ERR_NOTEXTTOSEND, ERR_NOTEXTTOSEND_MSG()));
@@ -509,7 +425,7 @@ void	irc::Message::privmsg()
 	}
 	// si mode incorrect (pas gerer) ou le user est ban du channel ou ne se trouve pas dans le channel
 	// sera un envoit user
-	if(this->_params[0] != "" && this->_params[0][0] != '#')
+*/	if(this->_params[0] != "" && this->_params[0][0] != '#')
 	{
 		Client*					a;
 		Client*					nullClient;
@@ -517,12 +433,12 @@ void	irc::Message::privmsg()
 		nullClient = NULL;
 		a = NULL;
 
-		if(extension != "")
+/*		if(extension != "")
 			ext = this->_server->findClientUserExtension(extension);
 		else if(user != "" && host != "" && host == this->_server->getServername())
 			a = this->_server->findClientUser(user);
 		else if(user == "")
-			a = this->_server->findClientUser(this->_params[0]);
+*/		a = this->_server->findClientUser(this->_params[0]);
 		if(a == nullClient || ext.size() == 0)
 		{
 			if(extension == "")
@@ -553,22 +469,24 @@ void	irc::Message::privmsg()
 		std::vector<Channel*>	ext;
 		nullChannel = NULL;
 		b = NULL;
-
-		if(extension != "")
-			ext = this->_server->findChannelNameExtension(extension);
-		else if(user != "" && host != "" && host == this->_server->getServername())
-			b = this->_server->findChannelFromName(user);
-		else if(user == "")
-			b = this->_server->findChannelFromName(this->_params[0]);
+		
+		printf("\n 1\n");
+//		if(extension != "")
+//			ext = this->_server->findChannelNameExtension(extension);
+//		else if(user != "" && host != "" && host == this->_server->getServername())
+//			b = this->_server->findChannelFromName(user);
+//		else if(user == "")
+		b = this->_server->findChannelFromName(this->_params[0]);
+		printf("\n 2\n");
 // ne peut pas etre egale a nul ??
 
-		if(b == nullChannel && ext.size() == 0)
-		{
-			return(this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG(this->_params[0])));
-		}
-		else
-		{
-			if(ext.size() != 0 && extension != "")
+//		if(b == nullChannel && ext.size() == 0)
+//		{
+//			return(this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG(this->_params[0])));
+//		}
+//		else
+//		{
+		/*	if(ext.size() != 0 && extension != "")
 			{
 				for(std::vector<Channel*>::iterator it = ext.begin(); it != ext.end() ; it++)
 				{
@@ -583,23 +501,27 @@ void	irc::Message::privmsg()
 					}
 					else
 						this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG((*it)->getName()));
-				}
-			}
-			else
+				}*/
+//			}
+//			else
+//			{
+			//	if(b->isClient(this->_sender))
+			//	{
+			if(b == nullChannel)
+				printf("\nb est un null pointeur \n");
+
+			std::vector<Client*>	n = b->getClients();
+			for(std::vector<Client*>::iterator ut = n.begin(); ut != n.end() ; ut++)
 			{
-				if(b->isClient(this->_sender))
-				{
-						std::vector<Client*>	n = b->getClients();
-						for(std::vector<Client*>::iterator ut = n.begin(); ut != n.end() ; ut++)
-						{
-							if((*ut) != this->_sender)
-								this->Message_c("PRIVMSG", msg, (*ut));
-						}
-				}
-				else
-					this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG(this->_params[1]));
+				if((*ut) != this->_sender)
+					this->Message_c("PRIVMSG", msg, (*ut));
 			}
-		}
+			printf("\n3\n");
+			//	}
+			//	else
+			//		this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG(this->_params[1]));
+	//		}
+	//	}
 
 	}
 

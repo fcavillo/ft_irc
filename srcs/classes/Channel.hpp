@@ -27,6 +27,7 @@ class   Channel
 		std::vector<Client*>			getClients();
 		std::string						getTopic();
 
+		void							setName(std::string name);
 		void							setPass(std::string pass);
 		std::string						getPass();
 		void							addClient(Client* client);
