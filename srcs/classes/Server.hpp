@@ -14,6 +14,7 @@
 #include <arpa/inet.h>	//inet_ntoa()
 #include <unistd.h>		//close() socket
 #include <cctype>		//toUpper()
+#include <fcntl.h>		//fcntl
 
 
 #include "Channel.hpp"

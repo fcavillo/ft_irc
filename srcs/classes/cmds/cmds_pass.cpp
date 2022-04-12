@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/11 20:59:57 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/12 11:56:58 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -682,9 +682,9 @@ void	irc::Message::pong()
 		Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_server->getServername()));
 	else
 		_sender->sendMsg("PONG : " + _params[0]);
-	// std::cout << "user is a member of : " << std::endl;
-	// for (int i = 0; i < (int)_sender->getMembership().size(); i++)
-	// 	std::cout << _sender->getMembership()[i]->getName() << std::endl;
+	std::cout << "user is a member of : " << std::endl;
+	for (int i = 0; i < (int)_sender->getMembership().size(); i++)
+		std::cout << _sender->getMembership()[i]->getName() << std::endl;
 	
 }
 

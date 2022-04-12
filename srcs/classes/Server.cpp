@@ -48,7 +48,10 @@ int		irc::Server::start() //->connect + setup
 	int enable = 1;	
 	if (setsockopt(_mainSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
 		throw std::runtime_error("setsockopt(SO_REUSEADDR) failed");
-
+	//makes the fd non blocking
+	if (fcntl(_mainSocket, F_SETFL, O_NONBLOCK) < 0)
+		throw std::runtime_error("fcntl failed");
+	
 	//Define the kind of socket created and the address
 	_address.sin_family = AF_INET;			//constant
 	_address.sin_port = htons(_port);		//converts unsigned int into network byte order (!= host byte order)
@@ -110,6 +113,12 @@ void		irc::Server::connectionCheck()
 			throw std::runtime_error("Socket accepting error\n");
 		std::cout << "New connection : socket fd [" << _newSocket << "] ip [" << inet_ntoa(_address.sin_addr) << "] port [" << ntohs(_address.sin_port) << "]" << std::endl;
 		// add new socket to sockets array, sets the socket and address for the new client
+		int enable = 1;	
+		if (setsockopt(_newSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
+			throw std::runtime_error("setsockopt(SO_REUSEADDR) failed");
+		//makes the fd non blocking
+		if (fcntl(_newSocket, F_SETFL, O_NONBLOCK) < 0)
+			throw std::runtime_error("fcntl failed");		
 		int	i = _clients.size();
 		_clients.push_back(new Client(this));
 		_clients[i]->setSocket(_newSocket);
