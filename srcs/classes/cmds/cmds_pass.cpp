@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/12 11:56:58 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:41:19 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -682,7 +682,7 @@ void	irc::Message::pong()
 		Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_server->getServername()));
 	else
 		_sender->sendMsg("PONG : " + _params[0]);
-	std::cout << "user is a member of : " << std::endl;
+	std::cout << "FloDebug : user is a member of : " << std::endl;
 	for (int i = 0; i < (int)_sender->getMembership().size(); i++)
 		std::cout << _sender->getMembership()[i]->getName() << std::endl;
 	
@@ -705,5 +705,5 @@ void	irc::Message::welcome()
 	Message_p(RPL_WELCOME, RPL_WELCOME_MSG(_sender->getNick(), _sender->getUsername(), _server->getServername()));
 	Message_p(RPL_YOURHOST, RPL_YOURHOST_MSG(_server->getServername(), "1.0"));
 	Message_p(RPL_CREATED, RPL_CREATED_MSG(_server->getStartTimeString()));
-	Message_p(RPL_MYINFO, RPL_MYINFO_MSG(_server->getServername(), "1.0", "aiwroOS", "c_modes"));
+	Message_p(RPL_MYINFO, RPL_MYINFO_MSG(_server->getServername(), "1.0", "aiwroOS", "no_channel_mode"));
 }

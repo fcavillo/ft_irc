@@ -1,7 +1,7 @@
 #include "Server.hpp"
 
 bool	forceStop = false;
-void	sigC(int) {forceStop = true;}
+void	sig(int) {forceStop = true;}
 
 /*	Server class is initialized with a specific port and password (set at launch with the executable)	*/
 irc::Server::Server(int port, std::string password) :
@@ -37,7 +37,8 @@ int		irc::Server::start() //->connect + setup
 	//ignoring the SIGPIPE signal that shuts the program down in case of write error : error will be handled another way here
 	std::signal(SIGPIPE, SIG_IGN);
 	//setting ^C as a clean stop
-	std::signal(SIGINT, sigC);
+	std::signal(SIGINT, sig);
+	std::signal(SIGQUIT, sig);
 
 	/*	CREATING MAIN SOCKET	*/
 	//AF_INET for Address Family = PF_INET (ipv4), SOCK_STREAM = two-way, connection-based byte streams
@@ -69,10 +70,11 @@ int		irc::Server::start() //->connect + setup
 	while (_on && forceStop == false && _restart == false)
 	{
 		setUpFds();
-
+// std::cout << "Waiting on select" << std::endl;
 		//select() monitors a set of fds, waiting for one to be ready to send/receive info
 		//fd number is _max + 1, monitored set is clientFds, timeout is set at NULL so select() will wait forever
 		_fdReady = select(_fdMax + 1, &_clientFds, NULL, NULL, NULL);
+// std::cout << "selecto donzo" << std::endl;
 	
 		if ((_fdReady < 0)/* && (errno != EINTR)*/)
 			throw std::runtime_error("fd error during select()\n");
@@ -157,8 +159,10 @@ void		irc::Server::activityCheck()
 {
 	for (size_t i = 0; i < _clients.size(); i++)
 	{	//if a client exists
+// std::cout << "acCheck" << std::endl;
 		if (FD_ISSET(_clients[i]->getSocket(), &_clientFds))
 		{
+// std::cout << "fdisset" << std::endl;
 			_socketFd = _clients[i]->getSocket();		//temp socket storage
 			int status = readLine(*_clients[i]);		//get the line from the socket
 			if (status == -1)
@@ -168,13 +172,14 @@ void		irc::Server::activityCheck()
 			}
 			else if (status == 0)			//nothing to read, user force disconnected
 			{
+// std::cout << "status = 0" << std::endl;
 //disconnect the client[i] + erase
 			}
 			else if (status == 2)
 			{
 				std::string line = std::string(_clients[i]->getBufferLine());	//put message in line
 				_clients[i]->getBufferLine().erase();
-
+std::cout << "FloDebug : status = 2, line = " << line << std::endl;
 				if (line.length() > 0)
 				{
 					std::cout << "<- Socket[" << _clients[i]->getSocket() << "] : " << line << std::endl;

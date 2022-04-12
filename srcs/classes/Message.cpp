@@ -44,7 +44,6 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		}
 		else if(this->_cmds == "NAMES")
 		{
-// std::cout << "FloDebugMessage()" << std::endl;			
 			this->names();
 		}
 		else if(this->_cmds == "LIST")
