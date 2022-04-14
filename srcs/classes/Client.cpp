@@ -202,3 +202,54 @@ std::vector<irc::Channel*>	irc::Client::getMembership()
 {
 	return (_membership);
 }
+
+
+// AJOUT labintei
+
+
+bool	ftFind(char c, std::string s)
+{
+	for(size_t e = 0; s[e] != '\0'; e++)
+	{
+		if(s[e] == c)
+			return(true);
+	}
+	return(false);
+};
+
+
+void						irc::Client::setMode(std::string s)
+{
+	if(s != "" && s[0] == '+')
+	{
+		for(int i = 1; s[i] != '\0' ; i++)
+		{
+			if(!(ftFind(s[i], this->_mode)))
+				this->_mode += s[i];
+		}
+	}
+}
+
+void						irc::Client::rmMode(std::string s)
+{
+	std::string		replace;
+	std::string		base(this->_mode);
+
+	if(s != "" && s[0] == '-')
+	{
+		for(int i = 0; base[i] != '\0' ; i++)
+		{
+			if(!(ftFind(base[i], s)))
+				replace += base[i];
+		}
+	}
+	this->_mode.clear();
+	this->_mode = replace;
+
+}
+
+std::string					irc::Client::getMode(void)
+{
+	return this->_mode;
+}
+

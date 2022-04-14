@@ -120,6 +120,26 @@ void					irc::Channel::addClient(irc::Client* client)
 	this->_clients.push_back(client);	
 }
 
+
+
+void					irc::Channel::rmClient(irc::Client* client)
+{
+	std::vector<Client*>::iterator it;
+
+	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++)
+	{
+		if((*it) == client)
+		{
+			this->_clients.erase(it);
+			return ;
+		}
+	}
+	//this->_clients.erase(it);			//erase only takes an iterator
+}
+
+
+
+/*
 void					irc::Channel::rmClient(irc::Client* client)
 {
 	std::vector<Client*>::iterator	it;
@@ -128,7 +148,7 @@ void					irc::Channel::rmClient(irc::Client* client)
 	if (it == this->_clients.end())		//the client is not found
 		return ;
 	this->_clients.erase(it);			//erase only takes an iterator
-}
+}*/
 
 void					irc::Channel::setPass(std::string pass)
 {
@@ -207,3 +227,50 @@ std::string				irc::Channel::clientList()
 	
 	return (list);
 }
+
+
+bool	ftFind1(char c, std::string s)
+{
+	for(size_t e = 0; s[e] != '\0'; e++)
+	{
+		if(s[e] == c)
+			return(true);
+	}
+	return(false);
+}
+
+void						irc::Channel::setMode(std::string s)
+{
+	if(s != "" && s[0] == '+')
+	{
+		for(int i = 1; s[i] != '\0' ; i++)
+		{
+			if(!(ftFind1(s[i], this->_mode)))
+				this->_mode += s[i];
+		}
+	}
+}
+
+void						irc::Channel::rmMode(std::string s)
+{
+	std::string		replace;
+	std::string		base(this->_mode);
+
+	if(s != "" && s[0] == '-')
+	{
+		for(int i = 0; base[i] != '\0' ; i++)
+		{
+			if(!(ftFind1(base[i], s)))
+				replace += base[i];
+		}
+	}
+	this->_mode.clear();
+	this->_mode = replace;
+
+}
+
+std::string				irc::Channel::getMode(void)
+{
+	return this->_mode;
+}
+

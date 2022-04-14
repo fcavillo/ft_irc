@@ -60,10 +60,13 @@ class   Message
 
 	// CMDS CHANNEL
 
+
+
 	// CMDS OPER
 	void	Message_cmds(std::string cmds, std::string facultatif, Client *a);
 	void	Message_c(std::string code, std::string code_msg, Client *a);
 	void	Message_p(std::string code, std::string code_msg);
+	void	Messagejoin(Channel* chan);//ADD LABINTEI
 	void	pass();
 	void	nick();
 	void	user();
@@ -85,7 +88,9 @@ class   Message
 	void	quit();
 	void	welcome();
 	void	userhost();
-	
+	void	mode();
+	void	who();
+
 	// ADD Lauranne
 	//
 	void	MessagetoChannel(std::string cdms, std::string facultatif, Channel* b);

@@ -71,6 +71,11 @@ class   Client
 		irc::Server*		 				getServer();
 
 
+		void						setMode(std::string s);
+		void						rmMode(std::string s);
+		std::string					getMode(void);
+
+
 	private :
 
 		bool			_oper;										//1 if client is operator, 0 by default

@@ -370,6 +370,7 @@ void					irc::Server::addClient(irc::Client* client)
 	this->_clients.push_back(client);	
 }
 
+
 void					irc::Server::rmClient(irc::Client* client)
 {
 // std::cout << "FloRmClient()1" << std::endl;

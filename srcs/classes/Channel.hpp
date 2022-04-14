@@ -50,6 +50,13 @@ class   Channel
 		void							setTopic(std::string	s);
 		Client*							findClientNick(std::string nick);
 
+
+		void						setMode(std::string s);
+		void						rmMode(std::string s);
+		std::string					getMode(void);
+
+
+
 	private :
 		Channel();
 

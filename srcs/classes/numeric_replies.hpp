@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:44:52 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/07 23:26:47 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/14 19:38:49 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ std::string	RPL_STATOLINE_MSG(std::string hostmask, std::string name){return "O 
 // To answer to a query about a client s own mode
 
 #define		RPL_UMODEIS				"221"
-std::string	RPL_UNODEIS_MSG(std::string usernodestring){return usernodestring;}
+std::string	RPL_UMODEIS_MSG(std::string usernodestring){return usernodestring;}
 // SERVLIST
 
 #define		RPL_SERVLIST			"234"

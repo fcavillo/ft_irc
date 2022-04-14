@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/12 16:41:19 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/14 19:02:53 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,31 @@
 #include <cstdio>
 
 
+std::string			prefix(irc::Client *a)
+{
+	return(":" + a->getNick() + "!" + a->getUsername() + "@" + "127.0.0.1");
+}
+// 
 //void	
 
+/*
+#define		RPL_NAMEREPLY			"353"
+std::string	RPL_NAMEREPLY_MSG(std::string chan_mod, std::string channel, std::string nick_list){return chan_mod + " " + channel + " " + nick_list;}
+*/
+
+// faire une commande NAMES / MODE WHO
+void	irc::Message::Messagejoin(/*std::string cmds,*/ /*std::string msg, */irc::Channel* chan)
+{
+	this->_sender->sendMsg(prefix(this->_sender) + " 353" + " " + this->_sender->getNick() + " = " + chan->getName() + " :@" + this->_sender->getNick());
+	std::vector<Client*>	o = chan->getClients();
+	for(std::vector<Client*>::iterator n = o.begin() ; n != o.end(); n++)
+	{
+		if((*n) != this->_sender)
+			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_NAMEREPLY + RPL_NAMEREPLY_MSG("+n", chan->getName(), (*n)->getNick()));
+	}
+	this->_sender->sendMsg(prefix(this->_sender) + " " + "366" + " " + this->_sender->getNick() + " " + chan->getName() + " :End of /NAMES list");
+	this->_sender->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
+}
 
 void	irc::Message::MessagetoChannel(std::string cmds, std::string msg, Channel* b)
 {
@@ -31,14 +54,27 @@ void	irc::Message::MessagetoChannel(std::string cmds, std::string msg, Channel* 
 			this->Message_cmds(cmds, msg, (*ut));
 	}
 }
+/*
+void					irc::Client::sendMsg(std::string msg)
+{
+	std::cout << "-> Socket[" << _socket << "] : " << msg << std::endl;
+	send(_socket, (msg + "\r\n").c_str(), (msg + "\r\n").length(), 0);	//send, on the client socket, the char* str wth no flag
+}
+*/
+
 
 void	irc::Message::Message_cmds(std::string cmds, std::string facultatif, Client *a)
 {
-	printf("\nMessage envoye : %s!%s@%s %s \n", (this->_sender->getNick()).c_str() , (this->_sender->getUsername()).c_str() , (this->_sender->getRealName()).c_str() , (cmds).c_str() );
+	// nickname!user@127.0.0.1 PRIVMSG channel :msg/r/n
+
 	if(facultatif == "")
-		a->sendMsg(this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + this->_sender->getRealName() + " " + cmds + " " + facultatif);
+		printf("\nMessage envoye : :%s!%s@%s %s \n", (this->_sender->getNick()).c_str() , (this->_sender->getUsername()).c_str() , "127.0.0.1 " , (cmds).c_str() );
 	else
-		a->sendMsg(this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + this->_sender->getRealName() + " " + cmds);
+		printf("\nMessage envoye : :%s!%s@%s %s %s\n", (this->_sender->getNick()).c_str() , (this->_sender->getUsername()).c_str() , "127.0.0.1" , (cmds).c_str() , facultatif.c_str());
+	if(facultatif != "")
+		a->sendMsg(":" + this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + "127.0.0.1" + " " + cmds + " " + facultatif);
+	else
+		a->sendMsg(":" + this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + "127.0.0.1" + " " + cmds);
 }
 
 void	irc::Message::Message_c(std::string code, std::string code_msg, Client *a)
@@ -62,6 +98,66 @@ void	irc::Message::pass()
 }
 
 
+void	irc::Message::mode()
+{
+	if(this->_params[0] != "" && this->_params[0][0] == '#')
+	{
+		Channel			*a = this->_server->findChannelFromName(_params[0]);
+		if(a != NULL)
+		{
+			printf("\n1\n");
+			printf("\nPROBLEME AVEC LA PARTIE CI DESSOUS\n");
+			if(this->_params[1] != "")
+			{
+				if(this->_params[1][0] == '+')
+					a->setMode(_params[1]);
+				if(this->_params[1][0] == '-')
+					a->rmMode(_params[1]);
+			}
+			printf("\n2\n");
+			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_CHANNELMODEIS + " " + RPL_CHANNELMODEIS_MSG( this->_sender->getNick() , this->_params[0] , "+" + a->getMode()));
+			printf("\nFINISH\n");
+		}
+	}
+	else if(this->_params[0] != "")
+	{
+//		Client*								findClientUser(std::string user);
+
+
+		Client			*b = this->_server->findClientUser(this->_params[0]);
+		if(this->_params[1] != "")
+		{
+			if(this->_params[1][0] == '+')
+				b->setMode(this->_params[1]);
+			if(this->_params[1][0] == '-')
+				b->rmMode(this->_params[1]);
+			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_UMODEIS + " " + RPL_UMODEIS_MSG(/*this->_params[0], "root" , "+" + b->getMode())*/ "usermodestring"));
+		}
+	}
+}
+
+
+// 7 params
+//
+// WHo #iejfjiw fjeeiof
+// tout ce qui matche avec un  channel ou un user ...
+// devra renvoyer un std::vector Channel* ou std::vector Client*
+void	irc::Message::who()
+{
+	if(this->_params[0] != "" && this->_params[0][0] == '#')
+	{/*
+		Channel*		b  = this->_server->findChannelFromName(this->_params[0]);
+		std::vector<Client*>	a = b->getClient();
+		for(std::vector<Client*>::iterator it = a->begin(); it != a.end() ; it++)
+		{
+			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_WHOREPLY + " " + RPL_WHOREPLY_MSG(this->_params[0], this->_sender->getUsername() , " hostname ", " server " server , this->_sender->getNick() , " connect ",  this->_sender->getRealName()));
+		}*/
+		//this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_ENDOFWHO + " " + RPL_ENDOFWHO_MSG(this->_params[0]));
+		this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_ENDOFWHO + " " + this->_sender->getNick() + " " + this->_sender->getUsername() + " " + ":End of /WHO list");
+	}
+}
+
+
 void	irc::Message::nick()
 {
 	if(this->_params.size() == 0)
@@ -72,8 +168,8 @@ void	irc::Message::nick()
 		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
 	else if(!(nick_check_char(this->_params[0])))
 		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
-	else
-		this->_sender->setNick(this->_params[0]);
+//	else
+	this->_sender->setNick(this->_params[0]);
 	// RETOURNER PAR UN SERVER SI LA CONNECTION EST DITE RESTRICTED user mode "+r"
 //	this->Message_p(ERR_RESTRICTED, ERR_RESTRICTED_MSG());
 }
@@ -169,8 +265,11 @@ void	irc::Message::oper()
 				std::vector<Client*>		g = a->getClients();
 				for(std::vector<Client*>::iterator it  = g.begin(); it != g.end() ; it++)
 				{
-					Message_cmds("JOIN " , a->getName() , (*it));
+					if(this->_sender != (*it))
+						this->Message_cmds("JOIN " , a->getName() , (*it));
+						
 				}
+				this->Messagejoin(a);
 				a->addClient(this->_sender);
 				// _sender->addMembership(a); a rajouter ?
 			}
@@ -193,6 +292,7 @@ void	irc::Message::oper()
 			 //CETTE FONCTION NE MARCHE PEUT ETRE PAS
  			//this->_server->getChannels().push_back(h);
 			h->addClient(this->_sender);
+			this->Messagejoin(h);
 			this->_server->addChannel(h);
 			if(this->_server->findChannel(h))
 				printf("\n CHannel bien integre \n");
@@ -209,25 +309,35 @@ void	irc::Message::oper()
 
 	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
 	// this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
+	//
+	// IL Y A UNE RPL TOPIC DANS JOIN
 }
 
 void	irc::Message::part()
 {
 	std::string		msg = convertVectortoString(this->_params, 1);
 
+	printf("\n1\n");
 	if(this->_params.size() == 0)
 		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	Channel*	a = this->_server->findChannelFromName(this->_params[0]);
 	if(a != reinterpret_cast<Channel*>(NULL))
 	{
+		printf("\n2\n");
 		if(!(a->isClient(this->_sender)))
 			return(this->Message_p(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_MSG(this->_params[0])));
 		std::vector<Client*>	c = a->getClients();
+		printf("\n3\n");
 		for(std::vector<Client*>::iterator it = c.begin() ; it != c.end(); it++)
 		{
-			if((*it) != this->_sender)
-				this->Message_c("PART",msg,(*it));
+			//if((*it) != this->_sender)
+			this->Message_cmds("PART", a->getName() + " " + msg,(*it));
 		}
+		printf("\n4\n");
+		a->rmClient(this->_sender);
+		if(!a->isClient(this->_sender))
+			printf("\nLe client a bien ete remove du channel \n");
+		printf("\n5\n");
 	}
 	else
 		return(this->Message_p(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_MSG(this->_params[0])));
@@ -348,22 +458,26 @@ void	irc::Message::invite()
 	g = this->_server->findChannelFromName(this->_params[1]);
 	if(g != reinterpret_cast<Channel*>(NULL))
 	{
+		printf("\nLa channel a bien ete trouvee\n");
 		if(!(g->isClient(this->_sender)))
 			return(Message_p(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_MSG(this->_sender->getUsername())));
-		if(!(g->isOper(this->_sender)))
-			return(Message_p(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_MSG(this->_sender->getUsername())));
-		Client	*c;
-		c = this->_server->findClientUser(this->_params[1]); // PEUT ETRE LE FAIRE A PARTIR DE NICK
-		if(c == reinterpret_cast<Client*>(NULL))
-			return(Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[1])));
-		if(g->isClient(c))
-			return(Message_p(ERR_USERONCHANNEL, ERR_USERONCHANNEL_MSG(this->_params[0], this->_params[1])));
-		Message_c(RPL_INVITING , RPL_INVITING_MSG(g->getName(), this->_params[1]) ,c);
-		Message_p(RPL_INVITING, RPL_INVITING_MSG(g->getName(), this->_params[1]));
+		//if(!(g->isOper(this->_sender)))
+		//	return(Message_p(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_MSG(this->_sender->getUsername())));
+		Client	*c  = this->_server->findClientUser(this->_params[0]); // PEUT ETRE LE FAIRE A PARTIR DE NICK
+		if(c == NULL)
+			return(Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[0])));
+//		if(g->isClient(c))
+//			return(Message_p(ERR_USERONCHANNEL, ERR_USERONCHANNEL_MSG(this->_params[0], this->_params[1])));
+		printf("\nA bien trouve l user associe\n");
+		c->sendMsg(":" + this->_sender->getNick() + "_!" + this->_sender->getUsername() + "@localhost INVITE " + this->_params[0] + " " + this->_params[1]);
+		this->_sender->sendMsg(":" + this->_sender->getNick() + "_!" + this->_sender->getUsername() + "@localhost "+ RPL_INVITING + " " + c->getNick() + "_ " + this->_params[1] + " " +this->_params[0]);
+		//Message_c(RPL_INVITING , RPL_INVITING_MSG(g->getName(), this->_params[0]) ,c);
+		//Message_p(RPL_INVITING, RPL_INVITING_MSG(g->getName(), this->_params[0]));
+	
 	}
 	else
 	{
-		return(Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[1])));
+		return(Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[0])));
 	}
 }
 
@@ -372,13 +486,17 @@ void	irc::Message::invite()
 //void					irc::Channel::rmClient(irc::Client* client)
 
 
+//irc::Client*				irc::Channel::findClientNick(std::string nick)
+//{
+
+
 void	irc::Message::kick()
 {
 	if(this->_params.size() < 2)
 		return(Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	Channel		*a = this->_server->findChannelFromName(this->_params[0]);
 	if(a != reinterpret_cast<Channel*>(NULL))
-	{
+	{/*
 		if(a->getName()[0] != this->_params[0][0])
 			return(Message_p(ERR_BADCHANMASK, ERR_BADCHANMASK_MSG(this->_params[1])));
 		if(!(a->isClient(this->_sender)))
@@ -386,12 +504,19 @@ void	irc::Message::kick()
 		if(!(a->isOper(this->_sender)))
 			return(Message_p(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_MSG(this->_params[0])));
 		//MessagetoChannel(std::string cdms, std::string facultatif, Channel* b)
-		Client*		s = a->findClientNick(this->_params[1]);
-		if(s == reinterpret_cast<Client*>(NULL))
-			return(Message_p(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_MSG(this->_params[0], this->_params[1])));
-		MessagetoChannel("KICK", "" , a);
-		a->rmClient(s);
-		a->addBan(s);
+		*/
+		Client*						c = a->findClientNick(this->_params[1]);
+		std::vector<Client*>		b = a->getClients();
+		for(std::vector<Client*>::iterator it = b.begin() ; it != b.end() ; it++)
+		{
+			(*it)->sendMsg(prefix(this->_sender) + " KICK " + a->getName() + " " + this->_params[1]);
+		}
+		//Client*		s = a->findClientNick(this->_params[1]);
+		//if(s == reinterpret_cast<Client*>(NULL))
+		//	return(Message_p(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_MSG(this->_params[0], this->_params[1])));
+		//MessagetoChannel("KICK", "" , a);
+		a->rmClient(c);
+		a->addBan(c);
 		// MANQUE BAD CHANNEL MASK
 	}
 	else
@@ -419,6 +544,10 @@ void	irc::Message::privmsg()
 	// WILDCARD '*' && '?' // NE CONNAIT PAS L UTILITEE DE ?
 
 
+	// CONSEILS
+	// finir les message par "\r\n" 
+	// format du Message_p
+	// nickname!user@127.0.0.1 PRIVMSG channel :msg/r/n
 	msg = 	convertVectortoString(this->_params, 1);
 
 /*if(this->_params.size() == 0)
@@ -479,8 +608,8 @@ void	irc::Message::privmsg()
 			{
 				for(std::vector<Client*>::iterator it = ext.begin(); it != ext.end(); it++)
 				{
-			//		if((*it) != this->_sender)
-					this->Message_cmds("PRIVMSG", msg , (*it));
+					if((*it) != this->_sender)
+						this->Message_cmds("PRIVMSG", msg , (*it));
 				}
 			}
 		}
@@ -536,9 +665,8 @@ void	irc::Message::privmsg()
 			std::vector<Client*>	n = b->getClients();
 			for(std::vector<Client*>::iterator ut = n.begin(); ut != n.end() ; ut++)
 			{
-				//if((*ut) != this->_sender)
-				printf("\n A ENVOYER\n");
-				this->Message_cmds("PRIVMSG", msg, (*ut));
+				if((*ut) != this->_sender)
+					this->Message_cmds("PRIVMSG", b->getName() + " " + msg, (*ut));
 			}
 			printf("\n\n");
 			//	}
@@ -682,9 +810,9 @@ void	irc::Message::pong()
 		Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_server->getServername()));
 	else
 		_sender->sendMsg("PONG : " + _params[0]);
-	std::cout << "FloDebug : user is a member of : " << std::endl;
-	for (int i = 0; i < (int)_sender->getMembership().size(); i++)
-		std::cout << _sender->getMembership()[i]->getName() << std::endl;
+	// std::cout << "user is a member of : " << std::endl;
+	// for (int i = 0; i < (int)_sender->getMembership().size(); i++)
+	// 	std::cout << _sender->getMembership()[i]->getName() << std::endl;
 	
 }
 
@@ -705,5 +833,5 @@ void	irc::Message::welcome()
 	Message_p(RPL_WELCOME, RPL_WELCOME_MSG(_sender->getNick(), _sender->getUsername(), _server->getServername()));
 	Message_p(RPL_YOURHOST, RPL_YOURHOST_MSG(_server->getServername(), "1.0"));
 	Message_p(RPL_CREATED, RPL_CREATED_MSG(_server->getStartTimeString()));
-	Message_p(RPL_MYINFO, RPL_MYINFO_MSG(_server->getServername(), "1.0", "aiwroOS", "no_channel_mode"));
+	Message_p(RPL_MYINFO, RPL_MYINFO_MSG(_server->getServername(), "1.0", "aiwroOS", "c_modes"));
 }
