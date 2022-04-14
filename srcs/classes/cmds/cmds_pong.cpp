@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:15:01 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/12 12:05:25 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:11:59 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 //	crashes on nc 0.0.0.0 6667 /oper
 //	quit message
 //	changed all the "" by .size()
+//	find what fd is making select go around and around in a loop, look at what happens when a client leaves the server
 
 // void	irc::Message::pong()
 // {

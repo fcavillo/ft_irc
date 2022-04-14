@@ -182,7 +182,8 @@ void		irc::Server::activityCheck()
 std::cout << "FloDebug : status = 2, line = " << line << std::endl;
 				if (line.length() > 0)
 				{
-					std::cout << "<- Socket[" << _clients[i]->getSocket() << "] : " << line << std::endl;
+					std::
+					cout << "<- Socket[" << _clients[i]->getSocket() << "] : " << line << std::endl;
 					Message message(line, this, _clients[i]);	//create new message from line
 				}
 				if (_clients[i]->getLogged() == false)			//if the client just quit
