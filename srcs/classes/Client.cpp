@@ -14,6 +14,10 @@ irc::Client::~Client()
 
 /*	FUNCTIONS	*/
 
+void					irc::Client::addLog(std::string line)
+{
+	this->_logs.push_back(line);
+}
 
 void					irc::Client::sendMsg(std::string msg)
 {

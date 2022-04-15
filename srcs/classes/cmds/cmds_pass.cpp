@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/14 19:02:53 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/15 15:32:29 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,7 @@ void	irc::Message::oper()
 				}
 				this->Messagejoin(a);
 				a->addClient(this->_sender);
-				// _sender->addMembership(a); a rajouter ?
+				_sender->addMembership(a);
 			}
  		}
  		else
@@ -292,6 +292,7 @@ void	irc::Message::oper()
 			 //CETTE FONCTION NE MARCHE PEUT ETRE PAS
  			//this->_server->getChannels().push_back(h);
 			h->addClient(this->_sender);
+			_sender->addMembership(h); 
 			this->Messagejoin(h);
 			this->_server->addChannel(h);
 			if(this->_server->findChannel(h))

@@ -70,6 +70,7 @@ class   Client
 	//server
 		irc::Server*		 				getServer();
 
+		void						addLog(std::string line);
 
 		void						setMode(std::string s);
 		void						rmMode(std::string s);
@@ -93,6 +94,8 @@ class   Client
 		std::vector<irc::Channel*>	_membership;					//list of Channels the user is a member of
 
 		std::string		_mode; // differents flags aiwroOS
+
+		std::vector<std::string>	_logs;							//list of the messages sent by the user
 
 };
 
