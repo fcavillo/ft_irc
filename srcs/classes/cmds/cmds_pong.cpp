@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:15:01 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/12 17:11:59 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/16 18:01:30 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 //	quit message
 //	changed all the "" by .size()
 //	find what fd is making select go around and around in a loop, look at what happens when a client leaves the server
+//	incorrect checksum when connecting after crash (guillemets?)
+//	check the buffer thing
+
 
 // void	irc::Message::pong()
 // {

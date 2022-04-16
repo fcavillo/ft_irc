@@ -71,6 +71,7 @@ class   Client
 		irc::Server*		 				getServer();
 
 		void						addLog(std::string line);
+		void						disconnect();
 
 		void						setMode(std::string s);
 		void						rmMode(std::string s);

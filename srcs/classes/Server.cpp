@@ -36,7 +36,7 @@ int		irc::Server::start() //->connect + setup
 {
 	//ignoring the SIGPIPE signal that shuts the program down in case of write error : error will be handled another way here
 	std::signal(SIGPIPE, SIG_IGN);
-	//setting ^C as a clean stop
+	//setting ^C amd ^\ as a clean stop
 	std::signal(SIGINT, sig);
 	std::signal(SIGQUIT, sig);
 
@@ -49,6 +49,8 @@ int		irc::Server::start() //->connect + setup
 	int enable = 1;	
 	if (setsockopt(_mainSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
 		throw std::runtime_error("setsockopt(SO_REUSEADDR) failed");
+	// if (setsockopt(_mainSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
+	// 	throw std::runtime_error("setsockopt(SO_REUSEADDR) failed");	//to delete after
 	//makes the fd non blocking
 	if (fcntl(_mainSocket, F_SETFL, O_NONBLOCK) < 0)
 		throw std::runtime_error("fcntl failed");
@@ -114,7 +116,7 @@ void		irc::Server::connectionCheck()
 		if ((_newSocket = accept(_mainSocket, (struct sockaddr *)&_address, (socklen_t *)&_addressSize)) < 0)	
 			throw std::runtime_error("Socket accepting error\n");
 		std::cout << "New connection : socket fd [" << _newSocket << "] ip [" << inet_ntoa(_address.sin_addr) << "] port [" << ntohs(_address.sin_port) << "]" << std::endl;
-		// add new socket to sockets array, sets the socket and address for the new client
+		// // add new socket to sockets array, sets the socket and address for the new client
 		int enable = 1;	
 		if (setsockopt(_newSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
 			throw std::runtime_error("setsockopt(SO_REUSEADDR) failed");
@@ -128,8 +130,6 @@ void		irc::Server::connectionCheck()
 		std::cout << "Adding to sockets array as : " << i << std::endl;
 	}		
 }
-
-#include <unistd.h>
 
 int 		readLine(irc::Client & user)
 {
@@ -158,38 +158,44 @@ int 		readLine(irc::Client & user)
 void		irc::Server::activityCheck()
 {
 	for (size_t i = 0; i < _clients.size(); i++)
-	{	//if a client exists
+	{	
 // std::cout << "acCheck" << std::endl;
 		if (FD_ISSET(_clients[i]->getSocket(), &_clientFds))
-		{
+		{	//if the socket is part of the set
 // std::cout << "fdisset" << std::endl;
 			_socketFd = _clients[i]->getSocket();		//temp socket storage
 			int status = readLine(*_clients[i]);		//get the line from the socket
 			if (status == -1)
 			{
 				std::cout << "readline error" << std::endl;
-//disconnect the client[i] + erase it
+				_clients[i]->leaveAllChannels();
+				_clients[i]->leaveServer();
+				close(_clients[i]->getSocket());
 			}
 			else if (status == 0)			//nothing to read, user force disconnected
 			{
+				std::cout << "A client force disconnected !" << std::endl;
+				_clients[i]->leaveAllChannels();
+				_clients[i]->leaveServer();
+				close(_clients[i]->getSocket());				
 // std::cout << "status = 0" << std::endl;
-//disconnect the client[i] + erase
 			}
 			else if (status == 2)
 			{
 				std::string line = std::string(_clients[i]->getBufferLine());	//put message in line
 				_clients[i]->getBufferLine().erase();
-std::cout << "FloDebug : status = 2, line = " << line << std::endl;
+// std::cout << "FloDebug : status = 2, line = " << line << std::endl;
 				if (line.length() > 0)
 				{
-					std::
-					cout << "<- Socket[" << _clients[i]->getSocket() << "] : " << line << std::endl;
+					std::cout << "<- Socket[" << _clients[i]->getSocket() << "] : " << line << std::endl;
 					Message message(line, this, _clients[i]);	//create new message from line
 				}
 				if (_clients[i]->getLogged() == false)			//if the client just quit
 				{
-					std::cout << "Client disconnected !" << std::endl;
-//make sure the client is erased + set _logged as false when quitting				
+					std::cout << "A client disconnected !" << std::endl;
+					_clients[i]->leaveAllChannels();
+					_clients[i]->leaveServer();
+					close(_clients[i]->getSocket());
 				}
 			}			
 		}
