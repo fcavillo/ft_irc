@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/15 15:32:29 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/16 19:00:03 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,17 @@ void	irc::Message::Message_c(std::string code, std::string code_msg, Client *a)
 	a->sendMsg(message_print(this->_server->getServername(), code , this->_sender->getNick(), code_msg , this->_sender->getOper()));
 }
 
+// a MODIFIER SI ERREUR DE FORMULATION
+
 void	irc::Message::Message_p(std::string code, std::string code_msg)
 {
 	this->_sender->sendMsg(message_print(this->_server->getServername(), code , this->_sender->getNick(), code_msg , this->_sender->getOper()));
 }
 
+
+
+
+// POUR NICK USER certificate
 void	irc::Message::pass()
 {
 	if(this->_params.size() == 0)
@@ -97,35 +103,118 @@ void	irc::Message::pass()
 		this->_sender->setPass(this->_params[0]);
 }
 
+// POUR METTRE LES MODES AU BON ENDROIT
+//
+// 3 cas
+//
+// MODE #i
+// MODE #i user
+// MODE user
+//
+// USER mode (SERVER) "+""-" "aiwoOrs"
+//
+//
+//
+// USER mode (CHANNEL) 
+// CHANNEL mode
+//
+
+// A METTRE DANS utils
+//
+bool	irc::valid_flags(std::string flags, std::string validflag)
+{
+	if(flags == "" || (flags[0] != '+' && flags[0] != '-'))
+		return(false);
+	for(size_t n = 0; flags[n] != '\0' ; n++)
+	{
+		if(!(ftFinds(flags[n], valid_flags)))
+			return(false);
+	}
+	return(true);
+}
 
 void	irc::Message::mode()
 {
+	if(this->_params[0] == "")
+		return(this->_sender->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	if(this->_params[0] != "" && this->_params[0][0] == '#')
 	{
+		// MODE AVEC CHANNEL SANS USER : MODE #i +ioinvonsi
+		if(this->_params[1] == "")
+			return(this->_sender->Message_p(ERR_NOCHANMODES, ERR_NOCHANMODES_MSG()));
 		Channel			*a = this->_server->findChannelFromName(_params[0]);
-		if(a != NULL)
+		if(a == NULL)// IL Y A PAS DE MESSAGES D ERRUERS ASSOCIES
+			return ;
+	//	if(!valid_flags(this->_params[1] , "aimnqpsrtklbeiIoOv"))
+	//		return(this->_sender->Message_p(ERR_UNKNOWNMODE, ERR_UNKNOWNMODE_MSG()));
+		// LES FLAGS USERS
+		if(this->_params[1] == "+O" , this->_params[1] == "+o" this->_params[1] == "+v" this->_params +b) // mode liee a des users
+
+		// ON NE GERE PAS E et I
+		// LES CHAN KEY ou user limit
+		if(this->_params[1] == "+k" || this->_params[1] == "-k" || this->_params[1] == "+l" || this->_params[1] == "-l")
+		if(valid_flags(this->_params[1] , "aimnqpsrt"))
 		{
-			printf("\n1\n");
-			printf("\nPROBLEME AVEC LA PARTIE CI DESSOUS\n");
-			if(this->_params[1] != "")
+			if(!(a->isClient(this->_sender)))
+				return(this->_sender->Message_p(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_MSG(this->_params)))
+			if(a != NULL)
 			{
-				if(this->_params[1][0] == '+')
-					a->setMode(_params[1]);
-				if(this->_params[1][0] == '-')
-					a->rmMode(_params[1]);
+				if(!(a->isOper(this->_sender)))
+					return(this->_sender->Message_p(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_MSG()));
+				printf("\n1\n");
+				printf("\nPROBLEME AVEC LA PARTIE CI DESSOUS\n");
+				if(this->_params[1] != "")
+				{
+					if(this->_params[1][0] == '+')
+						a->setMode(_params[1]);
+					if(this->_params[1][0] == '-')
+						a->rmMode(_params[1]);
+				}
+				printf("\n2\n");
+				this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_CHANNELMODEIS + " " + RPL_CHANNELMODEIS_MSG( this->_sender->getNick() , this->_params[0] , "+" + a->getMode()));
+				printf("\nFINISH\n");
 			}
-			printf("\n2\n");
-			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_CHANNELMODEIS + " " + RPL_CHANNELMODEIS_MSG( this->_sender->getNick() , this->_params[0] , "+" + a->getMode()));
-			printf("\nFINISH\n");
+		}
+		else // MODE AVEC CHANNEL AVEC USER : MODE #i labintei +ewif
+		{
+			// LES USER MODES Oov
+
+			// LES CHANNELS MODES aimnqpsrt
+			// k remove key(password)
+			// l user limit channel(nombre de user)
+			// b set/remove ban mask
+			// e set/remove exception MASK
+			// i set/remove invite mask
+
+			if()
+			if(this->_params[1] == "+k")
+			{
+
+			}
+			if(this->_params[1] == "-k")
+			{
+
+			}
+			Client		*b = a->findClient_nick(this->_params[2]);
+			if(b == NULL)
+				return(this->_sender->Message_p(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_MSG()));
+
+			RPL_BANLIST(b)
+			RPL_ENDOFBANLIST(b)
+
+			RPL_EXCEPTLIST(e) // ??
+			RPL_INVITELIST(i)
+			RPL_UNIQOPIS() // ??
+
 		}
 	}
-	else if(this->_params[0] != "")
+	else if(this->_params[0] != "")// USER MODE EN DEHORS DE CHANNEL (DONE)
 	{
-//		Client*								findClientUser(std::string user);
-
-
+		// POUR TROUVER UN USER
 		Client			*b = this->_server->findClientUser(this->_params[0]);
-		if(this->_params[1] != "")
+		if(b == NULL)
+			return(this->_sender->Message_p(ERR_USERSDONTMATCH, ERR_USERSDONTMATCH_MSG(this->_params[0])));
+		if(this->_params[1] != "" && valid_flags(this->_params[1], "aiwroOs"))
 		{
 			if(this->_params[1][0] == '+')
 				b->setMode(this->_params[1]);
@@ -133,6 +222,8 @@ void	irc::Message::mode()
 				b->rmMode(this->_params[1]);
 			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_UMODEIS + " " + RPL_UMODEIS_MSG(/*this->_params[0], "root" , "+" + b->getMode())*/ "usermodestring"));
 		}
+		else
+			return(this->_sender->Message_p(ERR_UMODEUNKNOWNFLAG, ERR_UMODEUNKNOWNFLAG(this->_params[1])));
 	}
 }
 

@@ -220,6 +220,7 @@ void	irc::Message::parse(std::string line)
 		else
 			this->_params.push_back(word);
 	}
+	this->_params.push_back("");
 //	word.clear();
 //	return (v);
 }
