@@ -11,16 +11,29 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		_cmds[i] = toupper(_cmds[i]);
 	std::cout << "PREFIX : " << this->_prefix << std::endl;
 	std::cout << "CMDS : " << this->_cmds << std::endl;
-	if (_params.size() != 0)
+	if (_params.size() - 1 != 0)
 		std::cout << "PARAMS :" << this->_params[0] << std::endl;
-	if(this->_cmds == "PASS")
+
+
+	if (this->_cmds == "PASS")
+	{
 		this->pass();
-	else if(this->_cmds == "NICK")
+		if (sender->getRegistered() == false && sender->checkRegistered() == true)
+			welcome();
+	}
+	else if (this->_cmds == "NICK")
+	{
 		this->nick();
-	else if(this->_cmds == "USER")
+		if (sender->getRegistered() == false && sender->checkRegistered() == true)
+			welcome();
+	}
+	else if (this->_cmds == "USER")
+	{
 		this->user();
-	
-	if(sender->getRegistered() == true)
+		if (sender->getRegistered() == false && sender->checkRegistered() == true)
+			welcome();
+	}
+	else if (sender->getRegistered() == true)
 	{
 		if(this->_cmds == "PING")
 		{
@@ -90,15 +103,17 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		{
 			this->userhost();
 		}
+		else 
+		{
+			std::cout << "Unknown command on socket [" << sender->getSocket() << "]" << std::endl;
+		}
 
 	}
 	else
 	{
-		if (sender->checkRegistered() == true)
-		{
-			welcome();
-		}
+		std::cout << "Unregistered user on socket [" << sender->getSocket() << "] tried to execute a command" << std::endl;
 	}
+
 	return ;
 }
 /*

@@ -163,12 +163,12 @@ bool					irc::Client::getRegistered()
 
 bool					irc::Client::checkRegistered()
 {
-	if (getUsername() != "")
-		std::cout << "user : " << _username << std::endl;
-	if (_password != "")
-		std::cout << "pass : " << _password << std::endl;
-	if (_nick != "")
-		std::cout << "nick : " << _nick << std::endl;				
+	// if (getUsername() != "")
+	// 	std::cout << "user : " << _username << std::endl;
+	// if (_password != "")
+	// 	std::cout << "pass : " << _password << std::endl;
+	// if (_nick != "")
+	// 	std::cout << "nick : " << _nick << std::endl;				
 	if (getUsername() != "" && getPass() != "" && getNick() != "" && this->_registered == false)
 		setRegistered(true);
 	return (this->_registered);

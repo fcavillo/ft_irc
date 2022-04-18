@@ -174,7 +174,7 @@ void		irc::Server::activityCheck()
 			}
 			else if (status == 0)			//nothing to read, user force disconnected
 			{
-				std::cout << "A client force disconnected !" << std::endl;
+				std::cout << "A client on socket[" << _clients[i]->getSocket() << "] force disconnected !" << std::endl;
 				_clients[i]->leaveAllChannels();
 				_clients[i]->leaveServer();
 				close(_clients[i]->getSocket());				
@@ -184,7 +184,6 @@ void		irc::Server::activityCheck()
 			{
 				std::string line = std::string(_clients[i]->getBufferLine());	//put message in line
 				_clients[i]->getBufferLine().erase();
-// std::cout << "FloDebug : status = 2, line = " << line << std::endl;
 				if (line.length() > 0)
 				{
 					std::cout << "<- Socket[" << _clients[i]->getSocket() << "] : " << line << std::endl;
@@ -192,7 +191,7 @@ void		irc::Server::activityCheck()
 				}
 				if (_clients[i]->getLogged() == false)			//if the client just quit
 				{
-					std::cout << "A client disconnected !" << std::endl;
+					std::cout << "A client on socket [" << _clients[i]->getSocket() << "] disconnected !" << std::endl;
 					_clients[i]->leaveAllChannels();
 					_clients[i]->leaveServer();
 					close(_clients[i]->getSocket());

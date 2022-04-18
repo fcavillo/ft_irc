@@ -6,51 +6,18 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:15:01 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/16 18:01:30 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:19:29 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Message.hpp"
-// #include "../numeric_replies.hpp"
 
-//to do : 
-//	client : store messages from a client in a client-unique vector
-//  fcntl ? and accept for each fd ?
-//	crashes on nc 0.0.0.0 6667 /oper
-//	quit message
-//	changed all the "" by .size()
-//	find what fd is making select go around and around in a loop, look at what happens when a client leaves the server
-//	incorrect checksum when connecting after crash (guillemets?)
+//to do :
+
+//	quit message  : where to send ?
+//	change all the .size() by size() - 1
 //	check the buffer thing
+//	who() function used ?
 
 
-// void	irc::Message::pong()
-// {
-// 	if (_params.size() == 0)
-// 		Message_p(ERR_NOORIGIN, ERR_NOORIGIN_MSG());
-// 	else if (_params.size() > 1)
-// 		Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_server->getServername()));
-// 	else
-// 		_sender->sendMsg("PONG : " + _params[0]);
-	// std::cout << "user is a member of : " << std::endl;
-	// for (int i = 0; i < (int)_sender->getMembership().size(); i++)
-	// 	std::cout << _sender->getMembership()[i]->getName() << std::endl;
-	
-// }
-
-// /*	A client session is terminated with a quit message.  */
-// void	irc::Message::quit()
-// {
-// 	_sender->leaveAllChannels();
-// 	_sender->leaveServer();
-// 	close(_sender->getSocket());
-// }
-
-// void	irc::Message::welcome()
-// {
-// 	Message_p(RPL_WELCOME, RPL_WELCOME_MSG(_sender->getNick(), _sender->getUsername(), _server->getServername()));
-// 	Message_p(RPL_YOURHOST, RPL_YOURHOST_MSG(_server->getServername(), "1.0"));
-// 	Message_p(RPL_CREATED, RPL_CREATED_MSG(_server->getStartTimeString()));
-// 	Message_p(RPL_MYINFO, RPL_MYINFO_MSG(_server->getServername(), "1.0", "aiwroOS", "c_modes"));
-// }
 
