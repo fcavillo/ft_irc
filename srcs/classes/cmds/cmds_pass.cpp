@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/16 19:00:03 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:19:05 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ bool	irc::valid_flags(std::string flags, std::string validflag)
 	return(true);
 }
 
+
+// JE GERE TECHNIQUEMENT TOUT LES CAS DEMANDER PAR LE SUJET PEUT ETE DECOUPAGE
 void	irc::Message::mode()
 {
 	if(this->_params[0] == "")
@@ -145,15 +147,53 @@ void	irc::Message::mode()
 		Channel			*a = this->_server->findChannelFromName(_params[0]);
 		if(a == NULL)// IL Y A PAS DE MESSAGES D ERRUERS ASSOCIES
 			return ;
-	//	if(!valid_flags(this->_params[1] , "aimnqpsrtklbeiIoOv"))
-	//		return(this->_sender->Message_p(ERR_UNKNOWNMODE, ERR_UNKNOWNMODE_MSG()));
-		// LES FLAGS USERS
-		if(this->_params[1] == "+O" , this->_params[1] == "+o" this->_params[1] == "+v" this->_params +b) // mode liee a des users
-
-		// ON NE GERE PAS E et I
-		// LES CHAN KEY ou user limit
-		if(this->_params[1] == "+k" || this->_params[1] == "-k" || this->_params[1] == "+l" || this->_params[1] == "-l")
-		if(valid_flags(this->_params[1] , "aimnqpsrt"))
+		else if(this->_params[1] == "+O" || this->_params[1] == "+o" || this->_params[1] == "+v" || this->_params[1] == "+b") // mode liee a des users (ON NE GERE PAS B et V)
+		{
+			if(this->_params[2] == "")
+				return(this->_sender->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->cmds)));
+			Client		*b = a->findClient_nick(this->_params[2]);
+			if(b == NULL)
+			{
+				b = this->_server->findNick(this->_params[2]);
+				if(b == NULL)
+					return(this->_sender->Message_p(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_MSG(this->_params[2])));
+				b->sendMsg(":" + this->_sender->getNick() + "_!" + this->_sender->getUsername() + "@localhost INVITE " + this->_params[0] + " " + this->_params[1]);
+				this->_sender->sendMsg(":" + this->_sender->getNick() + "_!" + this->_sender->getUsername() + "@localhost "+ RPL_INVITING + " " + c->getNick() + "_ " + this->_params[1] + " " +this->_params[0]);
+			}
+			if(this->_params[1] == "+O" || this->_params[1] == "+o")
+				a->addOpper(b);
+			if(this->_params[1] == "-O" || this->_params[1] == "-o")
+				a->rmOpper(b);
+		}
+		else if(this->_params[1] == "+k" || this->_params[1] == "-k" || this->_params[1] == "+l" || this->_params[1] == "-l") // CHAN KEY ET USER CHAN KEY OU USER LIMIT
+		{
+			if(!(a->isClient(this->_sender)))
+				return(this->_sender->Message_p(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_MSG(this->_params)))
+			if(!(a->isOpper(this->_sender)))
+				return(this->_sender->Message_p(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_MSG()));
+			if(this->_params[1] == "+k")
+			{
+				if(this->_params[2] == "")
+					return(this->_sender->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS(this->_cmds)));
+				a->setPass(this->_params[2]);
+			}
+			if(this->_params[1]  == "-k")
+			{
+				a->setPass("");
+			}
+			if(this->_params[1] == "+l")
+			{
+				if(this->_params[2] == "")
+					return(this->_sender->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS(this->_cmds)));
+				a->setUserlimit(ft_atoi(this->_params[2]));
+			}
+			if(this->_params[1] == "-l")
+			{
+				// ON va le mettre en valeur par default (je suis pas sur de la valeur fourni)
+				a->setUserlimit(256);
+			}
+		}
+		else if(valid_flags(this->_params[1] , "aimnqpsrt"))
 		{
 			if(!(a->isClient(this->_sender)))
 				return(this->_sender->Message_p(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_MSG(this->_params)))
@@ -175,38 +215,8 @@ void	irc::Message::mode()
 				printf("\nFINISH\n");
 			}
 		}
-		else // MODE AVEC CHANNEL AVEC USER : MODE #i labintei +ewif
-		{
-			// LES USER MODES Oov
-
-			// LES CHANNELS MODES aimnqpsrt
-			// k remove key(password)
-			// l user limit channel(nombre de user)
-			// b set/remove ban mask
-			// e set/remove exception MASK
-			// i set/remove invite mask
-
-			if()
-			if(this->_params[1] == "+k")
-			{
-
-			}
-			if(this->_params[1] == "-k")
-			{
-
-			}
-			Client		*b = a->findClient_nick(this->_params[2]);
-			if(b == NULL)
-				return(this->_sender->Message_p(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_MSG()));
-
-			RPL_BANLIST(b)
-			RPL_ENDOFBANLIST(b)
-
-			RPL_EXCEPTLIST(e) // ??
-			RPL_INVITELIST(i)
-			RPL_UNIQOPIS() // ??
-
-		}
+		else
+			return(this->_sender->Message_p(ERR_UMODEUNKNOWNFLAG, ERR_UMODEUNKNOWNFLAG_MSG(this->_params[1])));
 	}
 	else if(this->_params[0] != "")// USER MODE EN DEHORS DE CHANNEL (DONE)
 	{
@@ -231,24 +241,21 @@ void	irc::Message::mode()
 // 7 params
 //
 // WHo #iejfjiw fjeeiof
-// tout ce qui matche avec un  channel ou un user ...
-// devra renvoyer un std::vector Channel* ou std::vector Client*
 void	irc::Message::who()
 {
 	if(this->_params[0] != "" && this->_params[0][0] == '#')
-	{/*
+	{
 		Channel*		b  = this->_server->findChannelFromName(this->_params[0]);
 		std::vector<Client*>	a = b->getClient();
 		for(std::vector<Client*>::iterator it = a->begin(); it != a.end() ; it++)
 		{
 			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_WHOREPLY + " " + RPL_WHOREPLY_MSG(this->_params[0], this->_sender->getUsername() , " hostname ", " server " server , this->_sender->getNick() , " connect ",  this->_sender->getRealName()));
-		}*/
-		//this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_ENDOFWHO + " " + RPL_ENDOFWHO_MSG(this->_params[0]));
+		}
 		this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_ENDOFWHO + " " + this->_sender->getNick() + " " + this->_sender->getUsername() + " " + ":End of /WHO list");
 	}
 }
 
-
+// DONE
 void	irc::Message::nick()
 {
 	if(this->_params.size() == 0)
@@ -259,60 +266,46 @@ void	irc::Message::nick()
 		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
 	else if(!(nick_check_char(this->_params[0])))
 		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
-//	else
 	this->_sender->setNick(this->_params[0]);
-	// RETOURNER PAR UN SERVER SI LA CONNECTION EST DITE RESTRICTED user mode "+r"
-//	this->Message_p(ERR_RESTRICTED, ERR_RESTRICTED_MSG());
 }
 
-
+// DONE
 void	irc::Message::userhost()
 {
 	if(this->_params.size() == 0)
-		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-//	else if(this->_server->findClient_user(this->_params[0]))
-//		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
-//	else
-//	{
+		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	this->_sender->setUsername(this->_params[0]);
-		// voir pour mettre les mode et real name
-//	}
+	this->_sender->sendMsg(prefix(this->_sender), " " + RPL_USERHOST + " " + RPL_USERHOST_MSG());
 }
 
+// DONE
 void	irc::Message::user()
 {
 	if(this->_params.size() == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-//	else if(this->_server->findClient_user(this->_params[0]))
-//		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
-//	else
-//	{
+	else if(this->_server->findClient_user(this->_params[0]))
+		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
 	this->_sender->setUsername(this->_params[0]);
-		// voir pour mettre les mode et real name
-//	}
 }
 
+// DONE
 void	irc::Message::oper()
 {
-	if(this->_params.size() == 0)
+
+	if(this->_params[0] == "" || this->_params[1] == "" || this->_params[2] == "")
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	else if(this->_params[1] != this->_server->getPassword())
+	else if(this->_params[1] != this->_sender->getUsername())
+		this->Message_p(ERR_NOOPERHOST, ERR_NOOPERHOST_MSG());
+	else if(this->_params[2] != this->_server->getPassword())
 		this->Message_p(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_MSG());
 	else
 	{
-		if(this->_sender->getUsername() == "labintei" || this->_sender->getUsername() == "fcavillo")
-		{
-			this->_sender->setOper(true);
-			this->Message_p(RPL_YOUREOPER, RPL_YOUREOPER_MSG());
-		}
-		else
-			this->Message_p(ERR_NOOPERHOST, ERR_NOOPERHOST_MSG());
+		this->_sender->setOper(true);
+		this->Message_p(RPL_YOUREOPER, RPL_YOUREOPER_MSG());
 	}
 }
 
-//		void								addChannel(Channel* chan);
-
-
+// DONE maybe some mistake
  void	irc::Message::join()
  {
  	std::vector<std::string>	names;
@@ -323,48 +316,52 @@ void	irc::Message::oper()
  		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
  	printf("\n1\n");
 	names = splitChar(this->_params[0], ',');
- 	printf("\n2\n");/*
+ 	printf("\n2\n");
 	if(this->_params[0] != "" && this->_params[1] != "")
  		key = splitChar(this->_params[1], ',');
-	*/printf("\n3\n");
- //	Channel*	a;
-//	a = this->_server->findChannelFromName(_params[0]);
- 
-//	printf("\n %s \n", names[v]);
-//	size_t	v = 0;
-//	printf("\n %s \n", names[v].c_str());
+ 	Channel*	a;
+	printf("\n %s \n", names[v]);
 	size_t		v = 0;
+	if(this->_params[0] == "0" && this->_params[1] == "")
+	{
+		return(this->_server->leaveAllChannels(this->_sender));
+		// LEAVE ALL CURRENT CHANNEL ne connais pas les returns et ...
+	}
  	for(std::vector<std::string>::iterator it = names.begin() ; it != names.end() ; it++)
  	{
- 		if( this->_server->findChannelFromName(_params[0]) != NULL)
+		a = this->_server->findChannelFromName(_params[0]);
+ 		if( a != NULL)
  		{
 			printf("\nBIEN EN TRAIN DE JOINDRE LE CHANNEL DEJA CREEER\n");
 			Channel*	a = this->_server->findChannelFromName(_params[0]);
- 			//if(a->getPass() != "" && a->getPass() != key[v])
- 			//	this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG(names[v]));
- 			/*else*/ 
-			printf("\n1\n");
-			if(a->isBan(this->_sender))
- 				this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG(names[v]));
- 			else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
- 				this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG(names[v]));
-			else if(names[v][0] == '!' && (a->getName())[0] != '!')
-				this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG(names[v], "abbort messages"));
+ 			if(a->getPass() != "" && a->getPass() != key[v])
+ 				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG(names[v]));
 			else
 			{
-				printf("\n2\n");
-				std::vector<Client*>		g = a->getClients();
-				for(std::vector<Client*>::iterator it  = g.begin(); it != g.end() ; it++)
+				printf("\n1\n");
+				if(a->isBan(this->_sender))
+					this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG(names[v]));
+				else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
+					this->Message_p(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_MSG(names[v]));
+				else if(names[v][0] == '!' && (a->getName())[0] != '!')
+					this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG(names[v], "abbort messages"));
+				else
 				{
-					if(this->_sender != (*it))
-						this->Message_cmds("JOIN " , a->getName() , (*it));
-						
+					printf("\n2\n");
+					std::vector<Client*>		g = a->getClients();
+					for(std::vector<Client*>::iterator it  = g.begin(); it != g.end() ; it++)
+					{
+						if(this->_sender != (*it))
+							this->Message_cmds("JOIN " , a->getName() , (*it));
+					}
+					this->Messagejoin(a);
+					a->addClient(this->_sender);
+					_sender->addMembership(a);
 				}
-				this->Messagejoin(a);
-				a->addClient(this->_sender);
-				_sender->addMembership(a);
 			}
- 		}
+ 		}.
+		else if(names[v] && ftFinds(names[v][0], "#!?")
+			this->_sender->Message_p(ERR_BADCHANMASK, ERR_BADCHANMASK_MSG());
  		else
  		{
  			if(validChannelName(names[v]))
@@ -372,16 +369,16 @@ void	irc::Message::oper()
  			Channel		*h = new Channel(names[v]);
 
 			printf("\n Prenom set\n");
-			/*if(this->_params[0] != "" && this->_params[1] != "")
+			if(this->_params[0] != "" && this->_params[1] != "")
 			{
-				for(size_t c = 0; key[c] != "" ; c++)
+				size_t o = 0;
+				for(std::vector<std::string>::iterator ut = key.begin(); ut != key.end(); ut++)
 				{
-					if(c == v)
-						h->setPass(key[c]);
+					if(v == o)
+						h->setPass((*ut));
+					o++;
 				}
-			}*/
-			 //CETTE FONCTION NE MARCHE PEUT ETRE PAS
- 			//this->_server->getChannels().push_back(h);
+			}
 			h->addClient(this->_sender);
 			_sender->addMembership(h); 
 			this->Messagejoin(h);
@@ -402,9 +399,11 @@ void	irc::Message::oper()
 	// Quand un client cherche a rejindre un channel qui a ! et qui a plusieurs short name equivalents
 	// this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG());
 	//
-	// IL Y A UNE RPL TOPIC DANS JOIN
+	// IL Y A UNE RPL TOPIC DANS JOIN ?? ne voit pas trop ou poser cette chose // irssi fonctionne differement
 }
 
+
+// 
 void	irc::Message::part()
 {
 	std::string		msg = convertVectortoString(this->_params, 1);

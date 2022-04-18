@@ -13,6 +13,12 @@ void				irc::Channel::setName(std::string name)
 	this->_name = name;
 }
 
+void				irc::setUserlimit(int limit)
+{
+	this->_userlimit = limit;
+}
+
+
 irc::Client*				irc::Channel::findClientNick(std::string nick)
 {
 	for(std::vector<Client*>::iterator it = _clients.begin(); it != _clients.end(); it++)
@@ -120,12 +126,35 @@ void					irc::Channel::addClient(irc::Client* client)
 	this->_clients.push_back(client);	
 }
 
+void					irc::Channel::addOpper(Client* client)
+{
+	for (std::vector<Client*>::iterator it = _opper.begin(); it != _opper.end() ; it++)	//checks if user already is member
+		if (*(it) == client)
+			return ;
+	this->_opper.push_back(client);
+}
+
+void					irc::Channel::rmOpper(Client* client)
+{
+	std::vector<Client*>::iterator it;
+
+	for (it = _opper.begin(); it != _opper.end() || *(it) != client ; it++)
+	{
+		if((*it) == client)
+		{
+			this->_opper.erase(it);
+			return ;
+		}
+	}
+}
 
 
 void					irc::Channel::rmClient(irc::Client* client)
 {
 	std::vector<Client*>::iterator it;
 
+	// PETITE MODIFICATION EFFACER OPPER EN PREMIER
+	rmOpper(client);
 	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++)
 	{
 		if((*it) == client)

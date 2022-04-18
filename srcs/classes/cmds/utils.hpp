@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:36:15 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/10 15:53:52 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:41:01 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ namespace	irc
 				return(false);
 		return(true);
 	};
+
+	int								ftatoi(std::string s) // ft_atoi sans secu
+	{
+		int		n = 0;
+
+		for(size_t y = 0; s[y] != '\0'; y++)
+		{
+			if(isChiffre(s[y]))
+				n = (n * 10) + (s[y] - '0');
+		}
+		return(n);
+	}
 
 	std::vector<std::string>		splitChar(std::string line, char c)
 	{

@@ -55,8 +55,12 @@ class   Channel
 		void						rmMode(std::string s);
 		std::string					getMode(void);
 
+		// ADD labintei
 
+		void						addOpper(Client* client);
+		void						rmOpper(Client* client);
 
+		void						SetUserlimit(int n);
 	private :
 		Channel();
 
@@ -69,6 +73,9 @@ class   Channel
 
 		std::string							_mode;
 		std::string							_pass;
+
+		// ADD labintei
+		int									_userlimit;
 };
 
 
