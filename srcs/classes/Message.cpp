@@ -103,6 +103,14 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		{
 			this->userhost();
 		}
+		else if(this->_cmds == "MODE")
+		{
+			this->mode();
+		}
+		else if(this->_cmds == "WHO")
+		{
+			this->who();
+		}
 		else 
 		{
 			std::cout << "Unknown command on socket [" << sender->getSocket() << "]" << std::endl;

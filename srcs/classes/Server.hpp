@@ -91,6 +91,7 @@ class   Server
 
 		std::vector<Channel*>				findChannelNameExtension(std::string extension);
 
+		void								leaveAllChannels(Client* sender);
 
 	private :
 		Server();

@@ -519,3 +519,12 @@ std::vector<irc::Channel*>		irc::Server::findChannelNameExtension(std::string ex
 	return(c);
 }
 
+void							irc::Server::leaveAllChannels(irc::Client* client)
+{
+	for(std::vector<Channel*>::iterator	it = this->_channels.begin(); it != this->_channels.end() ; it++)
+	{
+		if((*it)->isClient(client))
+			(*it)->rmClient(client);
+	}
+}
+

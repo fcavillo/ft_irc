@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:36:15 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/18 14:41:01 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/22 12:15:45 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 namespace	irc
 {
+	bool		valid_flags(std::string flags, std::string validflag);
+
+
 	bool		isSpecial(char c){ return (c >= '[' && c <= '\'') || (c >= '{' && c <= '}');};
 	bool		isLetter(char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');};
 	bool		isChiffre(char c){ return (c >= '0' && c <= '9');};

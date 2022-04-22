@@ -13,7 +13,7 @@ void				irc::Channel::setName(std::string name)
 	this->_name = name;
 }
 
-void				irc::setUserlimit(int limit)
+void				irc::Channel::setUserlimit(int limit)
 {
 	this->_userlimit = limit;
 }
@@ -82,8 +82,8 @@ bool		irc::Channel::isBan(irc::Client* client)
 }*/
 
 
-
-irc::Channel::Channel(std::string name) : _name(name)
+// set le mode a "n" par default
+irc::Channel::Channel(std::string name) : _name(name), _mode("n")
 {
 	return ;
 }
@@ -128,21 +128,21 @@ void					irc::Channel::addClient(irc::Client* client)
 
 void					irc::Channel::addOpper(Client* client)
 {
-	for (std::vector<Client*>::iterator it = _opper.begin(); it != _opper.end() ; it++)	//checks if user already is member
+	for (std::vector<Client*>::iterator it = _oper.begin(); it != _oper.end() ; it++)	//checks if user already is member
 		if (*(it) == client)
 			return ;
-	this->_opper.push_back(client);
+	this->_oper.push_back(client);
 }
 
 void					irc::Channel::rmOpper(Client* client)
 {
 	std::vector<Client*>::iterator it;
 
-	for (it = _opper.begin(); it != _opper.end() || *(it) != client ; it++)
+	for (it = _oper.begin(); it != _oper.end() || *(it) != client ; it++)
 	{
 		if((*it) == client)
 		{
-			this->_opper.erase(it);
+			this->_oper.erase(it);
 			return ;
 		}
 	}
@@ -154,7 +154,8 @@ void					irc::Channel::rmClient(irc::Client* client)
 	std::vector<Client*>::iterator it;
 
 	// PETITE MODIFICATION EFFACER OPPER EN PREMIER
-	rmOpper(client);
+	if(isOper(client) == true)
+		rmOpper(client);
 	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++)
 	{
 		if((*it) == client)

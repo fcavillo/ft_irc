@@ -60,7 +60,7 @@ class   Channel
 		void						addOpper(Client* client);
 		void						rmOpper(Client* client);
 
-		void						SetUserlimit(int n);
+		void						setUserlimit(int n);
 	private :
 		Channel();
 
