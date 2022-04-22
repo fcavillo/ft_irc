@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/21 21:23:29 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:51:33 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	irc::Message::Message_p(std::string code, std::string code_msg)
 // POUR NICK USER certificate
 void	irc::Message::pass()
 {
-	if(this->_params.size() == 0)
+	if(this->_params.size() - 1 == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else if(this->_sender->getPass() != "")
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
@@ -290,7 +290,7 @@ void	irc::Message::who()
 // DONE
 void	irc::Message::nick()
 {
-	if(this->_params.size() == 0)
+	if(this->_params.size() - 1 == 0)
 		this->Message_p(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_MSG());
 	else if(this->_server->findNick(this->_params[0])) // Si c est deja le meme nickname
 		this->Message_p(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_MSG(this->_params[0]));
@@ -304,7 +304,7 @@ void	irc::Message::nick()
 // DONE
 void	irc::Message::userhost()
 {
-	if(this->_params.size() == 0)
+	if(this->_params.size() - 1 == 0)
 		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	this->_sender->setUsername(this->_params[0]);
 	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_USERHOST + " " + RPL_USERHOST_MSG("list ??"));
@@ -313,7 +313,7 @@ void	irc::Message::userhost()
 // DONE
 void	irc::Message::user()
 {
-	if(this->_params.size() == 0)
+	if(this->_params.size() - 1 == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else if(this->_server->findClient_user(this->_params[0]))
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
@@ -471,7 +471,7 @@ void	irc::Message::topic()
 {
 	std::string		msg = convertVectortoString(this->_params, 1);
 
-	if(this->_params.size() == 0)
+	if(this->_params.size() - 1 == 0)
 		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG("TOPIC")));
 	Channel*	b;
 
@@ -498,11 +498,9 @@ void	irc::Message::topic()
 // FLO
 void	irc::Message::names()
 {
-// std::cout << "FloNames()1" << std::endl;	
-	if (_params.size() > 0)
+	if (_params.size() - 1 > 0)
 	{
-	// std::cout << "FloNames()2" << std::endl;	
-		for (size_t i = 0; i < _params.size(); i++)
+		for (size_t i = 0; i < _params.size() - 1; i++)
 		{
 			if (_server->findChannelFromName(_params[i]) != NULL)
 			{
@@ -515,7 +513,6 @@ void	irc::Message::names()
 	}
 	else
 	{
-	// std::cout << "FloNames()5" << std::endl;	
 		for (size_t i = 0; i < _server->getChannels().size(); i++)
 		{
 			Channel*	tmp = _server->getChannels()[i];
@@ -524,7 +521,6 @@ void	irc::Message::names()
 			this->Message_p(RPL_ENDOFNAMES, RPL_ENDOFNAMES_MSG(tmp->getName()));
 		}
 	}	
-// std::cout << "FloNames()9" << std::endl;	
 }
 
 
@@ -546,21 +542,17 @@ char* itoa(int val, int base){
 // FLO
 void	irc::Message::list()
 {
-// std::cout << "FloList()1" << std::endl;
-	if (this->_params.size() > 0 && this->_params[0] != _server->getServername())
+	if (this->_params.size() - 1 > 0 && this->_params[0] != _server->getServername())
 	{
-// std::cout << "FloList()2" << std::endl;
 		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
 		return ;
 	}
 	for (int i = 0; i < (int)this->_server->getChannels().size(); i++)
 	{
-// std::cout << "FloList()6" << std::endl;
 		Channel*	tmp = this->_server->getChannels()[i];
 		this->Message_p(RPL_LIST, RPL_LIST_MSG(tmp->getName(), itoa(tmp->getClients().size(), 10), tmp->getTopic()));
 	}
 	this->Message_p(RPL_LISTEND, RPL_LISTEND_MSG());
-// std::cout << "FloList()9" << std::endl;
 }
 
 // DONE
@@ -743,7 +735,7 @@ void	irc::Message::notice()
 
 void	irc::Message::admin()
 {
-	if (this->_params.size() > 0 && this->_params[0] != _server->getServername())
+	if (this->_params.size() - 1 > 0 && this->_params[0] != _server->getServername())
 		this->Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_params[0]));
 	else
 	{
@@ -757,30 +749,23 @@ void	irc::Message::admin()
 //(nick name collision)
 void	irc::Message::kill()
 {
-	for (size_t i = 0; i < _params.size(); i++)
+	for (size_t i = 0; i < _params.size() - 1; i++)
 		std::cout << "param" << i << " = " << _params[i] << std::endl;	
 	if (_sender->getOper() == false)
 		this->Message_p(ERR_NOPRIVILEGES, ERR_NOPRIVILEGES_MSG());
 	else if (_server->findClient_nick(_params[0]) == false)
 		this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(_params[0]));		
-	else if (this->_params.size() < 2 || _params[1].size() <= 1)
+	else if (this->_params.size() - 1 < 2 || _params[1].size() - 1 <= 1) 
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
 	else
 	{
-		
-// std::cout << "FloKill()3" << std::endl;	
 		Client*	tmp = _server->findNick(_params[0]);
 		tmp->sendMsg("You were killed by an operator for the following reason " + _params[1]);
-// std::cout << "FloKill()3.1 " << tmp->getServer()->getServername() << std::endl;	
 		tmp->leaveAllChannels();
-// std::cout << "FloKill()3.2 " << tmp->getServer()->getServername() << std::endl;	
 		tmp->leaveServer();
-// std::cout << "FloKill()4 " << std::endl;	
 		close(tmp->getSocket());
-// std::cout << "FloKill()5" << std::endl;	
 		tmp->setLogged(false);
 	}
-// std::cout << "FloKill()9" << std::endl;	
 }
 
 //(DIE oper)
@@ -851,9 +836,9 @@ void	irc::Message::oper()
 
 void	irc::Message::pong()
 {
-	if (_params.size() == 0)
+	if (_params.size() - 1 == 0)
 		Message_p(ERR_NOORIGIN, ERR_NOORIGIN_MSG());
-	else if (_params.size() > 1)
+	else if (_params.size() - 1 > 1)
 		Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_server->getServername()));
 	else
 		_sender->sendMsg("PONG : " + _params[0]);
@@ -870,9 +855,6 @@ void	irc::Message::quit()
 	_sender->leaveServer();
 	close(_sender->getSocket());
 	_sender->setLogged(false);
-//add message
-	// if (_params.size() > 0)
-	//message public ?	
 }
 
 void	irc::Message::welcome()
