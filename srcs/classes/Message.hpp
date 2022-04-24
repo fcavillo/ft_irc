@@ -42,10 +42,14 @@ class   Message
 		std::string					_prefix;
 		std::string					_cmds;
 		std::vector<std::string>	_params;
+	//	AJOUT pour msg
+		std::string					_msg;
 	// retour charriot mais on s en fiche
 
 		std::vector<std::string>	v_split(std::string line);
 		Message();
+
+	// AJOUT 
 
 	public :
 
@@ -60,7 +64,7 @@ class   Message
 
 	// CMDS CHANNEL
 
-
+	std::string					getMsg(std::string line);
 
 	// CMDS OPER
 	void	Message_cmds(std::string cmds, std::string facultatif, Client *a);

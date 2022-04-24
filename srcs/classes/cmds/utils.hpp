@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:36:15 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/22 12:15:45 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/23 14:39:17 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define		UTILS_HPP
 
 #include<cstring>
+#include<cstdio>
 
 namespace	irc
 {
@@ -153,22 +154,23 @@ namespace	irc
 
 		if(params != "")
 		{
-			if(params[0] != '#' || params[0] != '$')
-				return(NULL);
+			//if(params[0] != '#' || params[0] != '$')
+			//	return("");
 			if(params[1] != '*')
-				return(NULL);
+				return("");
 			if(params[2] != '.')
-				return(NULL);
+				return("");
 			for(int		i = 3; params[i] != '\0'; i++)
 			{
 				extension += params[i];
 			}
-			if(ftFind('?', extension) || ftFind('#', extension))
-				return(NULL);
+			//if(ftFind('?', extension) || ftFind('#', extension))
+			//	return("");
+			printf("\n %s\n", extension.c_str());
 			return(extension);
 		}
 		else
-			return(NULL);
+			return("");
 	};
 
 };
