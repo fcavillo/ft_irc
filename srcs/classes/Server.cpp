@@ -1,5 +1,7 @@
 #include "Server.hpp"
 
+#include "cstdio"
+
 bool	forceStop = false;
 void	sig(int) {forceStop = true;}
 
@@ -464,19 +466,25 @@ std::vector<irc::Channel*>		irc::Server::findChannelNameExtension(std::string ex
 {
 	std::vector<Channel*>	c;
 
+	printf("\n Channel NAMEEE \n");
 	for(std::vector<Channel*>::iterator it = _channels.begin() ; it != _channels.end() ; it++)
 	{
 		std::string		user = (*(it))->getName();
-		size_t			u;
-		for(u = 0; (user.size() - u) >= 0 && (extension.size() - u) >= 0; u++)
+		size_t			i = 0;
+		for(size_t u = extension.size() ; (user.size() - u) >= 0 && u >= 0; u--)
 		{
-			if(((extension.size() - u) == 0) && (extension[(extension.size() - u)] == user[(user.size() - u)]) && ((user.size() - u - 1) >= 0) && (user[(user.size() - u - 1)] == '.'))
+			if(extension[u] != user[user.size() - i])
+				break;
+			if(u == 0)
+			{
+				printf("\n PUSHclient %s \n", ((*it)->getName()).c_str());
 				c.push_back((*it));
-			else if(user[user.size() - u ] != extension[extension.size() - u])
-				break ;
+			}
+			i++;
 		}
 		user.clear();
 	}
+	printf("\n return Client \n");
 	return(c);
 }
 

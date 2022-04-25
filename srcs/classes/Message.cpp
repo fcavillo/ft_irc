@@ -1,8 +1,11 @@
 #include "Message.hpp"
+#include <cstdio>
 //#include "numeric_replies.hpp"
 
 /*	The constructor handles the user registration and the message splitting	*/
 
+// PEUT ETRE A IMPLEMENTER ADMIN WHOIS WHOWAS
+// plus pratique LIST (listes les channels)
 
 irc::Message::Message(std::string line, Server *server, Client *sender) : _server(server), _sender(sender), _fullCommand(line)
 {
@@ -14,7 +17,12 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	if (_params.size() - 1 != 0)
 		std::cout << "PARAMS :" << this->_params[0] << std::endl;
 
-
+	// correspond aux fonctions qui fonctionne avec un message
+	if(this->_cmds == "PRIVMSG" || this->_cmds == "NOTICE" || this->_cmds == "PART" || this->_cmds == "QUIT" || this->_cmds == "SQUIT" || this->_cmds == "KICK" || this->_cmds == "KILL" || this->_cmds == "TOPIC")
+	{
+		this->_msg.clear();
+		this->_msg = this->getMsg(line); // JE l ai fait de facon simplifier
+	}
 	if (this->_cmds == "PASS")
 	{
 		this->pass();
@@ -73,6 +81,7 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		}
 		else if(this->_cmds == "PRIVMSG")
 		{
+			printf("\nOK1\n");
 			this->privmsg();
 		}
 		else if(this->_cmds == "NOTICE")
@@ -124,6 +133,29 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 
 	return ;
 }
+
+std::string			irc::Message::getMsg(std::string line)
+{
+	char		j = 0;
+	std::string		ret = "";
+	
+	for(size_t o = 0; line[o] != '\0' ; o++)
+	{
+		if(j == 1)
+		{
+			ret += line[o];
+		}
+		if(line[o] == ':' && j == 0)
+		{
+			j = 1;
+			if(this->_cmds != "TOPIC")
+				ret += " :";
+		}
+	}
+	return(ret);
+}
+
+
 /*
 
 
@@ -246,6 +278,7 @@ void	irc::Message::parse(std::string line)
 	this->_params.push_back("");
 //	word.clear();
 //	return (v);
+	printf("\nOK\n");
 }
 
 

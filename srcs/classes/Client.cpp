@@ -1,7 +1,7 @@
 #include "Client.hpp"
 #include "Message.hpp"
 
-irc::Client::Client(Server* server) : _oper(0), _registered(0), _logged(1), _realName("localhost") , _server(server)
+irc::Client::Client(Server* server) : _oper(0), _registered(0), _logged(1), _realName("localhost") , _server(server) , _mode("wi")
 {
 	(void)_server;
 	return ;

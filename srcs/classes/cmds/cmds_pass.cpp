@@ -6,7 +6,11 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/25 11:45:38 by fcavillo         ###   ########.fr       */
+=======
+/*   Updated: 2022/04/25 13:06:56 by labintei         ###   ########.fr       */
+>>>>>>> 9cfb0f7e7926dd5046bec674cd9b19424834af90
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +23,13 @@
 #include <cstdio>
 
 
+//if(this->_cmds == "PRIVMSG" || this->_cmds == "NOTICE" || this->_cmds == "PART" || this->_cmds == "QUIT" || this->_cmds == "SQUIT" || this->_cmds == "KICK" || this->_cmds == "KILL")
+//		this->_msg = this->getMsg(line); // JE l ai fait de facon simplifier
+
+
 std::string			prefix(irc::Client *a)
 {
-	return(":" + a->getNick() + "!" + a->getUsername() + "@" + "127.0.0.1");
+	return(":" + a->getNick() + "!" + a->getUsername() + "@" + "localhost");
 }
 // 
 //void	
@@ -32,18 +40,63 @@ std::string	RPL_NAMEREPLY_MSG(std::string chan_mod, std::string channel, std::st
 */
 
 // faire une commande NAMES / MODE WHO
+void	irc::Message::Messagejoininit(/*std::string cmds,*/ /*std::string msg, */irc::Channel* chan)
+{
+	chan->getName();
+//	this->_sender->sendMsg(prefix(this->_sender) + " 353" + " " + this->_sender->getNick() + " = " + chan->getName() + " :@" + this->_sender->getNick());
+//	this->_sender->sendMsg(prefix(this->_sender) + " " + "366" + " " + this->_sender->getNick() + " " + chan->getName() + " :End of /NAMES list");
+//	this->_sender->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
+}
+
+
 void	irc::Message::Messagejoin(/*std::string cmds,*/ /*std::string msg, */irc::Channel* chan)
 {
-	this->_sender->sendMsg(prefix(this->_sender) + " 353" + " " + this->_sender->getNick() + " = " + chan->getName() + " :@" + this->_sender->getNick());
+	std::string s;
 	std::vector<Client*>	o = chan->getClients();
+
+/*
+	if(o.size() != 0)
+	{
+		std::vector<Client*>::iterator		c = (o.begin());
+		if((*c) != this->_sender)
+			this->_sender->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
+	}*/
 	for(std::vector<Client*>::iterator n = o.begin() ; n != o.end(); n++)
 	{
-		if((*n) != this->_sender)
-			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_NAMEREPLY + RPL_NAMEREPLY_MSG("+n", chan->getName(), (*n)->getNick()));
+	//	if((*n) != this->_sender)
+		//	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_NAMEREPLY + RPL_NAMEREPLY_MSG("+n", chan->getName(), (*n)->getNick()));
+		if((*n) != NULL && (*n) != this->_sender /*&& (n != o.begin() || (*n) == this->_sender)*/)
+			(*n)->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
 	}
+	if(o.size() == 0)
+		s += this->_sender->getNick();
+	else
+	{	
+		for(std::vector<Client*>::iterator n = o.begin() ; n != o.end(); n++)
+		{
+			if((*n) != NULL)
+				s += (*n)->getNick();
+			if((n + 1) != o.end())
+				s+= " ";
+		}
+	}
+	printf("\n TEST %s \n", s.c_str());
+	this->_sender->sendMsg(prefix(this->_sender) + " 353" + " " + this->_sender->getNick() + " = " + chan->getName() + " :@" + s);
 	this->_sender->sendMsg(prefix(this->_sender) + " " + "366" + " " + this->_sender->getNick() + " " + chan->getName() + " :End of /NAMES list");
+//	std::vector<Client*>	o = chan->getClients();
+/*	for(std::vector<Client*>::iterator n = o.begin() ; n != o.end(); n++)
+	{
+	//	if((*n) != this->_sender)
+		//	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_NAMEREPLY + RPL_NAMEREPLY_MSG("+n", chan->getName(), (*n)->getNick()));
+		if((*n) != NULL && (*n) != this->_sender && (n != o.begin() || (*n) == this->_sender))
+			(*n)->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
+	}*/
 	this->_sender->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
+
+
+//this->_sender->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
 }
+
 
 void	irc::Message::MessagetoChannel(std::string cmds, std::string msg, Channel* b)
 {
@@ -67,14 +120,14 @@ void	irc::Message::Message_cmds(std::string cmds, std::string facultatif, Client
 {
 	// nickname!user@127.0.0.1 PRIVMSG channel :msg/r/n
 
-	if(facultatif == "")
-		printf("\nMessage envoye : :%s!%s@%s %s \n", (this->_sender->getNick()).c_str() , (this->_sender->getUsername()).c_str() , "127.0.0.1 " , (cmds).c_str() );
-	else
-		printf("\nMessage envoye : :%s!%s@%s %s %s\n", (this->_sender->getNick()).c_str() , (this->_sender->getUsername()).c_str() , "127.0.0.1" , (cmds).c_str() , facultatif.c_str());
+//	if(facultatif == "")
+//		printf("\nMessage envoye : :%s!%s@%s %s \n", (this->_sender->getNick()).c_str() , (this->_sender->getUsername()).c_str() , "127.0.0.1 " , (cmds).c_str() );
+//	else
+//		printf("\nMessage envoye : :%s!%s@%s %s %s\n", (this->_sender->getNick()).c_str() , (this->_sender->getUsername()).c_str() , "127.0.0.1" , (cmds).c_str() , facultatif.c_str());
 	if(facultatif != "")
-		a->sendMsg(":" + this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + "127.0.0.1" + " " + cmds + " " + facultatif);
+		a->sendMsg(":" + this->_sender->getNick() + "!" + this->_sender->getUsername() + "@localhost" + " " + cmds + facultatif);
 	else
-		a->sendMsg(":" + this->_sender->getNick() + "!" + this->_sender->getUsername() + "@" + "127.0.0.1" + " " + cmds);
+		a->sendMsg(":" + this->_sender->getNick() + "!" + this->_sender->getUsername() + "@localhost" + " " + cmds);
 }
 
 void	irc::Message::Message_c(std::string code, std::string code_msg, Client *a)
@@ -91,7 +144,7 @@ void	irc::Message::Message_p(std::string code, std::string code_msg)
 
 
 
-
+// DIFFERENTS DU PASS REGISTRATION DEMANDER A FLORIAN
 // POUR NICK USER certificate
 void	irc::Message::pass()
 {
@@ -260,8 +313,7 @@ void	irc::Message::mode()
 				b->setMode(this->_params[1]);
 			if(this->_params[1][0] == '-')
 				b->rmMode(this->_params[1]);
-			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_UMODEIS + " " + RPL_UMODEIS_MSG(/*this->_params[0], "root" , "+" + b->getMode())*/ "usermodestring"));
-			// JE TOMBE TOUJOURS SUR USERMODE string
+			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_UMODEIS + " " + this->_sender->getNick() + " " + this->_sender->getMode());
 		}
 		else
 			return(this->Message_p(ERR_UMODEUNKNOWNFLAG, ERR_UMODEUNKNOWNFLAG_MSG()));
@@ -271,7 +323,7 @@ void	irc::Message::mode()
 
 // 7 params
 //
-// WHo #iejfjiw fjeeiof
+// WHo A FAIRE
 void	irc::Message::who()
 {
 	if(this->_params[0] != "" && this->_params[0][0] == '#')
@@ -281,7 +333,7 @@ void	irc::Message::who()
 		// PAS SUR POUR LE MESSAGE DE WHO
 		for(std::vector<Client*>::iterator it = a.begin(); it != a.end() ; it++)
 		{
-			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_WHOREPLY + " " + RPL_WHOREPLY_MSG(this->_params[0], this->_sender->getUsername() , " hostname ", " server " /*server*/ , this->_sender->getNick() , " connect ",  this->_sender->getRealName()));
+//			this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_WHOREPLY + " " + RPL_WHOREPLY_MSG(this->_params[0], this->_sender->getUsername() , " hostname ", " server " /*server*/ , this->_sender->getNick() , " connect ",  this->_sender->getRealName()));
 		}
 		this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_ENDOFWHO + " " + this->_sender->getNick() + " " + this->_sender->getUsername() + " " + ":End of /WHO list");
 	}
@@ -301,13 +353,15 @@ void	irc::Message::nick()
 	this->_sender->setNick(this->_params[0]);
 }
 
-// DONE
+// DONE (userhost n a pas de allready regisrtered)
 void	irc::Message::userhost()
 {
 	if(this->_params.size() - 1 == 0)
 		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	this->_sender->setUsername(this->_params[0]);
-	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_USERHOST + " " + RPL_USERHOST_MSG("list ??"));
+	//
+//	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_USERHOST + " " + RPL_USERHOST_MSG("list ??"));
+	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_USERHOST + " " + this->_sender->getNick() + "_ :" + this->_sender->getNick() + "@localhost");
 }
 
 // DONE
@@ -318,6 +372,7 @@ void	irc::Message::user()
 	else if(this->_server->findClient_user(this->_params[0]))
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
 	this->_sender->setUsername(this->_params[0]);
+	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_USERHOST + " " + this->_sender->getNick() + "_ :" + this->_sender->getNick() + "@localhost");
 }
 
 // DONE
@@ -360,16 +415,27 @@ void	irc::Message::oper()
 	}
  	for(std::vector<std::string>::iterator it = names.begin() ; it != names.end() ; it++)
  	{
+		int		i = 0;
 		a = this->_server->findChannelFromName(_params[0]);
  		if( a != NULL)
  		{
 			printf("\nBIEN EN TRAIN DE JOINDRE LE CHANNEL DEJA CREEER\n");
 			Channel*	a = this->_server->findChannelFromName(_params[0]);
- 			if(a->getPass() != "" && a->getPass() != key[v])
- 				this->Message_p(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_MSG(names[v]));
-			else
+			size_t	c = 0;
+			for(std::vector<std::string>::iterator y = key.begin(); y != key.end(); y++)
 			{
-				printf("\n1\n");
+				if(c == v)
+					if(a->getPass() != "" && a->getPass() != (*y))
+					{
+						printf("\nPas les bon mots de pass , PAS GERER DANS LES AUTRES IRC effectue un retour a la fin\n");
+						this->_sender->sendMsg(prefix(this->_sender) + " " + ERR_BADCHANNELKEY + " " + ERR_BADCHANNELKEY_MSG(a->getName()));
+						return ;
+						i = 1;
+					}
+			}// QUESTIONS EST CE QUE JE FAIS LE RESTE
+			if(i == 0)
+			{
+				printf("\n RENTRE QUAND MEME ICI\n");
 				if(a->isBan(this->_sender))
 					this->Message_p(ERR_BANNEDFROMCHAN, ERR_BANNEDFROMCHAN_MSG(names[v]));
 				else if(this->_server->numberChannelsJoin(this->_sender) > 20) // 20 est le nombre max de channels valable
@@ -378,16 +444,9 @@ void	irc::Message::oper()
 					this->Message_p(ERR_TOOMANYTARGETS, ERR_TOOMANYTARGETS_MSG(names[v], "abbort messages"));
 				else
 				{
-					printf("\n2\n");
-					std::vector<Client*>		g = a->getClients();
-					for(std::vector<Client*>::iterator it  = g.begin(); it != g.end() ; it++)
-					{
-						if(this->_sender != (*it))
-							this->Message_cmds("JOIN " , a->getName() , (*it));
-					}
-					this->Messagejoin(a);
-					a->addClient(this->_sender);
 					_sender->addMembership(a);
+					a->addClient(this->_sender);
+					this->Messagejoin(a);
 				}
 			}
  		}
@@ -437,13 +496,13 @@ void	irc::Message::oper()
 // DONE
 void	irc::Message::part()
 {
-	std::string		msg = convertVectortoString(this->_params, 1);
+	//std::string		msg = convertVectortoString(this->_params, 1);
 
 	printf("\n1\n");
 	if(this->_params[0] == "")
 		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds)));
 	Channel*	a = this->_server->findChannelFromName(this->_params[0]);
-	if(a != reinterpret_cast<Channel*>(NULL))
+	if(a != NULL)
 	{
 		printf("\n2\n");
 		if(!(a->isClient(this->_sender)))
@@ -453,7 +512,9 @@ void	irc::Message::part()
 		for(std::vector<Client*>::iterator it = c.begin() ; it != c.end(); it++)
 		{
 			//if((*it) != this->_sender)
-			this->Message_cmds("PART", a->getName() + " " + msg,(*it));
+			printf("\n LE message %s \n", this->_msg.c_str());
+			(*it)->sendMsg(prefix(this->_sender) + " PART " + a->getName() + this->_msg);
+			//this->Message_cmds("PART ", a->getName() + this->_msg,(*it)); // A remis le bon message
 		}
 		printf("\n4\n");
 		a->rmClient(this->_sender);
@@ -469,7 +530,7 @@ void	irc::Message::part()
 // 
 void	irc::Message::topic()
 {
-	std::string		msg = convertVectortoString(this->_params, 1);
+	//std::string		msg = convertVectortoString(this->_params, 1);
 
 	if(this->_params.size() - 1 == 0)
 		return(this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG("TOPIC")));
@@ -485,7 +546,7 @@ void	irc::Message::topic()
 		if(!(b->isOper(this->_sender)))
 			return(this->Message_p(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_MSG(this->_sender->getNick())));
 		if(this->_params[1] != "")
-			b->setTopic(msg);
+			b->setTopic(this->_msg);
 		if(b->getTopic() == "")
 			this->Message_p(RPL_NOTOPIC, RPL_NOTOPIC_MSG(this->_params[0]));
 		else
@@ -615,7 +676,7 @@ void	irc::Message::kick()
 		std::vector<Client*>		b = a->getClients();
 		for(std::vector<Client*>::iterator it = b.begin() ; it != b.end() ; it++)
 		{
-			(*it)->sendMsg(prefix(this->_sender) + " KICK " + a->getName() + " " + this->_params[1]);
+			(*it)->sendMsg(prefix(this->_sender) + " KICK " + a->getName() + " " + this->_params[1] + this->_msg);
 		}
 		a->rmClient(c);
 		a->addBan(c);
@@ -634,9 +695,6 @@ void	irc::Message::privmsg()
 	std::string		host;
 	std::string		user;
 	std::string		extension;
-	
-	std::string		msg;
-	msg = 	convertVectortoString(this->_params, 1);
 
 	if(this->_params[0] == "")
 		return(Message_p(ERR_NORECIPIENT, ERR_NORECIPIENT_MSG(this->_cmds)));
@@ -660,7 +718,11 @@ void	irc::Message::privmsg()
 	}
 	if(ftFind('*', this->_params[0]))
 	{
+		printf("\n OK2 \n");
 		extension = extensionValidPrivmsg(this->_params[0]);
+		printf("\n OK3 \n");
+		if(extension != "")
+			printf(" \n extension : %s \n", extension.c_str());
 		if(extension == "")
 			return(Message_p(ERR_WILDTOPLEVEL, ERR_WILDTOPLEVEL_MSG(extension)));
 	}
@@ -688,7 +750,7 @@ void	irc::Message::privmsg()
 			for(std::vector<Client*>::iterator it = ext.begin(); it != ext.end(); it++)
 			{
 				if((*it) != NULL && (*it) != this->_sender)
-					this->Message_cmds("PRIVMSG", msg , (*it));
+					this->Message_cmds("PRIVMSG" , this->_msg , (*it));
 			}
 		}
 	}
@@ -707,22 +769,24 @@ void	irc::Message::privmsg()
 			return(this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG(this->_params[0])));
 		else
 		{
+			printf("\nICI POUR LES CHANNELS\n");
 			std::vector<Client*>	c;
 			for(std::vector<Channel*>::iterator it = ext.begin(); it != ext.end() ; it++)
 			{
 				if((*it)->isClient(this->_sender))
 				{
 					c = (*it)->getClients();
-					for(std::vector<Client*>::iterator ut = c.begin(); ut != c.end() ; ut++)
+					for(std::vector<Client*>::iterator ut = (c.begin()) ; ut != (c.end()) ; ut++)
 					{
 						if((*ut) != NULL && (*ut) != this->_sender)
-							this->Message_cmds("PRIVMSG", (*ut)->getNick() + " " + msg, (*ut));
+							(*ut)->sendMsg(prefix(this->_sender) + " PRIVMSG "  + (*it)->getName() + this->_msg);
 					}
-					c.clear();
+					//c.clear();
 				}
 				else
 					this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG((*it)->getName()));
 			}
+			printf("\n GOOD ENDING\n");
 		}
 	}
 }
@@ -760,7 +824,9 @@ void	irc::Message::kill()
 	else
 	{
 		Client*	tmp = _server->findNick(_params[0]);
-		tmp->sendMsg("You were killed by an operator for the following reason " + _params[1]);
+		// Florian ,il s agit pas uniquement du premier parametres il s agit du msg je t ai rajoute ca
+		tmp->sendMsg("You were killed by an operator for the following reason " + this->_msg/*_params[1]*/);
+// std::cout << "FloKill()3.1 " << tmp->getServer()->getServername() << std::endl;	
 		tmp->leaveAllChannels();
 		tmp->leaveServer();
 		close(tmp->getSocket());
@@ -865,7 +931,15 @@ void	irc::Message::quit()
 	_sender->leaveServer();
 	close(_sender->getSocket());
 	_sender->setLogged(false);
+//add message
+	// if (_params.size() > 0)
+	//message public ?
+	// N A PAS LE MESSAGE DE QUIT
+	this->_sender->sendMsg(prefix(this->_sender) + " QUIT" + this->_msg);
 }
+
+// peut etre a faire squit
+//
 
 void	irc::Message::welcome()
 {
