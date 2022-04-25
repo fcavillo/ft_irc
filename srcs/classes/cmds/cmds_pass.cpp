@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/25 12:38:23 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/25 13:06:56 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ void	irc::Message::Messagejoin(/*std::string cmds,*/ /*std::string msg, */irc::C
 		if((*c) != this->_sender)
 			this->_sender->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
 	}*/
+	for(std::vector<Client*>::iterator n = o.begin() ; n != o.end(); n++)
+	{
+	//	if((*n) != this->_sender)
+		//	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_NAMEREPLY + RPL_NAMEREPLY_MSG("+n", chan->getName(), (*n)->getNick()));
+		if((*n) != NULL && (*n) != this->_sender /*&& (n != o.begin() || (*n) == this->_sender)*/)
+			(*n)->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
+	}
 	if(o.size() == 0)
 		s += this->_sender->getNick();
 	else
@@ -73,13 +80,13 @@ void	irc::Message::Messagejoin(/*std::string cmds,*/ /*std::string msg, */irc::C
 	this->_sender->sendMsg(prefix(this->_sender) + " 353" + " " + this->_sender->getNick() + " = " + chan->getName() + " :@" + s);
 	this->_sender->sendMsg(prefix(this->_sender) + " " + "366" + " " + this->_sender->getNick() + " " + chan->getName() + " :End of /NAMES list");
 //	std::vector<Client*>	o = chan->getClients();
-	for(std::vector<Client*>::iterator n = o.begin() ; n != o.end(); n++)
+/*	for(std::vector<Client*>::iterator n = o.begin() ; n != o.end(); n++)
 	{
 	//	if((*n) != this->_sender)
 		//	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_NAMEREPLY + RPL_NAMEREPLY_MSG("+n", chan->getName(), (*n)->getNick()));
-		if((*n) != NULL && (*n) != this->_sender /*&& (n != o.begin() || (*n) == this->_sender)*/)
+		if((*n) != NULL && (*n) != this->_sender && (n != o.begin() || (*n) == this->_sender))
 			(*n)->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
-	}
+	}*/
 	this->_sender->sendMsg(prefix(this->_sender) + " JOIN :" + chan->getName());
 
 
