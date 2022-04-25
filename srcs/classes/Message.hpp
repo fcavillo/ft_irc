@@ -71,6 +71,7 @@ class   Message
 	void	Message_c(std::string code, std::string code_msg, Client *a);
 	void	Message_p(std::string code, std::string code_msg);
 	void	Messagejoin(Channel* chan);//ADD LABINTEI
+	void	Messagejoininit(Channel* chan);
 	void	pass();
 	void	nick();
 	void	user();
