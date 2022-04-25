@@ -27,14 +27,25 @@ void					irc::Client::sendMsg(std::string msg)
 
 void					irc::Client::leaveChannel(irc::Channel* chan)
 {
+std::cout << "LC1.1" << std::endl;
+
 	rmMembership(chan);
+std::cout << "LC1.1" << std::endl;
 	chan->rmClient(this);
+std::cout << "LC1.1" << std::endl;
 }
 
 void					irc::Client::leaveAllChannels()
 {
+std::cout << "LAC1" << std::endl;
+
 	for (std::vector<Channel*>::iterator it = _membership.begin(); it != _membership.end() ; it++)
+	{
+std::cout << "LAC1.1" << std::endl;
 		leaveChannel(*(it));
+std::cout << "LAC1.2" << std::endl;
+	}
+std::cout << "LAC2" << std::endl;
 }
 
 void					irc::Client::leaveServer()
@@ -188,10 +199,21 @@ void						irc::Client::addMembership(irc::Channel* chan)
 void						irc::Client::rmMembership(irc::Channel* chan)
 {
 	std::vector<Channel*>::iterator	it;
+std::cout << "RM.1, size = " << _membership.size() << " : " << _membership[0]->getName() << std::endl;
+std::cout << "looking for chan named " << chan->getName();
 
-	for (it = _membership.begin(); it != _membership.end() || *(it) != chan ; it++);	
+	for (it = _membership.begin(); it != _membership.end() || *(it) != chan ; it++)
+	{
+std::cout << "ouiiiiii" << std::endl;
+sleep(3);
+	};	
+std::cout << "RM2" << std::endl;
 	if (it == this->_membership.end())		//the client is not found
+	{
+std::cout << "RM3" << std::endl;
 		return ;
+	}
+std::cout << "RM4" << std::endl;
 	this->_membership.erase(it);			//erase only takes an iterator	
 }
 

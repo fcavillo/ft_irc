@@ -6,11 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/04/25 11:45:38 by fcavillo         ###   ########.fr       */
-=======
-/*   Updated: 2022/04/25 13:06:56 by labintei         ###   ########.fr       */
->>>>>>> 9cfb0f7e7926dd5046bec674cd9b19424834af90
+/*   Updated: 2022/04/25 14:08:26 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -559,7 +555,7 @@ void	irc::Message::topic()
 // FLO
 void	irc::Message::names()
 {
-	if (_params.size() - 1 > 0)
+	if (_params.size() - 1 > 1)
 	{
 		for (size_t i = 0; i < _params.size() - 1; i++)
 		{
@@ -825,7 +821,7 @@ void	irc::Message::kill()
 	{
 		Client*	tmp = _server->findNick(_params[0]);
 		// Florian ,il s agit pas uniquement du premier parametres il s agit du msg je t ai rajoute ca
-		tmp->sendMsg("You were killed by an operator for the following reason " + this->_msg/*_params[1]*/);
+		tmp->sendMsg("You were killed by an operator for the following reason " + this->_msg);
 // std::cout << "FloKill()3.1 " << tmp->getServer()->getServername() << std::endl;	
 		tmp->leaveAllChannels();
 		tmp->leaveServer();
@@ -917,25 +913,35 @@ void	irc::Message::pong()
 /*	A client session is terminated with a quit message.  */
 void	irc::Message::quit()
 {
+std::cout << "quit1" << std::endl;
 	for (int chan = 0; chan < (int)_sender->getMembership().size() ; chan++)
 	{
 		std::vector<Client *>	cli_list = _sender->getMembership()[chan]->getClients();
 		for (int cli = 0 ; cli < (int)cli_list.size(); cli++)
 		{
-			this->Message_cmds("QUIT", cli_list[cli]->getNick() + " left the channel: " + _params[0], (cli_list[cli]));
+			if (this->_msg.size() > 0)
+				this->Message_cmds("QUIT", " :" + cli_list[cli]->getNick() + " left : " + _msg, (cli_list[cli]));
+			else
+				this->Message_cmds("QUIT", " :" + cli_list[cli]->getNick() + " left. ", (cli_list[cli]));
 		}
 	}
+std::cout << "quit2" << std::endl;
 
 //QUIT: message or nickname	
 	_sender->leaveAllChannels();
+std::cout << "quit2.1" << std::endl;
 	_sender->leaveServer();
+std::cout << "quit2.2" << std::endl;
 	close(_sender->getSocket());
+std::cout << "quit2.3" << std::endl;
 	_sender->setLogged(false);
+std::cout << "quit3" << std::endl;
 //add message
 	// if (_params.size() > 0)
 	//message public ?
 	// N A PAS LE MESSAGE DE QUIT
 	this->_sender->sendMsg(prefix(this->_sender) + " QUIT" + this->_msg);
+std::cout << "quit4" << std::endl;
 }
 
 // peut etre a faire squit
