@@ -72,20 +72,20 @@ int		irc::Server::start() //->connect + setup
 	while (_on && forceStop == false && _restart == false)
 	{
 		setUpFds();
-std::cout << "1" << std::endl;
+// std::cout << "1" << std::endl;
 		//select() monitors a set of fds, waiting for one to be ready to send/receive info
 		//fd number is _max + 1, monitored set is clientFds, timeout is set at NULL so select() will wait forever
 		_fdReady = select(_fdMax + 1, &_clientFds, NULL, NULL, NULL);
-std::cout << "2" << std::endl;
+// std::cout << "2" << std::endl;
 	
 		if ((_fdReady < 0))
 			throw std::runtime_error("fd error during select()\n");
 
 		connectionCheck();	//checks for new clients, sets the address and socket for the client
-std::cout << "3" << std::endl;
+// std::cout << "3" << std::endl;
 
 		activityCheck();	//iterates through sockets to catch incoming requests and answers them	
-std::cout << "4" << std::endl;
+// std::cout << "4" << std::endl;
 	}
 	return (0);
 }

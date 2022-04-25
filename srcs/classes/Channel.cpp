@@ -137,15 +137,20 @@ void					irc::Channel::addOpper(Client* client)
 void					irc::Channel::rmOpper(Client* client)
 {
 	std::vector<Client*>::iterator it;
+// std::cout << "RC1" << std::endl;	
 
 	for (it = _oper.begin(); it != _oper.end() || *(it) != client ; it++)
 	{
+// std::cout << "RC2" << std::endl;	
 		if((*it) == client)
 		{
+// std::cout << "RC7" << std::endl;	
 			this->_oper.erase(it);
+// std::cout << "RC8" << std::endl;	
 			return ;
 		}
 	}
+// std::cout << "RC9" << std::endl;	
 }
 
 
@@ -154,16 +159,26 @@ void					irc::Channel::rmClient(irc::Client* client)
 	std::vector<Client*>::iterator it;
 
 	// PETITE MODIFICATION EFFACER OPPER EN PREMIER
+// std::cout << "RC1 for " << client->getNick() << std::endl;	
 	if(isOper(client) == true)
+	{
+// std::cout << "RC1.5" << std::endl;
 		rmOpper(client);
+	}
+// std::cout << "RC2" << std::endl;	
 	for (it = _clients.begin(); it != _clients.end() || *(it) != client ; it++)
 	{
+// std::cout << "RC5" << std::endl;	
 		if((*it) == client)
 		{
+// std::cout << "RC8" << std::endl;	
+			client->rmMembership(this);
 			this->_clients.erase(it);
+
 			return ;
 		}
 	}
+// std::cout << "RC9" << std::endl;	
 	//this->_clients.erase(it);			//erase only takes an iterator
 }
 
@@ -223,11 +238,15 @@ bool		irc::Channel::isBan(irc::Client* client)
 
 bool		irc::Channel::isOper(irc::Client* client)
 {
+// std::cout << "IO0" << client->getNick() << std::endl;
+// std::cout << "_oper.size = " << _oper.size() << std::endl;
 	for(size_t i = 0; i < _oper.size(); i++)
 	{
+// std::cout << "IO1" << std::endl;
 		if(_oper[i] == client)
 			return(true);
 	}
+// std::cout << "IO2false for " << client->getNick() << std::endl;
 	return(false);
 }
 
@@ -302,5 +321,10 @@ void						irc::Channel::rmMode(std::string s)
 std::string				irc::Channel::getMode(void)
 {
 	return this->_mode;
+}
+
+std::vector<irc::Client*>	irc::Channel::getOpper(void)
+{
+	return this->_oper;
 }
 

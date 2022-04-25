@@ -59,6 +59,7 @@ class   Channel
 
 		void						addOpper(Client* client);
 		void						rmOpper(Client* client);
+		std::vector<Client*>		getOpper();
 
 		void						setUserlimit(int n);
 	private :

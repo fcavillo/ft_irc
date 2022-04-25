@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/25 14:08:26 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:15:59 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,18 +368,18 @@ void	irc::Message::user()
 	else if(this->_server->findClient_user(this->_params[0]))
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
 	this->_sender->setUsername(this->_params[0]);
-	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_USERHOST + " " + this->_sender->getNick() + "_ :" + this->_sender->getNick() + "@localhost");
+	// this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_USERHOST + " " + this->_sender->getNick() + "_ :" + this->_sender->getNick() + "@localhost"); //je l'ai decale vers welcome () pour qu'il se declenche que quand toutes les infos sont presentes
 }
 
 // DONE
 void	irc::Message::oper()
 {
 
-	if(this->_params[0] == "" || this->_params[1] == "" || this->_params[2] == "")
+	if(this->_params[0] == "" || this->_params[1] == ""/* || this->_params[2] == ""*/)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	else if(this->_params[1] != this->_sender->getUsername())
+	else if(this->_params[0] != this->_sender->getUsername())
 		this->Message_p(ERR_NOOPERHOST, ERR_NOOPERHOST_MSG());
-	else if(this->_params[2] != this->_server->getPassword())
+	else if(this->_params[1] != this->_server->getPassword())
 		this->Message_p(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_MSG());
 	else
 	{
@@ -514,6 +514,7 @@ void	irc::Message::part()
 		}
 		printf("\n4\n");
 		a->rmClient(this->_sender);
+		
 		printf("\nRm clientM\n");
 		if(!a->isClient(this->_sender))
 			printf("\nLe client a bien ete remove du channel \n");
@@ -913,34 +914,34 @@ void	irc::Message::pong()
 /*	A client session is terminated with a quit message.  */
 void	irc::Message::quit()
 {
-std::cout << "quit1" << std::endl;
+// std::cout << "quit1" << std::endl;
 	for (int chan = 0; chan < (int)_sender->getMembership().size() ; chan++)
 	{
 		std::vector<Client *>	cli_list = _sender->getMembership()[chan]->getClients();
 		for (int cli = 0 ; cli < (int)cli_list.size(); cli++)
 		{
 			if (this->_msg.size() > 0)
-				this->Message_cmds("QUIT", " :" + cli_list[cli]->getNick() + " left : " + _msg, (cli_list[cli]));
+				this->Message_cmds("QUIT", " :" + _sender->getNick() + " left : " + _msg, (cli_list[cli]));
 			else
-				this->Message_cmds("QUIT", " :" + cli_list[cli]->getNick() + " left. ", (cli_list[cli]));
+				this->Message_cmds("QUIT", " :" + _sender->getNick() + " left. ", (cli_list[cli]));
 		}
 	}
-std::cout << "quit2" << std::endl;
+// std::cout << "quit2" << std::endl;
 
 //QUIT: message or nickname	
 	_sender->leaveAllChannels();
-std::cout << "quit2.1" << std::endl;
+// std::cout << "quit2.1" << std::endl;
 	_sender->leaveServer();
-std::cout << "quit2.2" << std::endl;
+// std::cout << "quit2.2" << std::endl;
 	close(_sender->getSocket());
-std::cout << "quit2.3" << std::endl;
+// std::cout << "quit2.3" << std::endl;
 	_sender->setLogged(false);
-std::cout << "quit3" << std::endl;
+// std::cout << "quit3" << std::endl;
 //add message
 	// if (_params.size() > 0)
 	//message public ?
-	// N A PAS LE MESSAGE DE QUIT
-	this->_sender->sendMsg(prefix(this->_sender) + " QUIT" + this->_msg);
+	// N A PAS LE MESSAGE DE QUIT -> Je l'ai mis au dessus avant de leave les channels
+	// this->_sender->sendMsg(prefix(this->_sender) + " QUIT" + this->_msg);
 std::cout << "quit4" << std::endl;
 }
 
@@ -949,6 +950,7 @@ std::cout << "quit4" << std::endl;
 
 void	irc::Message::welcome()
 {
+	this->_sender->sendMsg(prefix(this->_sender) + " " + RPL_USERHOST + " " + this->_sender->getNick() + "_ :" + this->_sender->getNick() + "@localhost");
 	Message_p(RPL_WELCOME, RPL_WELCOME_MSG(_sender->getNick(), _sender->getUsername(), _server->getServername()));
 	Message_p(RPL_YOURHOST, RPL_YOURHOST_MSG(_server->getServername(), "1.0"));
 	Message_p(RPL_CREATED, RPL_CREATED_MSG(_server->getStartTimeString()));
