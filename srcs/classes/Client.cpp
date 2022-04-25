@@ -39,16 +39,9 @@ void					irc::Client::leaveAllChannels()
 
 void					irc::Client::leaveServer()
 {
-// std::cout << "FloLAC()1" << std::endl;
 	_server->rmClient(this);
-// std::cout << "FloLAC()1" << std::endl;
-//close stuff ?
 }
 
-// void					irc::Client::welcome()
-// {
-// 	sendMsg(Message_p(RPL_WELCOME, RPL_WELCOME_MSG(sender->getNick(), sender->getUsername(),server->getServername())));
-// }
 
 /*	GETTERS & SETTERS	*/
 

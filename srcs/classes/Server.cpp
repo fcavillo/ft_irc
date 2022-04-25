@@ -49,8 +49,6 @@ int		irc::Server::start() //->connect + setup
 	int enable = 1;	
 	if (setsockopt(_mainSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
 		throw std::runtime_error("setsockopt(SO_REUSEADDR) failed");
-	// if (setsockopt(_mainSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
-	// 	throw std::runtime_error("setsockopt(SO_REUSEADDR) failed");	//to delete after
 	//makes the fd non blocking
 	if (fcntl(_mainSocket, F_SETFL, O_NONBLOCK) < 0)
 		throw std::runtime_error("fcntl failed");
@@ -67,26 +65,23 @@ int		irc::Server::start() //->connect + setup
 		throw std::runtime_error("Socket listening after binding error\n");
 	_addressSize = sizeof(_address);
 
-	std::cout << "Socket created" << std::endl;
+	std::cout << "Main socket created" << std::endl;
 
 	while (_on && forceStop == false && _restart == false)
 	{
 		setUpFds();
-// std::cout << "Waiting on select" << std::endl;
+std::cout << "Waiting on select" << std::endl;
 		//select() monitors a set of fds, waiting for one to be ready to send/receive info
 		//fd number is _max + 1, monitored set is clientFds, timeout is set at NULL so select() will wait forever
 		_fdReady = select(_fdMax + 1, &_clientFds, NULL, NULL, NULL);
-// std::cout << "selecto donzo" << std::endl;
 	
-		if ((_fdReady < 0)/* && (errno != EINTR)*/)
+		if ((_fdReady < 0))
 			throw std::runtime_error("fd error during select()\n");
 
 		connectionCheck();	//checks for new clients, sets the address and socket for the client
 
 		activityCheck();	//iterates through sockets to catch incoming requests and answers them	
 	}
-
-//clean all
 	return (0);
 }
 
@@ -150,8 +145,6 @@ int 		readLine(irc::Client & user)
 	else if (buff != 0)
 		line.push_back(buff);
 
-// std::cout << line << std::endl;
-// sleep(1);
 	return (1);
 }
 
@@ -159,10 +152,8 @@ void		irc::Server::activityCheck()
 {
 	for (size_t i = 0; i < _clients.size(); i++)
 	{	
-// std::cout << "acCheck" << std::endl;
 		if (FD_ISSET(_clients[i]->getSocket(), &_clientFds))
 		{	//if the socket is part of the set
-// std::cout << "fdisset" << std::endl;
 			_socketFd = _clients[i]->getSocket();		//temp socket storage
 			int status = readLine(*_clients[i]);		//get the line from the socket
 			if (status == -1)
@@ -178,7 +169,6 @@ void		irc::Server::activityCheck()
 				_clients[i]->leaveAllChannels();
 				_clients[i]->leaveServer();
 				close(_clients[i]->getSocket());				
-// std::cout << "status = 0" << std::endl;
 			}
 			else if (status == 2)
 			{
@@ -200,16 +190,6 @@ void		irc::Server::activityCheck()
 		}
 	}
 }
-
-
-// 				if (_clients[i]->getKill())
-// 				{
-// 					std::cout << "Client disconnected!" << std::endl;
-// 					close(_sd);
-// 					delete _clients[i];
-// 					_clients[i] = NULL;
-// 				}
-// 			}
 
 
 void	irc::Server::clear()
@@ -323,9 +303,6 @@ irc::Channel*		irc::Server::findChannelFromName(std::string name)
 			return((*it));
 	}
 	return(NULL);
-//	if (it == this->_channels.end())		//the channel is not found
-//		return ;
-//	t
 
 }
 
@@ -378,17 +355,13 @@ void					irc::Server::addClient(irc::Client* client)
 
 void					irc::Server::rmClient(irc::Client* client)
 {
-// std::cout << "FloRmClient()1" << std::endl;
 	std::vector<Client*>::iterator	it;
 
 	for (it = _clients.begin(); it != _clients.end() && *(it) != client ; it++);
-	// {std::cout << "FloRmClient()3" << std::endl;}
 	if (it == this->_clients.end())		//the client is not found
 	{
-		// std::cout << "FloRmClient()4" << std::endl;
 		return ;
 	}
-// std::cout << "FloRmClient()9" << std::endl;
 	this->_clients.erase(it);
 }
 
@@ -423,12 +396,6 @@ bool				irc::Server::findClient_user(std::string user)
 	}
 	return (false);	
 	
-	// std::vector<Client*>::iterator	it;
-
-	// for (it = _clients.begin(); it != _clients.end() && (*(it))->getUsername() != user ; it++);
-	// if (it == this->_clients.end())		//the client is not found
-	// 	return (false);
-	// return (true);
 }
 
 
@@ -440,12 +407,6 @@ bool				irc::Server::findClient_nick(std::string nick)
 			return (true);
 	}
 	return (false);
-// 	std::vector<Client*>::iterator	it;
-
-// 	for (it = _clients.begin(); it != _clients.end() || (*(it))->getNick() != nick ; it++);
-// 	if (it == this->_clients.end())		//the client is not found
-// 		return (false);
-// 	return (true);
 }
 
 int					irc::Server::numberChannelsJoin(Client* a)

@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/22 14:51:33 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/25 11:45:38 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -851,6 +851,16 @@ void	irc::Message::pong()
 /*	A client session is terminated with a quit message.  */
 void	irc::Message::quit()
 {
+	for (int chan = 0; chan < (int)_sender->getMembership().size() ; chan++)
+	{
+		std::vector<Client *>	cli_list = _sender->getMembership()[chan]->getClients();
+		for (int cli = 0 ; cli < (int)cli_list.size(); cli++)
+		{
+			this->Message_cmds("QUIT", cli_list[cli]->getNick() + " left the channel: " + _params[0], (cli_list[cli]));
+		}
+	}
+
+//QUIT: message or nickname	
 	_sender->leaveAllChannels();
 	_sender->leaveServer();
 	close(_sender->getSocket());
