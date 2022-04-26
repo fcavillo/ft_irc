@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/26 12:29:58 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:52:10 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -697,10 +697,12 @@ void	irc::Message::privmsg()
 		return(Message_p(ERR_NORECIPIENT, ERR_NORECIPIENT_MSG(this->_cmds)));
 	if(this->_params[1] == "")
 		return(Message_p(ERR_NOTEXTTOSEND, ERR_NOTEXTTOSEND_MSG()));
+// std::cout << "Flodebug0.005, Params[0] = " << _params[0] << ", params[1] = " << _params[1] << std::endl;
 
 
 	if(ftFind('@', this->_params[0]))
 	{
+// std::cout << "Flodebug0.007" << std::endl;
 		host = cutChar(this->_params[0], '@' , 1);
 		user = cutChar(this->_params[0], '@' , 0);
 		if(ftFinds("?#", user) || ftFinds("?#", host))
@@ -708,6 +710,7 @@ void	irc::Message::privmsg()
 	}
 	if(ftFind('%', this->_params[0]))
 	{
+// std::cout << "Flodebug0.01" << std::endl;
 		host = cutChar(this->_params[0], '%' , 1);
 		user = cutChar(this->_params[0], '%' , 0);
 		if(ftFinds("?#", user) || ftFinds("?#", host))
@@ -715,11 +718,14 @@ void	irc::Message::privmsg()
 	}
 	if(ftFind('*', this->_params[0]))
 	{
+// std::cout << "Flodebug0.02" << std::endl;
 		printf("\n OK2 \n");
 		extension = extensionValidPrivmsg(this->_params[0]);
 		printf("\n OK3 \n");
+// std::cout << "Flodebug0.03" << std::endl;
 		if(extension != "")
 			printf(" \n extension : %s \n", extension.c_str());
+// std::cout << "Flodebug0.04" << std::endl;
 		if(extension == "")
 			return(Message_p(ERR_WILDTOPLEVEL, ERR_WILDTOPLEVEL_MSG(extension)));
 	}
@@ -755,38 +761,56 @@ void	irc::Message::privmsg()
 	{
 		std::vector<Channel*>	ext;
 		
-		printf("\n 1\n");
+		printf("\n 1 \n");
+// std::cout << "Flodebug0.05 extension = " << extension << ", user = " << user << ", host = " << host << std::endl;
 		if(extension != "")
+		{
+// std::cout << "Flodebug0.1" << std::endl;
 			ext = this->_server->findChannelNameExtension(extension);
+		}
 		else if(user != "" && host != "" && host == this->_server->getServername())
+		{
+// std::cout << "Flodebug0.2" << std::endl;
 			ext.push_back(this->_server->findChannelFromName(user));
-		else if(user == "")
-			ext.push_back(this->_server->findChannelFromName(this->_params[0]));
-		if(ext.size() == 0)
+		}
+		else if(user == "")		
+		{
+// std::cout << "Flodebug0.5" << std::endl;
+			if (this->_server->findChannelFromName(this->_params[0]) != NULL)	//added to avoid segfault
+				ext.push_back(this->_server->findChannelFromName(this->_params[0]));
+		}
+// std::cout << "Flodebug0.7, size = " << ext.size() << std::endl;
+		if(ext.size() == 0)			
+		{
+// std::cout << "Flodebug0.8" << std::endl;
 			return(this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG(this->_params[0])));
+		}
 		else
 		{
-			printf("\nICI POUR LES CHANNELS\n");
+printf("\nICI POUR LES CHANNELS\n");
 			std::vector<Client*>	c;
-std::cout << "Flodebug1" << std::endl;
+// std::cout << "Flodebug1" << std::endl;
 			for(std::vector<Channel*>::iterator it = ext.begin(); it != ext.end() ; it++)
 			{
-std::cout << "Flodebug2" << std::endl;
+// std::cout << "Flodebug2" << std::endl;
 				if((*it)->isClient(this->_sender))
 				{
+// std::cout << "Flodebug3" << std::endl;
 					c = (*it)->getClients();
-std::cout << "Flodebug3" << std::endl;
 					for(std::vector<Client*>::iterator ut = (c.begin()) ; ut != (c.end()) ; ut++)
 					{
-std::cout << "Flodebug4" << std::endl;
+// std::cout << "Flodebug4" << std::endl;
 						if((*ut) != NULL && (*ut) != this->_sender)
 							(*ut)->sendMsg(prefix(this->_sender) + " PRIVMSG "  + (*it)->getName() + this->_msg);
 					}
-std::cout << "Flodebug5" << std::endl;
+// std::cout << "Flodebug5" << std::endl;
 					//c.clear();
 				}
 				else
+				{
+// std::cout << "Flodebug9" << std::endl;
 					this->Message_p(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_MSG((*it)->getName()));
+				}
 			}
 			printf("\n GOOD ENDING\n");
 		}

@@ -239,7 +239,7 @@ bool		irc::Channel::isBan(irc::Client* client)
 bool		irc::Channel::isOper(irc::Client* client)
 {
 // std::cout << "IO0" << client->getNick() << std::endl;
-// std::cout << "_oper.size = " << _oper.size() << std::endl;
+
 	for(size_t i = 0; i < _oper.size(); i++)
 	{
 // std::cout << "IO1" << std::endl;
@@ -252,13 +252,17 @@ bool		irc::Channel::isOper(irc::Client* client)
 
 bool		irc::Channel::isClient(irc::Client* client)
 {
+// std::cout << "IC0" << std::endl;
 	if(this->isOper(client))
 		return(true);
+// std::cout << "IC1" << std::endl;
 	for(size_t i = 0; i < _clients.size(); i++)
 	{
+// std::cout << "IC2" << std::endl;
 		if(_clients[i] == client)
 			return(true);
 	}
+// std::cout << "IC3" << std::endl;
 	return(false);
 }
 
