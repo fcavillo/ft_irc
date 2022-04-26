@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/25 18:15:59 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/26 12:29:58 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -768,16 +768,21 @@ void	irc::Message::privmsg()
 		{
 			printf("\nICI POUR LES CHANNELS\n");
 			std::vector<Client*>	c;
+std::cout << "Flodebug1" << std::endl;
 			for(std::vector<Channel*>::iterator it = ext.begin(); it != ext.end() ; it++)
 			{
+std::cout << "Flodebug2" << std::endl;
 				if((*it)->isClient(this->_sender))
 				{
 					c = (*it)->getClients();
+std::cout << "Flodebug3" << std::endl;
 					for(std::vector<Client*>::iterator ut = (c.begin()) ; ut != (c.end()) ; ut++)
 					{
+std::cout << "Flodebug4" << std::endl;
 						if((*ut) != NULL && (*ut) != this->_sender)
 							(*ut)->sendMsg(prefix(this->_sender) + " PRIVMSG "  + (*it)->getName() + this->_msg);
 					}
+std::cout << "Flodebug5" << std::endl;
 					//c.clear();
 				}
 				else
