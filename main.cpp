@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:29:24 by fcavillo          #+#    #+#             */
-/*   Updated: 2022/04/07 16:04:40 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:12:24 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int     main(int ac, char **av)
 		}
 		catch(const std::exception& e)
 		{
-			// std::cout << errno << std::endl;
 			std::cerr << e.what() << '\n';
 			server.clear();
 			std::cout << "- Server shutdown -" << std::endl; 

@@ -37,7 +37,10 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		if (sender->getRegistered() == false && sender->checkRegistered() == true)
 			welcome();
 	}
-	else if (sender->getRegistered() == true)
+	else if(this->_cmds == "QUIT")
+	{
+		this->quit();
+	}	else if (sender->getRegistered() == true)
 	{
 		if(this->_cmds == "PING")
 		{
@@ -99,10 +102,6 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		{
 			this->restart();
 		}
-		else if(this->_cmds == "QUIT")
-		{
-			this->quit();
-		}
 		else if(this->_cmds == "USERHOST")
 		{
 			this->userhost();
@@ -123,7 +122,7 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	}
 	else
 	{
-		std::cout << "Unregistered user on socket [" << sender->getSocket() << "] tried to execute a command" << std::endl;
+		std::cout << "Unregistered user on socket [" << sender->getSocket() << "] tried to execute a command : " << line << "." << std::endl;
 	}
 
 	return ;
@@ -258,7 +257,6 @@ void	irc::Message::parse(std::string line)
 		else if(line[i] != ' ')
 		{
 			word += line[i];
-//			std::cout << word << std::endl;			//commenté pour y voir plus clair, déso :)
 		}
 	}
 	if (word.size() > 0)

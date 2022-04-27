@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/27 16:05:38 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:26:25 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	irc::Message::pass()
 {
 	if(this->_params.size() - 1 == 0)
 		this->Message_p(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_MSG(this->_cmds));
-	else if(this->_sender->getPass() != "")
+	else if(this->_sender->getPass() != "" && this->_sender->getRegistered())
 		this->Message_p(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_MSG());
 	else
 		this->_sender->setPass(this->_params[0]);
@@ -706,9 +706,7 @@ void	irc::Message::kill()
 	else
 	{
 		Client*	tmp = _server->findNick(_params[0]);
-		// Florian ,il s agit pas uniquement du premier parametres il s agit du msg je t ai rajoute ca
 		tmp->sendMsg("You were killed by an operator for the following reason " + this->_msg);
-// std::cout << "FloKill()3.1 " << tmp->getServer()->getServername() << std::endl;	
 		tmp->leaveAllChannels();
 		tmp->leaveServer();
 		close(tmp->getSocket());
@@ -743,16 +741,12 @@ void	irc::Message::pong()
 		Message_p(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_MSG(_server->getServername()));
 	else
 		_sender->sendMsg("PONG : " + _params[0]);
-	// std::cout << "user is a member of : " << std::endl;
-	// for (int i = 0; i < (int)_sender->getMembership().size(); i++)
-	// 	std::cout << _sender->getMembership()[i]->getName() << std::endl;
 	
 }
 
 /*	A client session is terminated with a quit message.  */
 void	irc::Message::quit()
 {
-// std::cout << "quit1" << std::endl;
 	for (int chan = 0; chan < (int)_sender->getMembership().size() ; chan++)
 	{
 		std::vector<Client *>	cli_list = _sender->getMembership()[chan]->getClients();
@@ -761,23 +755,12 @@ void	irc::Message::quit()
 				(cli_list[cli])->sendMsg(prefix(this->_sender) + " QUIT " + this->_sender->getNick() + " left" + this->_msg);
 		}
 	}
-// std::cout << "quit2" << std::endl;
 
 //QUIT: message or nickname	
 	_sender->leaveAllChannels();
-// std::cout << "quit2.1" << std::endl;
 	_sender->leaveServer();
-// std::cout << "quit2.2" << std::endl;
 	close(_sender->getSocket());
-// std::cout << "quit2.3" << std::endl;
 	_sender->setLogged(false);
-// std::cout << "quit3" << std::endl;
-//add message
-	// if (_params.size() > 0)
-	//message public ?
-	// N A PAS LE MESSAGE DE QUIT -> Je l'ai mis au dessus avant de leave les channels
-	// this->_sender->sendMsg(prefix(this->_sender) + " QUIT" + this->_msg);
-std::cout << "quit4" << std::endl;
 }
 
 // peut etre a faire squit

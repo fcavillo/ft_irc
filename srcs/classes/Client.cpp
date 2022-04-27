@@ -27,28 +27,19 @@ void					irc::Client::sendMsg(std::string msg)
 
 void					irc::Client::leaveChannel(irc::Channel* chan)
 {
-// std::cout << "LC1.1" << std::endl;
-
-	// rmMembership(chan);
-// std::cout << "LC1.5" << std::endl;
 	chan->rmClient(this);
-// std::cout << "LC1.9" << std::endl;
 }
 
 void					irc::Client::leaveAllChannels()
 {
-// std::cout << "LAC1 membship size = " << _membership.size() << std::endl;
 
 
 	for (std::vector<Channel*>::iterator it = _membership.begin(); it != _membership.end() ; it++)
 	{
-// std::cout << "LAC1.1 : " << (*it)->getName() << std::endl;
 		leaveChannel(*(it));
 		if (_membership.size() == 0)
 			return ;
-// std::cout << "LAC1.2" << std::endl;
 	}
-// std::cout << "LAC2" << std::endl;
 }
 
 void					irc::Client::leaveServer()
@@ -173,11 +164,11 @@ bool					irc::Client::checkRegistered()
 {
 	if (getUsername() != "")
 		std::cout << "user : " << _username << std::endl;
-	if (_password != "")
+	if (_password != "" )
 		std::cout << "pass : " << _password << std::endl;
 	if (_nick != "")
 		std::cout << "nick : " << _nick << std::endl;				
-	if (getUsername() != "" && getPass() != "" && getNick() != "" && this->_registered == false)
+	if (getUsername() != "" && getPass() != "" && getPass() == getServer()->getPassword() && getNick() != "" && this->_registered == false)
 		setRegistered(true);
 	
 	return (this->_registered);
@@ -210,9 +201,7 @@ void						irc::Client::rmMembership(irc::Channel* chan)
 	{
 		return ;
 	}
-	std::cout << "RM8" << std::endl;
 	this->_membership.erase(it);			//erase only takes an iterator	
-	std::cout << "RM9" << std::endl;
 }
 
 std::vector<irc::Channel*>	irc::Client::getMembership()
