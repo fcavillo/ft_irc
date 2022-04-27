@@ -1,6 +1,7 @@
 #include "Server.hpp"
 
 #include "cstdio"
+#include <errno.h>
 
 bool	forceStop = false;
 void	sig(int) {forceStop = true;}
@@ -77,15 +78,15 @@ int		irc::Server::start() //->connect + setup
 		//fd number is _max + 1, monitored set is clientFds, timeout is set at NULL so select() will wait forever
 		_fdReady = select(_fdMax + 1, &_clientFds, NULL, NULL, NULL);
 // std::cout << "2" << std::endl;
-	
 		if ((_fdReady < 0))
 			throw std::runtime_error("fd error during select()\n");
-
-		connectionCheck();	//checks for new clients, sets the address and socket for the client
 // std::cout << "3" << std::endl;
 
-		activityCheck();	//iterates through sockets to catch incoming requests and answers them	
+		connectionCheck();	//checks for new clients, sets the address and socket for the client
 // std::cout << "4" << std::endl;
+
+		activityCheck();	//iterates through sockets to catch incoming requests and answers them	
+// std::cout << "5" << std::endl;
 	}
 	return (0);
 }
@@ -171,9 +172,10 @@ void		irc::Server::activityCheck()
 			else if (status == 0)			//nothing to read, user force disconnected
 			{
 				std::cout << "A client on socket[" << _clients[i]->getSocket() << "] force disconnected !" << std::endl;
-				_clients[i]->leaveAllChannels();
-				_clients[i]->leaveServer();
-				close(_clients[i]->getSocket());				
+				Message message("QUIT :Lost terminal", this, _clients[i]);	//create new message from line
+				// _clients[i]->leaveAllChannels();
+				// _clients[i]->leaveServer();
+				// close(_clients[i]->getSocket());				
 			}
 			else if (status == 2)
 			{
