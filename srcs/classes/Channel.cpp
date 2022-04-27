@@ -128,9 +128,10 @@ void					irc::Channel::addClient(irc::Client* client)
 
 void					irc::Channel::addOpper(Client* client)
 {
+	addClient(client); // deja une secu dessus
 	for (std::vector<Client*>::iterator it = _oper.begin(); it != _oper.end() ; it++)	//checks if user already is member
 		if (*(it) == client)
-			return ;
+			return  ;
 	this->_oper.push_back(client);
 }
 

@@ -478,7 +478,7 @@ std::vector<irc::Channel*>		irc::Server::findChannelNameExtension(std::string ex
 		{
 			if(extension[u] != user[user.size() - i])
 				break;
-			if(u == 0)
+			if(u == 0 && (user.size() - (i + 1) >= 0 && user[user.size() - (i + 1)] == '.')) 
 			{
 				printf("\n PUSHclient %s \n", ((*it)->getName()).c_str());
 				c.push_back((*it));
