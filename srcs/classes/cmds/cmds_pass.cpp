@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/27 18:07:25 by fcavillo         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:13:04 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -525,11 +525,11 @@ void	irc::Message::privmsg()
 		std::vector<Client*>	ext;
 		if(extension != "")
 			ext = this->_server->findClientUserExtension(extension);
-		else if(user != "" && host != "" && host == this->_server->getServername())
+		else if(user != "" && host != "" && host == this->_server->getServername() && this->_server->findClientUser(user) != NULL)
 			ext.push_back(this->_server->findClientUser(user));
-		else
+		else if(this->_server->findClientUser(this->_params[0]) != NULL)
 			ext.push_back(this->_server->findClientUser(this->_params[0]));
-		if(ext == NULL || ext.begin() == NULL)
+		if(ext.size() == 0)
 		{
 			if(extension == "")
 				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(extension));
