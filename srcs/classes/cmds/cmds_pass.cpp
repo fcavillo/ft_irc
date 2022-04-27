@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/27 16:05:38 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:35:15 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -529,7 +529,7 @@ void	irc::Message::privmsg()
 			ext.push_back(this->_server->findClientUser(user));
 		else
 			ext.push_back(this->_server->findClientUser(this->_params[0]));
-		if(ext.size() == 0)
+		if(ext == NULL || ext.begin() == NULL)
 		{
 			if(extension == "")
 				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(extension));
@@ -594,6 +594,8 @@ void	irc::Message::privmsg()
 
 void	irc::Message::notice()
 {
+
+	// je cherche a debugger cette chose
 	std::string		host;
 	std::string		user;
 	std::string		extension;
@@ -624,7 +626,9 @@ void	irc::Message::notice()
 	}
 	if(this->_params[0] != "" && this->_params[0][0] != '#') // USER MODE
 	{
+		// je push un NULL par securite mais resultat c est vide
 		std::vector<Client*>	ext;
+		printf("\nCorrespond aux users\n");
 		if(extension != "")
 			ext = this->_server->findClientUserExtension(extension);
 		else if(user != "" && host != "" && host == this->_server->getServername())
@@ -633,10 +637,14 @@ void	irc::Message::notice()
 			ext.push_back(this->_server->findClientUser(this->_params[0]));
 		if(ext.size() != 0)
 		{
+			printf("\n il y a bien des users \n");
 			for(std::vector<Client*>::iterator it = ext.begin(); it != ext.end(); it++)
 			{
 				if((*it) != NULL && (*it) != this->_sender)
-					(*it)->sendMsg(prefix(this->_sender) + " NOTICE " + this->_msg);
+				{
+					(*it)->sendMsg(prefix(this->_sender) + " NOTICE " + (*it)->getNick() +  this->_msg);
+					printf("\n client : %s msg %s\n", (*it)->getNick().c_str(), this->_msg.c_str());
+				}
 				//	this->Message_cmds("PRIVMSG" , this->_msg , (*it));
 			}
 		}
