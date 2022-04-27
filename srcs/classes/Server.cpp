@@ -432,7 +432,7 @@ irc::Client*				irc::Server::findClientUser(std::string user)
 	i = 0;
 	for(it = _clients.begin() ; it != _clients.end() ; it++)
 	{
-		if(user == (*(it))->getUsername())
+		if(user == (*(it))->getNick())
 			return(*it);
 	}
 	return(NULL);
