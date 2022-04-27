@@ -210,9 +210,9 @@ void						irc::Client::rmMembership(irc::Channel* chan)
 	{
 		return ;
 	}
-std::cout << "RM8" << std::endl;	
+	std::cout << "RM8" << std::endl;
 	this->_membership.erase(it);			//erase only takes an iterator	
-std::cout << "RM9" << std::endl;	
+	std::cout << "RM9" << std::endl;
 }
 
 std::vector<irc::Channel*>	irc::Client::getMembership()

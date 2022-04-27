@@ -12,10 +12,6 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 	this->parse(line);
 	for (int i = 0; i < (int)_cmds.size(); i++)
 		_cmds[i] = toupper(_cmds[i]);
-	std::cout << "PREFIX : " << this->_prefix << std::endl;
-	std::cout << "CMDS : " << this->_cmds << std::endl;
-	if (_params.size() - 1 != 0)
-		std::cout << "PARAMS :" << this->_params[0] << std::endl;
 
 	// correspond aux fonctions qui fonctionne avec un message
 	if(this->_cmds == "PRIVMSG" || this->_cmds == "NOTICE" || this->_cmds == "PART" || this->_cmds == "QUIT" || this->_cmds == "SQUIT" || this->_cmds == "KICK" || this->_cmds == "KILL" || this->_cmds == "TOPIC")
@@ -81,7 +77,6 @@ irc::Message::Message(std::string line, Server *server, Client *sender) : _serve
 		}
 		else if(this->_cmds == "PRIVMSG")
 		{
-			printf("\nOK1\n");
 			this->privmsg();
 		}
 		else if(this->_cmds == "NOTICE")
@@ -278,7 +273,7 @@ void	irc::Message::parse(std::string line)
 	this->_params.push_back("");
 //	word.clear();
 //	return (v);
-	printf("\nOK\n");
+//	printf("\nOK\n");
 }
 
 
