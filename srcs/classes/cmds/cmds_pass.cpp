@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/28 12:39:10 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/28 12:48:35 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	irc::Message::Messagejoin(/*std::string cmds,*/ /*std::string msg, */irc::C
 	}
 	for(std::vector<Client*>::iterator n = o.begin() ; n != o.end(); n++)
 	{
-		if((*n) != NULL && chan->isOper(this->_sender) == true)
+		if((*n) != NULL && chan->isOper((*n)) == true)
 			s += "@";
 		if((*n) != NULL)
 			s += (*n)->getNick();
