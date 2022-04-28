@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:41:33 by labintei          #+#    #+#             */
-/*   Updated: 2022/04/27 20:13:04 by labintei         ###   ########.fr       */
+/*   Updated: 2022/04/28 12:39:10 by labintei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,8 +205,8 @@ void	irc::Message::nick()
 		this->Message_p(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_MSG(this->_params[0]));
 	else if(this->_params[0].length() > 9 || (!isLetter(this->_params[0][0]) && !isSpecial(this->_params[0][0])))
 		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
-	else if(!(nick_check_char(this->_params[0])))
-		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
+//	else if(!(nick_check_char(this->_params[0])))
+//		this->Message_p(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_MSG(this->_params[0]));
 	this->_sender->setNick(this->_params[0]);
 }
 
@@ -532,9 +532,9 @@ void	irc::Message::privmsg()
 		if(ext.size() == 0)
 		{
 			if(extension == "")
-				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(extension));
+				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[0]));
 			else if(user != "")
-				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(user));
+				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[0]));
 			else
 				this->Message_p(ERR_NOSUCHNICK, ERR_NOSUCHNICK_MSG(this->_params[0]));
 		}
