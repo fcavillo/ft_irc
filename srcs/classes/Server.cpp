@@ -12,6 +12,7 @@ _servername("localhost"),
 _port(port),
 _password(password),
 _on(true),
+_restart(false),
 _IRCname("IRC_42")
 {
 	std::cout << "Creating Server - port : " << port << std::endl;
